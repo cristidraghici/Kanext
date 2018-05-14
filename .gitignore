@@ -1,0 +1,15 @@
+## os
+.DS_Store
+
+## gulp
+/node_modules
+
+## project
+config.php
+/Img/*
+!/Img/.keep
+/Css/*
+!/Css/kanext.css
+!/Css/material.css
+!/Css/refactor.css
+!/Css/thomastj.css
