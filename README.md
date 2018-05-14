@@ -12,26 +12,6 @@ This theme is not clean and is developed in a fast manner, targeted only to ease
 
 I am currently using Kanboard 1.2.3.
 
-## Preview
-
-### Styling enabled (within the configuration file)
-
-![Kanext - Styling enabled](/screenshots/after-2.png?raw=true "Kanext - Styling enabled")
-
-### Styling disabled
-
-![Kanext - Styling disabled](/screenshots/after-1.png?raw=true "Kanext - Styling disabled")
-
-### The board
-
-![Kanext - The board](/screenshots/board.png?raw=true "Kanext - The board")
-
-## Important
-
-This theme started as a fork of [Philip Steffen](https://github.com/phsteffen/kanboard-themeplus)'s work and also
-[Erich Munz](https://github.com/erichk4/kanboard-theme-material-like)'s CSS file.
-
-
 ## Installation
 
 1. First you have to install [kanboard](https://github.com/kanboard/kanboard).
