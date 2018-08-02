@@ -1,0 +1,30 @@
+/* Table list */
+.table-list {
+  background-color: #fff;
+  margin-bottom: 2em;
+  border: 1px solid #ccc;
+}
+
+.table-list .table-list-header {
+  border: none;
+  background: #f2f2f2;
+}
+
+.table-list .table-list-header * {
+  line-height: 18px;
+}
+
+.table-list .table-list-header,
+.table-list .table-list-row {
+  padding: 0.5em 1em;
+}
+
+.table-list .table-list-row .dropdown {
+  float: right;
+}
+
+.table-list .table-list-row {
+  border-right: none;
+  border-top: none;
+  border-bottom: 1px solid #efefef;
+}

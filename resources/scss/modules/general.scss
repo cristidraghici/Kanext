@@ -1,0 +1,109 @@
+/* General values */
+* {
+  /* font-family: Roboto, "Open Sans", sans-serif; */
+  outline: 0 !important;
+  -webkit-border-radius: 0 !important;
+  -moz-border-radius: 0 !important;
+  border-radius: 0 !important;
+}
+
+a:hover {
+  text-decoration: none !important;
+}
+/* Header */
+header .menus-container i {
+  padding: 4px;
+  background: #fff;
+  border: 1px solid #ccc;
+}
+
+header .menus-container i.fa-caret-down {
+  padding: 4px;
+  background: transparent;
+  border: none;
+}
+
+.js-select-dropdown-autocomplete-rendered {
+  width: 100% !important;
+}
+
+.board-selector-container {
+  width: 100% !important;
+  padding-right: 5px;
+}
+/* Alert fading */
+.alert-fade-out {
+  position: fixed;
+  top: auto;
+  right: 20px;
+  bottom: 20px;
+  left: auto;
+  width: 50%;
+  text-align: center;
+  border: none;
+  padding: 20px;
+  z-index: 1000;
+}
+/* Headings */
+.page-header h1,
+.page-header h2,
+.page-header h3,
+.page-header h4,
+.page-header h5,
+.page-header h6,
+.project-header h1,
+.project-header h2,
+.project-header h3,
+.project-header h4,
+.project-header h5,
+.project-header h6 {
+  padding-bottom: 0.6em;
+}
+/* Modal */
+#modal-header {
+  float: right;
+}
+
+#modal-header a#modal-close-button i {
+  font-size: 2em !important;
+}
+
+#modal-content {
+  padding: 1em 1.5em;
+}
+/* Remove background and border from menu on top */
+.views-switcher-component li {
+  background: transparent;
+  border: none !important;
+}
+/* Do not break the line in input addon */
+.input-addon-item {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+/* Remove sidebar icons */
+.sidebar-icons i.fa {
+  display: none;
+}
+
+.sidebar-icons > ul li {
+  padding-left: 13px;
+}
+
+.sidebar-icons > ul li:hover {
+  border-left: 5px solid #555;
+  padding-left: 8px;
+}
+
+.sidebar-icons > ul li.active {
+  border-left: 5px solid #333;
+  padding-left: 8px;
+}
+/* Colour picker fix */
+.color-picker-option {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding-bottom: 5px;
+}

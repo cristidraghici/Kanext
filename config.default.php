@@ -16,5 +16,8 @@ return array(
   // 'apple-touch-icon' => 'touch-icon-iphone.png',
   // 'apple-touch-icon72x72' => 'touch-icon-ipad.png',
   // 'apple-touch-icon114x114' => 'touch-icon-iphone-retina.png',
-  // 'apple-touch-icon144x144' => 'touch-icon-ipad-retina.png'
+  // 'apple-touch-icon144x144' => 'touch-icon-ipad-retina.png',
+
+  'disable_scss_compilation' => true,
+  'disable_js_compilation' => false
 );

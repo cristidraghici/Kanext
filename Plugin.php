@@ -7,13 +7,46 @@ use Kanboard\Core\Template;
 use Kanboard\Plugin\Kanext\Helper\ConfigHelper;
 use Kanboard\Plugin\Kanext\Helper\OverwriteHelper;
 
+require __DIR__ . '/vendor/autoload.php';
+
+use SassCompiler;
+use MatthiasMullie\Minify;
+
 class Plugin extends Base
 {
     public function initialize()
     {
+        // Generate minified CSS
+        if (!$this->configHelper->get('disable_scss_compilation')) {
+            SassCompiler::run(__DIR__ . '/resources/scss/', __DIR__ . '/Assets/Css/');
+
+            // Update the file with more commands than needed
+            unlink(__DIR__ . '/Assets/Css/kanext.min.css');
+            $css = new Minify\CSS();
+            $css->add(__DIR__ . '/Assets/Css/kanext.css');
+            $minified = $css->minify();
+            file_put_contents(__DIR__ . '/Assets/Css/kanext.min.css', $minified);
+
+            @unlink(__DIR__ . '/Assets/Css/kanext.css');
+        }
+
+        // Generate minified Js
+        if (!$this->configHelper->get('disable_js_compilation')) {
+
+            // Update the file with more commands than needed
+            unlink(__DIR__ . '/Assets/Js/kanext.min.js');
+            $js = new Minify\JS();
+
+            $js->add(__DIR__ . '/resources/js/links.js');
+            $js->add(__DIR__ . '/resources/js/modal.js');
+
+            $minified = $js->minify();
+            file_put_contents(__DIR__ . '/Assets/Js/kanext.min.js', $minified);
+        }
+
         // Add some css and js
-        $this->hook->on('template:layout:css', array('template' => 'plugins/Kanext/Assets/Css/kanext.css'));
-        $this->hook->on('template:layout:js', array('template' => 'plugins/Kanext/Assets/Js/kanext.js'));
+        $this->hook->on('template:layout:css', array('template' => 'plugins/Kanext/Assets/Css/kanext.min.css' ));
+        $this->hook->on('template:layout:js', array('template' => 'plugins/Kanext/Assets/Js/kanext.min.js' ));
 
         // Load the overwrites
         $this->overwriteHelper->loadTemplates();
@@ -30,7 +63,7 @@ class Plugin extends Base
 
     public function getHelpers()
     {
-      return array();
+        return array();
     }
 
     public function getPluginName()

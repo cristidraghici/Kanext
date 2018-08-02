@@ -7,7 +7,8 @@ use Kanboard\Plugin\Kanext\Helper\ConfigHelper;
 
 class OverwriteHelper extends Base
 {
-    public function loadTemplates() {
+    public function loadTemplates()
+    {
         #
         # Layout
         #
@@ -29,12 +30,12 @@ class OverwriteHelper extends Base
 
         // Load config styling
         if ($this->configHelper->get('disable_styling') !== true) {
-          if ($this->configHelper->get('theme') !== null) {
-              $this->hook->on('template:layout:css', array('template' => 'plugins/Kanext/Css/' . $this->configHelper->get('theme') . '.css'));
-          }
-          if ($this->configHelper->get('css') !== null) {
-              $this->hook->on('template:layout:css', array('template' => 'plugins/Kanext/Css/' . $this->configHelper->get('css') . '.css'));
-          }
+            if ($this->configHelper->get('theme') !== null) {
+                $this->hook->on('template:layout:css', array('template' => 'plugins/Kanext/Css/' . $this->configHelper->get('theme') . '.css'));
+            }
+            if ($this->configHelper->get('css') !== null) {
+                $this->hook->on('template:layout:css', array('template' => 'plugins/Kanext/Css/' . $this->configHelper->get('css') . '.css'));
+            }
         }
 
         #

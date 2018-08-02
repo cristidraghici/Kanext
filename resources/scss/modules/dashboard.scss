@@ -1,0 +1,48 @@
+/* Filter box */
+#dashboard .filter-box {
+  max-width: none;
+}
+
+#dashboard .filter-box .input-addon-field,
+#dashboard .filter-box .input-addon-item {
+  padding: 6px;
+  height: auto;
+}
+
+#dashboard .table-list-title {
+  z-index: 1;
+}
+
+#dashboard .task-list-avatars {
+  display: none !important;
+}
+
+#dashboard .table-list-row {
+  position: relative;
+  padding-left: 70px;
+}
+
+#dashboard .table-list-row .dropdown {
+  position: absolute;
+  left: 5px;
+  top: 10px;
+}
+
+#dashboard .sidebar-title {
+  font-size: 1em;
+}
+
+#dashboard .dashboard-sidebar-extras i {
+  display: none;
+}
+
+.dashboard-project-list small {
+  font-size: 14px !important;
+  color: #ccc;
+  padding-top: 10px;
+  display: block;
+}
+
+.dashboard-stats {
+  display: none;
+}

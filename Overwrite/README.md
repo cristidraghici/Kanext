@@ -1,4 +1,4 @@
-# IMPORTANT #
+# IMPORTANT
 
 The current folder contains files that overwrite the base functionality of Kanboard.
 
