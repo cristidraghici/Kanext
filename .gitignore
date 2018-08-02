@@ -8,8 +8,6 @@
 config.php
 /Img/*
 !/Img/.keep
-/Css/*
-!/Css/kanext.css
-!/Css/material.css
-!/Css/refactor.css
-!/Css/thomastj.css
+
+/Skins/*
+!/Skins/README.md

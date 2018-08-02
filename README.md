@@ -58,4 +58,5 @@ Also, the `./Css` folder contains css from existing themes:
 - https://github.com/geovannikun/Kanboard-RefactorTheme
 - https://github.com/kanboard/kanboard/issues/3708
 - https://github.com/kanboard/kanboard/issues/3552
-- https://gitlab.com/ThomasTJ/KanboardCSS/blob/master/style.css.v0.0.4
+- https://gitlab.com/ThomasTJ/KanboardCSS
+- https://github.com/kenlog/Nebula

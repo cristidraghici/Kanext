@@ -29,26 +29,26 @@ class OverwriteHelper extends Base
         }
 
         // Load config styling
-        if ($this->configHelper->get('disable_styling') !== true) {
-            if ($this->configHelper->get('theme') !== null) {
-                $this->hook->on('template:layout:css', array('template' => 'plugins/Kanext/Css/' . $this->configHelper->get('theme') . '.css'));
-            }
-            if ($this->configHelper->get('css') !== null) {
-                $this->hook->on('template:layout:css', array('template' => 'plugins/Kanext/Css/' . $this->configHelper->get('css') . '.css'));
-            }
+        if ($this->configHelper->get('disable_theme_styling') !== true && $this->configHelper->get('theme') !== null) {
+            $this->hook->on('template:layout:css', array('template' => 'plugins/Kanext/Css/minified/' . $this->configHelper->get('theme') . '.css'));
+        }
+        if ($this->configHelper->get('disable_skin_styling') !== true && $this->configHelper->get('skin') !== null) {
+            $this->hook->on('template:layout:css', array('template' => 'plugins/Kanext/Skin/' . $this->configHelper->get('skin') . '.css'));
         }
 
-        #
-        # Dashboard
-        #
-        $this->template->setTemplateOverride('dashboard/layout', 'kanext:dashboard/layout');
-        $this->template->setTemplateOverride('dashboard/sidebar', 'kanext:dashboard/sidebar');
-        $this->template->setTemplateOverride('dashboard/overview', 'kanext:dashboard/overview');
-        $this->template->setTemplateOverride('dashboard/projects', 'kanext:dashboard/projects');
+        if ($this->configHelper->get('disable_kanext_templating') !== true) {
+            #
+            # Dashboard
+            #
+            $this->template->setTemplateOverride('dashboard/layout', 'kanext:dashboard/layout');
+            $this->template->setTemplateOverride('dashboard/sidebar', 'kanext:dashboard/sidebar');
+            $this->template->setTemplateOverride('dashboard/overview', 'kanext:dashboard/overview');
+            $this->template->setTemplateOverride('dashboard/projects', 'kanext:dashboard/projects');
 
-        #
-        # Project
-        #
-        $this->template->hook->attach('template:project:dropdown', 'kanext:project/dropdown');
+            #
+            # Project
+            #
+            $this->template->hook->attach('template:project:dropdown', 'kanext:project/dropdown');
+        }
     }
 }

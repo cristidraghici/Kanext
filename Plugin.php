@@ -16,40 +16,62 @@ class Plugin extends Base
 {
     public function initialize()
     {
-        // Generate minified CSS
-        if (!$this->configHelper->get('disable_scss_compilation')) {
-            SassCompiler::run(__DIR__ . '/resources/scss/', __DIR__ . '/Assets/Css/');
+        if (!$this->configHelper->get('disable_theme')) {
+            // Generate minified CSS
+            if (!$this->configHelper->get('disable_scss_compilation')) {
+                SassCompiler::run(__DIR__ . '/resources/scss/', __DIR__ . '/Assets/Css/');
+
+                // Update the file with more commands than needed
+                $css = new Minify\CSS();
+                $css->add(__DIR__ . '/Assets/Css/kanext.css');
+                $minified = $css->minify();
+                file_put_contents(__DIR__ . '/Assets/Css/kanext.min.css', $minified);
+
+                @unlink(__DIR__ . '/Assets/Css/kanext.css');
+
+                // Minify existing themes
+                if ($handle = opendir(__DIR__ . '/Css//')) {
+                    while (false !== ($file = readdir($handle))) {
+                        if ('.' === $file || '..' === $file || 'minified' === $file) {
+                            continue;
+                        }
+
+                        // do something with the file
+                        $css = new Minify\CSS();
+                        $css->add(__DIR__ . '/Css/' . $file);
+                        $minified = $css->minify();
+                        file_put_contents(__DIR__ . '/Css/minified/' . $file, $minified);
+                        unset($css);
+                    }
+
+                    closedir($handle);
+                }
+            }
+
+            // Generate minified Js
+            if (!$this->configHelper->get('disable_js_compilation')) {
 
             // Update the file with more commands than needed
-            unlink(__DIR__ . '/Assets/Css/kanext.min.css');
-            $css = new Minify\CSS();
-            $css->add(__DIR__ . '/Assets/Css/kanext.css');
-            $minified = $css->minify();
-            file_put_contents(__DIR__ . '/Assets/Css/kanext.min.css', $minified);
+                $js = new Minify\JS();
 
-            @unlink(__DIR__ . '/Assets/Css/kanext.css');
+                $js->add(__DIR__ . '/resources/js/links.js');
+                $js->add(__DIR__ . '/resources/js/modal.js');
+
+                $minified = $js->minify();
+                file_put_contents(__DIR__ . '/Assets/Js/kanext.min.js', $minified);
+            }
+
+            // Add some css and js
+            if (!$this->configHelper->get('disable_kanext_styling')) {
+                $this->hook->on('template:layout:css', array('template' => 'plugins/Kanext/Assets/Css/kanext.min.css' ));
+            }
+            if (!$this->configHelper->get('disable_kanext_scripting')) {
+                $this->hook->on('template:layout:js', array('template' => 'plugins/Kanext/Assets/Js/kanext.min.js' ));
+            }
+
+            // Load the overwrites
+            $this->overwriteHelper->loadTemplates();
         }
-
-        // Generate minified Js
-        if (!$this->configHelper->get('disable_js_compilation')) {
-
-            // Update the file with more commands than needed
-            unlink(__DIR__ . '/Assets/Js/kanext.min.js');
-            $js = new Minify\JS();
-
-            $js->add(__DIR__ . '/resources/js/links.js');
-            $js->add(__DIR__ . '/resources/js/modal.js');
-
-            $minified = $js->minify();
-            file_put_contents(__DIR__ . '/Assets/Js/kanext.min.js', $minified);
-        }
-
-        // Add some css and js
-        $this->hook->on('template:layout:css', array('template' => 'plugins/Kanext/Assets/Css/kanext.min.css' ));
-        $this->hook->on('template:layout:js', array('template' => 'plugins/Kanext/Assets/Js/kanext.min.js' ));
-
-        // Load the overwrites
-        $this->overwriteHelper->loadTemplates();
     }
     public function getClasses()
     {
