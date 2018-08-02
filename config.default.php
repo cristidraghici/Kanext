@@ -34,5 +34,5 @@ return array(
   'favicon' => 'kanboard_favicon.png',
 
   'disable_scss_compilation' => true,
-  'disable_js_compilation' => false
+  'disable_js_compilation' => true
 );
