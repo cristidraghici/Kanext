@@ -9,23 +9,8 @@
   height: auto;
 }
 
-#dashboard .table-list-title {
-  z-index: 1;
-}
-
 #dashboard .task-list-avatars {
   display: none !important;
-}
-
-#dashboard .table-list-row {
-  position: relative;
-  padding-left: 70px;
-}
-
-#dashboard .table-list-row .dropdown {
-  position: absolute;
-  left: 5px;
-  top: 10px;
 }
 
 #dashboard .sidebar-title {

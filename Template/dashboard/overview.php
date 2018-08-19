@@ -18,7 +18,7 @@
     <?php foreach ($overview_paginator as $result): ?>
         <?php if (! $result['paginator']->isEmpty()): ?>
             <div class="page-header">
-                <h2><?= $this->url->link($this->text->e($result['project_name']), 'BoardViewController', 'show', array('project_id' => $result['project_id'])) ?></h2>
+                <h2 id="project-tasks-<?= $result['project_id'] ?>"><?= $this->url->link($this->text->e($result['project_name']), 'BoardViewController', 'show', array('project_id' => $result['project_id'])) ?></h2>
             </div>
 
             <div class="table-list">
@@ -30,6 +30,7 @@
                     <div class="table-list-row color-<?= $task['color_id'] ?>">
                         <?= $this->render('task_list/task_title', array(
                             'task' => $task,
+                            'redirect' => 'dashboard',
                         )) ?>
 
                         <?= $this->render('task_list/task_details', array(
@@ -48,6 +49,8 @@
                             'task'    => $task,
                             'user_id' => $user['id'],
                         )) ?>
+
+                        <?= $this->hook->render('template:dashboard:task:footer', array('task' => $task)) ?>
                     </div>
                 <?php endforeach ?>
             </div>
@@ -56,5 +59,3 @@
         <?php endif ?>
     <?php endforeach ?>
 <?php endif ?>
-
-<?= $this->hook->render('template:dashboard:show', array('user' => $user)) ?>

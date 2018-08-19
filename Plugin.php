@@ -56,6 +56,7 @@ class Plugin extends Base
 
                 $js->add(__DIR__ . '/resources/js/links.js');
                 $js->add(__DIR__ . '/resources/js/modal.js');
+                $js->add(__DIR__ . '/resources/js/click.js');
 
                 $minified = $js->minify();
                 file_put_contents(__DIR__ . '/Assets/Js/kanext.min.js', $minified);

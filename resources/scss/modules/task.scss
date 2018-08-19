@@ -44,3 +44,16 @@
 .task-board-status-closed .task-board-title {
   text-decoration: line-through !important;
 }
+
+.task-list-avatars {
+  float: none;
+}
+
+.table-list-details,
+.task-list-icons {
+  display: inline-block;
+}
+
+.task-list-icons {
+  float: right;
+}

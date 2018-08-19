@@ -15,7 +15,7 @@ return array(
   // Disable Kanext javascript code
   'disable_kanext_scripting' => false,
 
-  // Disable Kanext javascript code
+  // Disable Kanext template
   'disable_kanext_templating' => false,
 
   // Disable the predefined Css styling
@@ -26,7 +26,7 @@ return array(
 
   // Theme to use
   'theme' => 'refactor',
-  'skin' => '',
+  'skin' => 'itcafe',
 
   'login-logo' => 'kanboard_logo.png',
   // 'login-link' => '',

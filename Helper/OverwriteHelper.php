@@ -33,7 +33,7 @@ class OverwriteHelper extends Base
             $this->hook->on('template:layout:css', array('template' => 'plugins/Kanext/Css/minified/' . $this->configHelper->get('theme') . '.css'));
         }
         if ($this->configHelper->get('disable_skin_styling') !== true && $this->configHelper->get('skin') !== null) {
-            $this->hook->on('template:layout:css', array('template' => 'plugins/Kanext/Skin/' . $this->configHelper->get('skin') . '.css'));
+            $this->hook->on('template:layout:css', array('template' => 'plugins/Kanext/Skins/' . $this->configHelper->get('skin') . '.css'));
         }
 
         if ($this->configHelper->get('disable_kanext_templating') !== true) {
@@ -49,6 +49,12 @@ class OverwriteHelper extends Base
             # Project
             #
             $this->template->hook->attach('template:project:dropdown', 'kanext:project/dropdown');
+
+            #
+            # Task list
+            #
+            $this->template->setTemplateOverride('task_list/task_title', 'kanext:task_list/task_title');
+            $this->template->setTemplateOverride('task_list/task_details', 'kanext:task_list/task_details');
         }
     }
 }
