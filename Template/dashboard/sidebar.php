@@ -25,15 +25,6 @@
 
         <?php if ($this->user->hasAccess('UserListController', 'show')): ?>
             <li>
-                <?= $this->url->icon('user', t('Users management'), 'UserListController', 'show') ?>
-            </li>
-            <li>
-                <?= $this->url->icon('group', t('Groups management'), 'GroupListController', 'index') ?>
-            </li>
-            <li>
-                <?= $this->url->icon('cubes', t('Plugins'), 'PluginController', 'show') ?>
-            </li>
-            <li>
                 <?= $this->url->icon('cog', t('Settings'), 'ConfigController', 'index') ?>
             </li>
         <?php endif ?>

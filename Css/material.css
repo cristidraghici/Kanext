@@ -564,13 +564,6 @@ ul.dropdown-submenu-open {
   background: #fff;
 }
 
-.color-picker-square.color-yellow,
-.task-board.color-yellow,
-.task-summary-container.color-yellow {
-  background-color: #ffeb8e !important;
-  border-color: #e4c600 !important;
-}
-
 .alert {
   background-color: #f7e400;
   border-color: #e8d700;
@@ -782,10 +775,6 @@ table th {
 .table-list-row {
   padding: 10px 15px;
   border-color: #e5e5e5;
-}
-
-.table-list-row.color-yellow {
-  border-left: solid 5px #e4c600 !important;
 }
 
 .table-list-row:hover {

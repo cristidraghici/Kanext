@@ -10,6 +10,20 @@
 a:hover {
   text-decoration: none !important;
 }
+/* Required inputs */
+span.form-required {
+  display: none !important;
+}
+
+*:required {
+  background-image: radial-gradient(#F00 15%, transparent 16%), radial-gradient(#F00 15%, transparent 16%);
+  background-size: 1.5em 1.5em;
+  background-position: right top;
+  background-repeat: no-repeat;
+  padding-right: 1.8em;
+  z-index: 99999;
+}
+
 /* Header */
 header .menus-container i {
   padding: 4px;
