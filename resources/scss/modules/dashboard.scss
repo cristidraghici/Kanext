@@ -32,6 +32,38 @@
   display: block;
 }
 
-.dashboard-stats {
-  display: none;
+
+.dashboard-content {
+  width: 70%;
+  float: left;
+}
+.dashboard-activity {
+  padding: 20px 10px 0px 10px;
+  margin-left: 20px;
+  border: 1px dotted #ccc;
+  width: calc(30% - 50px);
+  overflow: auto;
+  text-align: center;
+  float: right;
+
+  .activity-header {
+    padding: 0px 0px 15px 15px;
+    overflow: hidden;
+    text-align: left;
+  }
+
+  .activity-event {
+    width: 90% !important;
+    display: inline-block;
+    text-align: left;
+  }
+}
+
+@media (max-width: 900px) {
+  .dashboard-content {
+    width: 100%;
+  }
+  .dashboard-activity {
+    display: none;
+  }
 }

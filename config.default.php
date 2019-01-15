@@ -24,7 +24,7 @@ return array(
   // Diasable your skin file (if present)
   'disable_skin_styling' => false,
 
-  // Theme to use
+  // Theme to use (optimized for `refactor`) 
   'theme' => 'refactor',
   'skin' => 'itcafe',
 
@@ -33,6 +33,11 @@ return array(
   'logo' => '',
   'favicon' => 'kanboard_favicon.png',
 
+  // Dashboard
+  'activity_items' => 15,
+  'show_activity_list' => true,
+
+  // Development
   'disable_scss_compilation' => true,
   'disable_js_compilation' => true
 );

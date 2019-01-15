@@ -17,11 +17,11 @@ class ConfigHelper extends Base
      */
     public function init()
     {
-        if (file_exists('plugins/Kanext/config.php')) {
-            return $this->config = require_once('plugins/Kanext/config.php');
-        }
-
         $this->config = require_once('plugins/Kanext/config.default.php');
+
+        if (file_exists('plugins/Kanext/config.php')) {
+            $this->config = array_merge($this->config, require_once('plugins/Kanext/config.php'));
+        }
     }
 
     /**
