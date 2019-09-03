@@ -1,13 +1,5 @@
-## os
 .DS_Store
+.project
 
-## gulp
-/node_modules
-
-## project
-config.php
-/Img/*
-!/Img/.keep
-
-/Skins/*
-!/Skins/README.md
+vendor
+node_modules
