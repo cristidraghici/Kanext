@@ -5,11 +5,13 @@
                 <?= $this->url->icon('folder', t('Project management'), 'ProjectListController', 'show') ?>
             </li>
 
+<!--
             <?php // if ($this->user->hasAccess('Bigboard', 'index')):?>
               <li>
                   <?= $this->url->icon('fa fa-th fa-fw', t('Bigboard'), 'Bigboard', 'index', ['plugin' => 'Bigboard']) ?>
               </li>
             <?php // endif;?>
+-->
 
             <?php if ($this->user->hasAccess('ProjectCreationController', 'create')): ?>
                 <li>
