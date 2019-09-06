@@ -1,8 +1,7 @@
 <?php
 namespace Kanboard\Plugin\Kanext;
 
-use Kanboard\Core\Base;
-use Kanboard\Core\Template;
+use Kanboard\Core\Plugin\Base;
 
 class Plugin extends Base
 {
@@ -13,12 +12,6 @@ class Plugin extends Base
     {
         return array();
     }
-
-    public function getHelpers()
-    {
-        return array();
-    }
-
     public function getPluginName()
     {
         return 'Kanext';
@@ -43,10 +36,12 @@ class Plugin extends Base
     /**
      * This plugin alters php templates, thus is tightly dependent on the kanboard version.
      * It is recommended that the plugin be checked with every release,
-     * but mandatory to have it checked when kanboard releases minors or majors.
+     * but mandatory to have it checked when kanboard releases minors or majors. Thus,
+     * we use a lesser than condition, assuming that people who new-ish :) plugins, also care to update
+     * the version of Kanboard.
      */
     public function getCompatibleVersion()
     {
-        return '>1.2.0';
+        return '<1.3.0';
     }
 }

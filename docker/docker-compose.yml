@@ -4,8 +4,8 @@ services:
     container_name: 'kanext-kanboard'
     build: ./
     ports:
-      - "80:80"
-      - "443:443"
+      - "88:80"
+      - "4433:443"
     volumes:
       - ./.data:/var/www/app/data
       - ./.plugins:/var/www/app/plugins
