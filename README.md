@@ -2,10 +2,24 @@
 
 > Improved and expanded theme for [kanboard](https://github.com/kanboard/kanboard), that alters both look and functionality.
 
+## Important notice
+
+Version 2.x.x brings fundamental changes to the project, thus please do not update if you are happy previous versions.
+
 ## Kanboard
 
 Kanboard provides the basic necessary functionality for handling kanban projects. Moreover, it is a popular piece of software with a lot of community support.
 Kanboard is currently at **1.2.11**.
+
+## Kanext
+
+`Kanext` is short for `Kanboard-Extended` :) . This plugin is supposed to change some parts of the templates kanboard uses (e.g. the dashboard) to increase productivity for small teams.
+
+Other UI improvements are available as well:
+
+- different menu structure;
+- just another CSS theme;
+- small changes in the overall functionality (e.g. close modal on outside click, close dropdown on second click in the anchor)
 
 ## Development
 

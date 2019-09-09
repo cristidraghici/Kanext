@@ -9,6 +9,7 @@ services:
     volumes:
       - ./.data:/var/www/app/data
       - ./.plugins:/var/www/app/plugins
-      - ../src:/var/www/app/plugins/Kanext
+      - ./.ssl:/etc/nginx/ssl
+      - ../:/var/www/app/plugins/Kanext
     environment:
       - KANBOARD_PLUGIN_INSTALLER="true"
