@@ -2,6 +2,7 @@
 namespace Kanboard\Plugin\Kanext;
 
 use Kanboard\Core\Plugin\Base;
+use Kanboard\Core\Translator;
 
 class Plugin extends Base
 {
@@ -19,6 +20,11 @@ class Plugin extends Base
         $this->hook->on('template:layout:js', array('template' => 'plugins/Kanext/Assets/kanext.js'));
         $this->hook->on('template:layout:css', array('template' => 'plugins/Kanext/Assets/kanext.css'));
     }
+    public function onStartup()
+    {
+        Translator::load($this->languageModel->getCurrentLanguage(), __DIR__.'/Locale');
+    }
+
     public function getClasses()
     {
         return array();

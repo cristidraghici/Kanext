@@ -67,6 +67,9 @@
     </div>
 
     <div class="kanext-dashboard-container-right">
+        <div class="page-header">
+            <h2><?php echo t('Activity overview'); ?></h2>
+        </div>
         <div class="dashboard-activity">
             <?php
             // TODO: move this to a proper container
