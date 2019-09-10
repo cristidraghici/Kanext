@@ -2,10 +2,6 @@
     <p class="alert"><?= t('There is no activity yet.') ?></p>
 <?php else: ?>
     <?php foreach ($events as $event): ?>
-        <summary class="accordion-title">
-          <a href="?controller=BoardViewController&action=show&project_id=<?= $event['task']['project_id'] ?>"><?= $event['task']['project_name'] ?></a>
-        </summary>
-
         <div class="activity-event">
             <?= $this->avatar->render(
                 $event['creator_id'],
@@ -16,9 +12,10 @@
             ) ?>
 
             <div class="activity-content">
+                <a href="?controller=BoardViewController&action=show&project_id=<?= $event['task']['project_id'] ?>"><?= $event['task']['project_name'] ?></a>
+
                 <?= $event['event_content'] ?>
             </div>
-
         </div>
     <?php endforeach ?>
 <?php endif ?>
