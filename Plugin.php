@@ -15,10 +15,16 @@ class Plugin extends Base
         $this->template->setTemplateOverride('dashboard/layout', 'kanext:_overrides/dashboard/layout');
         $this->template->setTemplateOverride('dashboard/overview', 'kanext:_overrides/dashboard/overview');
         $this->template->setTemplateOverride('dashboard/projects', 'kanext:_overrides/dashboard/projects');
+        $this->template->setTemplateOverride('board/table_container', 'kanext:_overrides/board/table_container');
 
         // JS and CSS
         $this->hook->on('template:layout:js', array('template' => 'plugins/Kanext/Assets/kanext.js'));
         $this->hook->on('template:layout:css', array('template' => 'plugins/Kanext/Assets/kanext.css'));
+        // skins
+        $this->hook->on('template:layout:css', array('template' => 'plugins/Kanext/Assets/skins/kanext.skin.css'));
+
+        // Configuration
+        $this->template->hook->attach('template:config:sidebar', 'kanext:config/sidebar');
     }
     public function onStartup()
     {

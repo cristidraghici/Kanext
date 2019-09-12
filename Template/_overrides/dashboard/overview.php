@@ -72,16 +72,14 @@
         </div>
         <div class="dashboard-activity">
             <?php
-            // TODO: move this to a proper container
-            $projects = [];
-            $max_activity_items = 15;
-            foreach ($project_paginator->getCollection() as $project) {
-                $projects[] = $project['id'];
-            }
+                $projects = [];
+                $max_activity_items = 15;
+                foreach ($project_paginator->getCollection() as $project) {
+                    $projects[] = $project['id'];
+                }
+                $events = $this->helper->projectActivity->getProjectsEvents($projects, $max_activity_items);
 
-            $events = $this->helper->projectActivity->getProjectsEvents($projects, $max_activity_items);
-
-            echo $this->render('kanext:event/dashevents', array('events' => $events));
+                echo $this->render('kanext:event/dashevents', array('events' => $events));
             ?>
         </div>
     </div>

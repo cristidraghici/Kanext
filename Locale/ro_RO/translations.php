@@ -1,4 +1,5 @@
 <?php
 return array(
-    'Activity overview' => 'Activitate recenta'
+    'Activity overview' => 'Activitate recenta',
+    'Kanext settings' => 'Configurare Kanext'
 );
