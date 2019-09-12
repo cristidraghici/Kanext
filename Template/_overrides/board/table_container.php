@@ -20,6 +20,11 @@
         <?php foreach ($swimlanes as $index => $swimlane): ?>
             <?php if (! ($swimlane['nb_tasks'] === 0 && isset($not_editable))): ?>
 
+            <?= $this->render('kanext:board/table_column_empty', array(
+                    'swimlane' => $swimlane,
+                    'not_editable' => isset($not_editable),
+                )) ?>
+
                 <?php if ($swimlane['nb_swimlanes'] > 1): ?>
                     <?= $this->render('board/table_swimlane', array(
                         'project' => $project,
