@@ -7,7 +7,7 @@
 
     <?php if ($this->user->hasAccess('UserListController', 'show')): ?>
         <li>
-            <?= $this->url->link(t('Settings'), 'ConfigController', 'index') ?>
+            <?= $this->url->link(t('Kanext settings'), 'KanextConfigController', 'show', array('plugin' => 'Kanext')) ?>
         </li>
     <?php endif ?>
 </ul>

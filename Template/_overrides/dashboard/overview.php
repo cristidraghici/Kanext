@@ -1,3 +1,7 @@
+<?php
+    // This needs to change when more options will be available
+    $show_activity = $this->app->configHelper->get('kanext_dashboard_activity_type') == 'kanext_dashboard_activity_general';
+?>
 <div class="filter-box margin-bottom">
     <form method="get" action="<?= $this->url->dir() ?>" class="search">
         <?= $this->form->hidden('controller', array('controller' => 'SearchController')) ?>
@@ -12,9 +16,8 @@
     </form>
 </div>
 
-<div class="kanext-dashboard-container">
-    <div class="kanext-dashboard-container-center">
-
+<div class="<?php echo $show_activity ? 'kanext-dashboard-container' : ''; ?>">
+    <div class="<?php echo $show_activity ? 'kanext-dashboard-container-center' : ''; ?>">
         <?php if (empty($overview_paginator)): ?>
             <p class="alert"><?= t('There is nothing assigned to you.') ?></p>
         <?php else: ?>
@@ -66,22 +69,24 @@
         <?= $this->hook->render('template:dashboard:show', array('user' => $user)) ?>
     </div>
 
-    <div class="kanext-dashboard-container-right">
-        <div class="page-header">
-            <h2><?php echo t('Activity overview'); ?></h2>
-        </div>
-        <div class="dashboard-activity">
-            <?php
-                $projects = [];
-                $max_activity_items = 15;
-                foreach ($project_paginator->getCollection() as $project) {
-                    $projects[] = $project['id'];
-                }
-                $events = $this->helper->projectActivity->getProjectsEvents($projects, $max_activity_items);
+    <?php if ($show_activity): ?>
+        <div class="kanext-dashboard-container-right">
+            <div class="page-header">
+                <h2><?php echo t('Activity overview'); ?></h2>
+            </div>
+            <div class="dashboard-activity">
+                <?php
+                    $projects = [];
+                    $max_activity_items = 15;
+                    foreach ($project_paginator->getCollection() as $project) {
+                        $projects[] = $project['id'];
+                    }
+                    $events = $this->helper->projectActivity->getProjectsEvents($projects, $max_activity_items);
 
-                echo $this->render('kanext:event/dashevents', array('events' => $events));
-            ?>
+                    echo $this->render('kanext:event/dashevents', array('events' => $events));
+                ?>
+            </div>
         </div>
-    </div>
+    <?php endif; ?>
 
 </div>

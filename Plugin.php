@@ -10,6 +10,7 @@ class Plugin extends Base
     {
         // Hooks
         $this->template->hook->attach('template:dashboard:sidebar', 'kanext:_hooks/dashboard/sidebar');
+        $this->template->hook->attach('template:layout:head', 'kanext:_hooks/layout/head');
 
         // Override
         $this->template->setTemplateOverride('dashboard/layout', 'kanext:_overrides/dashboard/layout');
@@ -18,10 +19,16 @@ class Plugin extends Base
         $this->template->setTemplateOverride('board/table_container', 'kanext:_overrides/board/table_container');
 
         // JS and CSS
-        $this->hook->on('template:layout:js', array('template' => 'plugins/Kanext/Assets/kanext.js'));
-        $this->hook->on('template:layout:css', array('template' => 'plugins/Kanext/Assets/kanext.css'));
-        // skins
-        $this->hook->on('template:layout:css', array('template' => 'plugins/Kanext/Assets/skins/kanext.skin.css'));
+        $this->hook->on('template:layout:js', array('template' => 'plugins/Kanext/Assets/kanext.base.js'));
+        $this->hook->on('template:layout:css', array('template' => 'plugins/Kanext/Assets/kanext.base.css'));
+
+        // Fixes
+        if ($this->configModel->get('kanext_use_js_fixes') == 1) {
+            $this->hook->on('template:layout:js', array('template' => 'plugins/Kanext/Assets/kanext.fixes.js'));
+        }
+        if ($this->configModel->get('kanext_use_css_fixes') == 1) {
+            $this->hook->on('template:layout:css', array('template' => 'plugins/Kanext/Assets/kanext.fixes.css'));
+        }
 
         // Configuration
         $this->template->hook->attach('template:config:sidebar', 'kanext:config/sidebar');
@@ -33,11 +40,20 @@ class Plugin extends Base
 
     public function getClasses()
     {
-        return array();
+        return array(
+            'Plugin\Kanext\Helper' => array(
+              'ConfigHelper'
+            )
+        );
     }
+
     public function getPluginName()
     {
         return 'Kanext';
+    }
+    public function getPluginDescription()
+    {
+        return t('This theme modifies the default functionality of kanboard and enhances the user experience.', 'kanext');
     }
     public function getPluginAuthor()
     {
@@ -46,10 +62,6 @@ class Plugin extends Base
     public function getPluginVersion()
     {
         return '2.0.0';
-    }
-    public function getPluginDescription()
-    {
-        return 'This theme modifies the default functionality of kanboard and enhances the user experience.';
     }
     public function getPluginHomepage()
     {

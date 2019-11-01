@@ -1,0 +1,10 @@
+/* Filter box */
+#dashboard .filter-box {
+  max-width: none;
+}
+
+#dashboard .filter-box .input-addon-field,
+#dashboard .filter-box .input-addon-item {
+  padding: 6px;
+  height: auto;
+}
