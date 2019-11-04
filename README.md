@@ -21,6 +21,20 @@ Other UI improvements are available as well:
 - just another CSS theme;
 - small changes in the overall functionality (e.g. close modal on outside click, close dropdown on second click in the anchor)
 
+## Skins
+
+The `./Skins` folder contains css from existing themes:
+
+- https://github.com/bgibout/blueboard
+- https://github.com/phsteffen/kanboard-themeplus
+- https://github.com/erichk4/kanboard-theme-material-like
+- https://github.com/kenlog/Moon
+- https://github.com/geovannikun/Kanboard-RefactorTheme
+- https://github.com/kanboard/kanboard/issues/3708
+- https://github.com/kanboard/kanboard/issues/3552
+- https://gitlab.com/ThomasTJ/KanboardCSS
+- https://github.com/kenlog/Nebula
+
 ## Development
 
 - path assumptions:

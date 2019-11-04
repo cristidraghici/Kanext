@@ -1,0 +1,38 @@
+input[type=radio] {
+  width: auto !important;
+  display: inline-block !important;
+}
+
+/* Remove when theme is changed */
+.task-board-header .task-board-avatars {
+  display: none !important;
+}
+
+.activity-event .activity-content .activity-title {
+  display: block !important;
+}
+
+#dashboard .dashboard-activity {
+  border: 1px solid #ccdcf3;
+  border-top: none !important;
+  border-radius: 5px;
+  background-color: #f0f6ff;
+  border-color: #ccdcf3;
+}
+
+#dashboard .accordion-title {
+  margin: 0;
+  padding: 15px 15px 15px 15px;
+  border-radius: 5px;
+  border-top: 1px solid #ccdcf3;
+  border-bottom: 1px solid #ccdcf3;
+}
+
+#dashboard .activity-event {
+  border: none !important;
+  align-items: normal !important;
+}
+
+/* header on mombile fix */
+@media only screen and (max-width: 768px)  {
+}

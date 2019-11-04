@@ -1,6 +1,7 @@
 <?php
 namespace Kanboard\Plugin\Kanext;
 
+use DirectoryIterator;
 use Kanboard\Core\Plugin\Base;
 use Kanboard\Core\Translator;
 
@@ -19,15 +20,20 @@ class Plugin extends Base
         $this->template->setTemplateOverride('board/table_container', 'kanext:_overrides/board/table_container');
 
         // JS and CSS
-        $this->hook->on('template:layout:js', array('template' => 'plugins/Kanext/Assets/kanext.base.js'));
-        $this->hook->on('template:layout:css', array('template' => 'plugins/Kanext/Assets/kanext.base.css'));
+        $this->hook->on('template:layout:js', array('template' => 'plugins/Kanext/Assets/base.js'));
+        $this->hook->on('template:layout:css', array('template' => 'plugins/Kanext/Assets/base.css'));
 
         // Fixes
         if ($this->configModel->get('kanext_use_js_fixes') == 1) {
-            $this->hook->on('template:layout:js', array('template' => 'plugins/Kanext/Assets/kanext.fixes.js'));
+            $this->hook->on('template:layout:js', array('template' => 'plugins/Kanext/Assets/fixes.js'));
         }
         if ($this->configModel->get('kanext_use_css_fixes') == 1) {
-            $this->hook->on('template:layout:css', array('template' => 'plugins/Kanext/Assets/kanext.fixes.css'));
+            $this->hook->on('template:layout:css', array('template' => 'plugins/Kanext/Assets/fixes.css'));
+        }
+
+        // The Kanext theme
+        if ($this->configModel->get('kanext_use_own_theme') == 1) {
+            $this->hook->on('template:layout:css', array('template' => 'plugins/Kanext/Assets/PluginSkins/kanext.css'));
         }
 
         // Configuration
@@ -35,7 +41,33 @@ class Plugin extends Base
     }
     public function onStartup()
     {
+        // Load the locales
         Translator::load($this->languageModel->getCurrentLanguage(), __DIR__.'/Locale');
+
+        // Load custom CSS for plugins
+        if ($this->configModel->get('kanext_use_plugin_fixes') == 1) {
+            $overwritables_plugins_css = array();
+
+            // Get the list of overwritable values
+            $dir = new DirectoryIterator(__DIR__ . '/Assets/PluginSkins/');
+            foreach ($dir as $fileInfo) {
+                if ($fileInfo->isFile()) {
+                    $overwritables_plugins_css[] = strtolower($fileInfo->getBasename('.css'));
+                }
+            }
+
+            // Get the installed plugins
+            $installedPlugins = array();
+            foreach ($this->pluginLoader->getPlugins() as $plugin) {
+                $installedPlugins[strtolower($plugin->getPluginName())] = $plugin->getPluginVersion();
+            }
+
+            foreach ($overwritables_plugins_css as $theme) {
+                if (isset($installedPlugins[$theme])) {
+                    $this->hook->on('template:layout:css', array('template' => 'plugins/Kanext/Assets/PluginSkins/'.$theme.'.css'));
+                }
+            }
+        }
     }
 
     public function getClasses()
