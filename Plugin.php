@@ -46,10 +46,11 @@ class Plugin extends Base
 
         // Load custom CSS for plugins
         if ($this->configModel->get('kanext_use_plugin_fixes') == 1) {
+            $kanext_skins = PLUGINS_DIR . '/Kanext/Assets/PluginSkins/';
             $overwritables_plugins_css = array();
 
             // Get the list of overwritable values
-            $dir = new DirectoryIterator(__DIR__ . '/Assets/PluginSkins/');
+            $dir = new DirectoryIterator($kanext_skins);
             foreach ($dir as $fileInfo) {
                 if ($fileInfo->isFile()) {
                     $overwritables_plugins_css[] = strtolower($fileInfo->getBasename('.css'));
@@ -57,13 +58,13 @@ class Plugin extends Base
             }
 
             // Get the installed plugins
-            $installedPlugins = array();
+            $installed_plugins = array();
             foreach ($this->pluginLoader->getPlugins() as $plugin) {
-                $installedPlugins[strtolower($plugin->getPluginName())] = $plugin->getPluginVersion();
+                $installed_plugins[strtolower($plugin->getPluginName())] = $plugin->getPluginVersion();
             }
 
             foreach ($overwritables_plugins_css as $theme) {
-                if (isset($installedPlugins[$theme])) {
+                if (isset($installed_plugins[$theme])) {
                     $this->hook->on('template:layout:css', array('template' => 'plugins/Kanext/Assets/PluginSkins/'.$theme.'.css'));
                 }
             }
