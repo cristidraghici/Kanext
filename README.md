@@ -6,6 +6,12 @@
 
 Version 2.x.x brings fundamental changes to the project, thus please do not update if you are happy previous versions.
 
+## Screenshot
+
+This screenshot is made together with the GreenWing template.
+
+![Dashboard with GreenWing and Kanext](/.screenshots/dashboard.png?raw=true "Dashboard with GreenWing and Kanext")
+
 ## Kanboard
 
 Kanboard provides the basic necessary functionality for handling kanban projects. Moreover, it is a popular piece of software with a lot of community support.
