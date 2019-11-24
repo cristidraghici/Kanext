@@ -8,7 +8,7 @@ Version 2.x.x brings fundamental changes to the project, thus please do not upda
 
 ## Screenshot
 
-This screenshot is made together with the GreenWing template.
+This screenshot is made together with the **GreenWing** plugin/template, which we strongle recommend.
 
 ![Dashboard with GreenWing and Kanext](/.screenshots/dashboard.png?raw=true "Dashboard with GreenWing and Kanext")
 
@@ -26,20 +26,6 @@ Other UI improvements are available as well:
 - different menu structure;
 - just another CSS theme;
 - small changes in the overall functionality (e.g. close modal on outside click, close dropdown on second click in the anchor)
-
-## Skins
-
-The `./Skins` folder contains css from existing themes:
-
-- https://github.com/bgibout/blueboard
-- https://github.com/phsteffen/kanboard-themeplus
-- https://github.com/erichk4/kanboard-theme-material-like
-- https://github.com/kenlog/Moon
-- https://github.com/geovannikun/Kanboard-RefactorTheme
-- https://github.com/kanboard/kanboard/issues/3708
-- https://github.com/kanboard/kanboard/issues/3552
-- https://gitlab.com/ThomasTJ/KanboardCSS
-- https://github.com/kenlog/Nebula
 
 ## Development
 
