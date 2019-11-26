@@ -1,0 +1,14 @@
+.sidebar {
+  display: none;
+}
+
+.sidebar-content {
+  padding-left: 45px !important;
+  position: relative;
+}
+
+.button-minimize {
+  position: absolute;
+  top: 0;
+  left: 5px;
+}

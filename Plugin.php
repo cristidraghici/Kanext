@@ -25,10 +25,10 @@ class Plugin extends Base
 
         // Fixes
         if ($this->configModel->get('kanext_use_js_fixes') == 1) {
-            $this->hook->on('template:layout:js', array('template' => 'plugins/Kanext/Assets/fixes.js'));
+            $this->hook->on('template:layout:js', array('template' => 'plugins/Kanext/Assets/base.js'));
         }
         if ($this->configModel->get('kanext_use_css_fixes') == 1) {
-            $this->hook->on('template:layout:css', array('template' => 'plugins/Kanext/Assets/fixes.css'));
+            $this->hook->on('template:layout:css', array('template' => 'plugins/Kanext/Assets/base.css'));
         }
 
         // The Kanext theme
@@ -38,6 +38,12 @@ class Plugin extends Base
 
         // Configuration
         $this->template->hook->attach('template:config:sidebar', 'kanext:config/sidebar');
+
+        // The features
+        if ($this->configModel->get('kanext_feature_toggle_sidebar') == 1) {
+            $this->hook->on('template:layout:js', array('template' => 'plugins/Kanext/Assets/ToggleSidebar/script.js'));
+            $this->hook->on('template:layout:css', array('template' => 'plugins/Kanext/Assets/ToggleSidebar/style.css'));
+        }
     }
     public function onStartup()
     {

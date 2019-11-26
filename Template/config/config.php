@@ -17,6 +17,11 @@
     </fieldset>
 
     <fieldset>
+        <legend><?= t('Features', 'kanext') ?></legend>
+        <?= $this->form->checkbox('kanext_feature_toggle_sidebar', t('Toggle sidebar', 'kanext'), 1, $values['kanext_feature_toggle_sidebar'] == 1); ?>
+    </fieldset>
+
+    <fieldset>
         <legend><?= t('Styling', 'kanext') ?></legend>
         <?= $this->form->checkbox('kanext_use_own_theme', t('Kanext theme', 'kanext'), 1, $values['kanext_use_own_theme'] == 1); ?>
         <p class="form-help"><?= t('Use the theming provided by Kanext', 'kanext'); ?></p>

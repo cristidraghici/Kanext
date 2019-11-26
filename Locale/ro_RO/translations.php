@@ -26,5 +26,10 @@ return array(
     'Plugin fixes' => 'Imbunatatiri pentru plugin-uri',
     'Applies fixes which are specific to a certain theme plugin' => 'Aplica imbunatatiri pentru un anumit plugin',
 
-    'Custom CSS' => 'Customizari CSS'
+    'Custom CSS' => 'Customizari CSS',
+
+    // Features
+    'Features' => 'Optiuni',
+
+    'Toggle sidebar' => 'Comutare meniul lateral',
 );

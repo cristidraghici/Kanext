@@ -14,6 +14,8 @@ class ConfigHelper extends Base
             'kanext_use_js_fixes' => $this->configModel->get('kanext_use_js_fixes'),
             'kanext_use_plugin_fixes' => $this->configModel->get('kanext_use_plugin_fixes'),
 
+            'kanext_feature_toggle_sidebar' => $this->configModel->get('kanext_feature_toggle_sidebar'),
+
             'kanext_dashboard_activity_type' => $this->configModel->get('kanext_dashboard_activity_type', 'kanext_dashboard_activity_general'),
             'kanext_custom_css' => $this->configModel->get('kanext_custom_css', ''),
         );
@@ -25,7 +27,8 @@ class ConfigHelper extends Base
             'kanext_use_own_theme',
             'kanext_use_css_fixes',
             'kanext_use_js_fixes',
-            'kanext_use_plugin_fixes'
+            'kanext_use_plugin_fixes',
+            'kanext_feature_toggle_sidebar'
         ];
     }
 
