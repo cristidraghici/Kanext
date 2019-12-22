@@ -10,7 +10,7 @@ class ConfigHelper extends Base
     public function getDefaults() {
         return array(
             'kanext_use_own_theme' => $this->configModel->get('kanext_use_own_theme'),
-            'kaext_use_css_fixes' => $this->configModel->get('kanext_use_css_fixes'),
+            'kanext_use_css_fixes' => $this->configModel->get('kanext_use_css_fixes'),
             'kanext_use_js_fixes' => $this->configModel->get('kanext_use_js_fixes'),
             'kanext_use_plugin_fixes' => $this->configModel->get('kanext_use_plugin_fixes'),
 

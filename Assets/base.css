@@ -21,3 +21,14 @@
 *:focus {
   outline: 0 !important;
 }
+
+.board-task-list {
+  min-height: none !important;
+  max-height: none !important;
+  height: auto !important;
+}
+
+/* Dashboard fixes */
+#dashboard .kanext-task-meta .task-list-avatars {
+  float: right;
+}
