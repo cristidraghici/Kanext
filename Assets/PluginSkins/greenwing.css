@@ -31,8 +31,14 @@ input[type=radio] {
 #dashboard .activity-event {
   border: none !important;
   align-items: normal !important;
+  overflow: auto;
+  word-break: break-all;
 }
 
-/* header on mombile fix */
-@media only screen and (max-width: 768px)  {
+.board-swimlane-columns-empty {
+  display: none !important;
+}
+
+#board-container table th.board-column-header {
+  top: 190px !important;
 }
