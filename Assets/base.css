@@ -1,0 +1,37 @@
+@media only screen and (min-width: 768px) {
+  .kanext-dashboard-container {
+    display: flex;
+    width: 100%;
+  }
+
+  .kanext-dashboard-container-center {
+    width: 60%;
+  }
+
+  .kanext-dashboard-container-right {
+    width: 38%;
+    margin-left: 1px;
+    margin-left: 2%;
+  }
+}
+
+*,
+*:hover,
+*:active,
+*:focus {
+  outline: 0 !important;
+}
+
+.board-task-list {
+  min-height: none !important;
+  max-height: none !important;
+  height: auto !important;
+}
+
+/* Dashboard fixes */
+#dashboard .kanext-task-meta.table-list-details {
+  overflow: hidden;
+}
+#dashboard .kanext-task-meta .task-list-avatars {
+  float: right;
+}

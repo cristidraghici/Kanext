@@ -1,8 +1,0 @@
-{
-    "name": "root/kanext",
-    "description": "A theme for kanboard",
-    "require": {
-        "panique/php-sass": "^1.0",
-        "MatthiasMullie/Minify": "^1.3"
-    }
-}

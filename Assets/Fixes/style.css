@@ -1,0 +1,17 @@
+/* Filter box fix */
+#dashboard .filter-box {
+  max-width: none;
+}
+
+#dashboard .filter-box .input-addon-field,
+#dashboard .filter-box .input-addon-item {
+  padding: 6px;
+  height: auto;
+}
+
+/* Fix on empty column */
+.board-column-header-empty {
+  height: 1px !important;
+  padding: 0px !important;
+  border: none !important;
+}

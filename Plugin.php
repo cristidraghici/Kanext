@@ -1,97 +1,98 @@
 <?php
 namespace Kanboard\Plugin\Kanext;
 
-use Kanboard\Core\Base;
-use Kanboard\Core\Template;
-
-use Kanboard\Plugin\Kanext\Helper\ConfigHelper;
-use Kanboard\Plugin\Kanext\Helper\OverwriteHelper;
-
-require __DIR__ . '/vendor/autoload.php';
-
-use SassCompiler;
-use MatthiasMullie\Minify;
+use DirectoryIterator;
+use Kanboard\Core\Plugin\Base;
+use Kanboard\Core\Translator;
 
 class Plugin extends Base
 {
     public function initialize()
     {
-        if (!$this->configHelper->get('disable_theme')) {
-            // Generate minified CSS
-            if (!$this->configHelper->get('disable_scss_compilation')) {
-                SassCompiler::run(__DIR__ . '/resources/scss/', __DIR__ . '/Assets/Css/');
+        // Hooks
+        $this->template->hook->attach('template:dashboard:sidebar', 'kanext:_hooks/dashboard/sidebar');
+        $this->template->hook->attach('template:layout:head', 'kanext:_hooks/layout/head');
 
-                // Update the file with more commands than needed
-                $css = new Minify\CSS();
-                $css->add(__DIR__ . '/Assets/Css/kanext.css');
-                $minified = $css->minify();
-                file_put_contents(__DIR__ . '/Assets/Css/kanext.min.css', $minified);
+        // Override
+        $this->template->setTemplateOverride('dashboard/layout', 'kanext:_overrides/dashboard/layout');
+        $this->template->setTemplateOverride('dashboard/overview', 'kanext:_overrides/dashboard/overview');
+        $this->template->setTemplateOverride('dashboard/projects', 'kanext:_overrides/dashboard/projects');
+        $this->template->setTemplateOverride('board/table_container', 'kanext:_overrides/board/table_container');
 
-                @unlink(__DIR__ . '/Assets/Css/kanext.css');
+        // JS and CSS
+        $this->hook->on('template:layout:js', array('template' => 'plugins/Kanext/Assets/base.js'));
+        $this->hook->on('template:layout:css', array('template' => 'plugins/Kanext/Assets/base.css'));
 
-                // Minify existing themes
-                if ($handle = opendir(__DIR__ . '/Css//')) {
-                    while (false !== ($file = readdir($handle))) {
-                        if ('.' === $file || '..' === $file || 'minified' === $file) {
-                            continue;
-                        }
+        // Fixes
+        if ($this->configModel->get('kanext_use_js_fixes') == 1) {
+            $this->hook->on('template:layout:js', array('template' => 'plugins/Kanext/Assets/base.js'));
+        }
+        if ($this->configModel->get('kanext_use_css_fixes') == 1) {
+            $this->hook->on('template:layout:css', array('template' => 'plugins/Kanext/Assets/base.css'));
+        }
 
-                        // do something with the file
-                        $css = new Minify\CSS();
-                        $css->add(__DIR__ . '/Css/' . $file);
-                        $minified = $css->minify();
-                        file_put_contents(__DIR__ . '/Css/minified/' . $file, $minified);
-                        unset($css);
-                    }
+        // The Kanext theme
+        if ($this->configModel->get('kanext_use_own_theme') == 1) {
+            $this->hook->on('template:layout:css', array('template' => 'plugins/Kanext/Assets/PluginSkins/kanext.css'));
+        }
 
-                    closedir($handle);
+        // Configuration
+        $this->template->hook->attach('template:config:sidebar', 'kanext:config/sidebar');
+
+        // The features
+        if ($this->configModel->get('kanext_feature_toggle_sidebar') == 1) {
+            $this->hook->on('template:layout:js', array('template' => 'plugins/Kanext/Assets/ToggleSidebar/script.js'));
+            $this->hook->on('template:layout:css', array('template' => 'plugins/Kanext/Assets/ToggleSidebar/style.css'));
+        }
+    }
+    public function onStartup()
+    {
+        // Load the locales
+        Translator::load($this->languageModel->getCurrentLanguage(), __DIR__.'/Locale');
+
+        // Load custom CSS for plugins
+        if ($this->configModel->get('kanext_use_plugin_fixes') == 1) {
+            $kanext_skins = PLUGINS_DIR . '/Kanext/Assets/PluginSkins/';
+            $overwritables_plugins_css = array();
+
+            // Get the list of overwritable values
+            $dir = new DirectoryIterator($kanext_skins);
+            foreach ($dir as $fileInfo) {
+                if ($fileInfo->isFile()) {
+                    $overwritables_plugins_css[] = strtolower($fileInfo->getBasename('.css'));
                 }
             }
 
-            // Generate minified Js
-            if (!$this->configHelper->get('disable_js_compilation')) {
-
-            // Update the file with more commands than needed
-                $js = new Minify\JS();
-
-                $js->add(__DIR__ . '/resources/js/links.js');
-                $js->add(__DIR__ . '/resources/js/modal.js');
-                $js->add(__DIR__ . '/resources/js/click.js');
-
-                $minified = $js->minify();
-                file_put_contents(__DIR__ . '/Assets/Js/kanext.min.js', $minified);
+            // Get the installed plugins
+            $installed_plugins = array();
+            foreach ($this->pluginLoader->getPlugins() as $plugin) {
+                $installed_plugins[strtolower($plugin->getPluginName())] = $plugin->getPluginVersion();
             }
 
-            // Add some css and js
-            if (!$this->configHelper->get('disable_kanext_styling')) {
-                $this->hook->on('template:layout:css', array('template' => 'plugins/Kanext/Assets/Css/kanext.min.css' ));
+            foreach ($overwritables_plugins_css as $theme) {
+                if (isset($installed_plugins[$theme])) {
+                    $this->hook->on('template:layout:css', array('template' => 'plugins/Kanext/Assets/PluginSkins/'.$theme.'.css'));
+                }
             }
-            if (!$this->configHelper->get('disable_kanext_scripting')) {
-                $this->hook->on('template:layout:js', array('template' => 'plugins/Kanext/Assets/Js/kanext.min.js' ));
-            }
-
-            // Load the overwrites
-            $this->overwriteHelper->loadTemplates();
         }
     }
+
     public function getClasses()
     {
         return array(
             'Plugin\Kanext\Helper' => array(
-              'ConfigHelper',
-              'OverwriteHelper'
+              'ConfigHelper'
             )
         );
-    }
-
-    public function getHelpers()
-    {
-        return array();
     }
 
     public function getPluginName()
     {
         return 'Kanext';
+    }
+    public function getPluginDescription()
+    {
+        return t('This theme modifies the default functionality of kanboard and enhances the user experience.', 'kanext');
     }
     public function getPluginAuthor()
     {
@@ -99,11 +100,7 @@ class Plugin extends Base
     }
     public function getPluginVersion()
     {
-        return '1.0.1';
-    }
-    public function getPluginDescription()
-    {
-        return 'This theme modifies the default functionality of kanboard and enhances the user experience.';
+        return '2.0.0';
     }
     public function getPluginHomepage()
     {
@@ -111,10 +108,14 @@ class Plugin extends Base
     }
 
     /**
-     * Since this plugin stongly depends on the kanboard version, a compatible check is added
+     * This plugin alters php templates, thus is tightly dependent on the kanboard version.
+     * It is recommended that the plugin be checked with every release,
+     * but mandatory to have it checked when kanboard releases minors or majors. Thus,
+     * we use a lesser than condition, assuming that people who new-ish :) plugins, also care to update
+     * the version of Kanboard.
      */
     public function getCompatibleVersion()
     {
-        return '>=1.2.4';
+        return '<1.3.0';
     }
 }

@@ -3,25 +3,33 @@ namespace Kanboard\Plugin\Kanext\Helper;
 
 use Kanboard\Core\Base;
 
+// TODO: add default values here
 class ConfigHelper extends Base
 {
-    /**
-     * Store the configuration variables
-     * @var array
-     */
-    private $config = array();
+    // The default configuration
+    public function getDefaults() {
+        return array(
+            'kanext_use_own_theme' => $this->configModel->get('kanext_use_own_theme'),
+            'kanext_use_css_fixes' => $this->configModel->get('kanext_use_css_fixes'),
+            'kanext_use_js_fixes' => $this->configModel->get('kanext_use_js_fixes'),
+            'kanext_use_plugin_fixes' => $this->configModel->get('kanext_use_plugin_fixes'),
 
-    /**
-     * Load the configuration
-     * @return array List of configuration options
-     */
-    public function init()
-    {
-        $this->config = require_once('plugins/Kanext/config.default.php');
+            'kanext_feature_toggle_sidebar' => $this->configModel->get('kanext_feature_toggle_sidebar'),
 
-        if (file_exists('plugins/Kanext/config.php')) {
-            $this->config = array_merge($this->config, require_once('plugins/Kanext/config.php'));
-        }
+            'kanext_dashboard_activity_type' => $this->configModel->get('kanext_dashboard_activity_type', 'kanext_dashboard_activity_general'),
+            'kanext_custom_css' => $this->configModel->get('kanext_custom_css', ''),
+        );
+    }
+
+    // List of configuration items which are checkboxes
+    public function getCheckboxes() {
+        return [
+            'kanext_use_own_theme',
+            'kanext_use_css_fixes',
+            'kanext_use_js_fixes',
+            'kanext_use_plugin_fixes',
+            'kanext_feature_toggle_sidebar'
+        ];
     }
 
     /**
@@ -31,18 +39,6 @@ class ConfigHelper extends Base
      */
     public function get($name=null)
     {
-        if (count($this->config) === 0) {
-            $this->init();
-        }
-
-        if ($name) {
-            if (isset($this->config[$name])) {
-                return strlen($this->config[$name]) > 0 ? $this->config[$name] : null;
-            }
-
-            return null;
-        }
-
-        return $this->config;
+        return $this->configModel->get($name);
     }
 }

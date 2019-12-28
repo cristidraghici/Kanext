@@ -1,0 +1,15 @@
+version: '2'
+services:
+  kanboard:
+    container_name: 'kanext-kanboard'
+    build: ./
+    ports:
+      - "88:80"
+      - "4433:443"
+    volumes:
+      - ./.data:/var/www/app/data
+      - ./.plugins:/var/www/app/plugins
+      - ./.ssl:/etc/nginx/ssl
+      - ../:/var/www/app/plugins/Kanext
+    environment:
+      - KANBOARD_PLUGIN_INSTALLER="true"
