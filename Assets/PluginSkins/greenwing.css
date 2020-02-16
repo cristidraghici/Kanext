@@ -39,6 +39,46 @@ input[type=radio] {
   display: none !important;
 }
 
-#board-container table th.board-column-header {
-  top: 190px !important;
+
+/* Responsive fixes */
+@media only screen and (max-width: 767px) {
+  .board-selector-container {
+    display: none !important;
+  }
+
+  header .title-container {
+    float: left !important;
+  }
+  header .title-container .tooltip,
+  header .title-container span.title {
+    display: none !important;
+  }
+
+  header .menus-container {
+    width: auto !important;
+  }
+
+  /* Selector for project links menu on homepage */
+  .page > #main > .page-header {
+    display: none !important;
+  }
+
+  /* .sidebar-container .sidebar {
+    display: none !important;
+  } */
+
+  /* Fix for menu buttons */
+  .project-header .views-switcher-component .views li a {
+    font-size: 0;
+  }
+  .project-header .views-switcher-component .views li a i {
+    font-size: 16px;
+  }
+
+  .dashboard-activity .avatar-letter {
+    line-height: 24px !important;
+    width: 24px !important;
+    max-width: 24px !important;
+    font-size: .9em !important;
+  }
 }
