@@ -1,9 +1,15 @@
 .sidebar {
   display: none;
+
+  -webkit-transition: opacity 2s ease-in;
+  -moz-transition: opacity 2s ease-in;
+  -o-transition: opacity 2s ease-in;
+  -ms-transition: opacity 2s ease-in;
+  transition: opacity 2s ease-in;
 }
 
 .sidebar-content {
-  padding-left: 45px !important;
+  padding-left: 55px !important;
   position: relative;
 }
 
