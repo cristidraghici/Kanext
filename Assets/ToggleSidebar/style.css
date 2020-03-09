@@ -1,15 +1,5 @@
 .sidebar {
   display: none;
-  position: absolute !important;
-
-  top: 50px;
-  left: 50px;
-
-  z-index: 999;
-  background-color: #fff;
-  border: 1px solid #ddd;
-  margin: 10px;
-  padding: 10px !important;
 }
 
 .sidebar-content {
@@ -21,4 +11,35 @@
   position: absolute;
   top: 0;
   left: 5px;
+}
+
+.sidebar-content-overlay {
+  display: none;
+}
+
+/* Randomly picked 768px as size, using twitter bootstrap as inspiration */
+@media (max-width: 768px) {
+  .sidebar {
+    position: absolute !important;
+
+    top: 50px;
+    left: 50px;
+
+    z-index: 999;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    margin: 10px;
+    padding: 10px !important;
+  }
+
+  .sidebar-content-overlay {
+    background: #000;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: .4;
+    z-index: 997;
+  }
 }
