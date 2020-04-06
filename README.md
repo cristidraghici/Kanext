@@ -16,6 +16,8 @@ Other UI improvements are available as well:
 - just another CSS theme;
 - small changes in the overall functionality (e.g. close modal on outside click, close dropdown on second click in the anchor)
 
+For now, `Kanext` contains a lot of functionality - this is convenient, as it is rather easy to mentain. In the future, it might be broken into smaller plugins.
+
 ## Screenshot
 
 This screenshot is made together with the **GreenWing** plugin/template, which we strongle recommend.

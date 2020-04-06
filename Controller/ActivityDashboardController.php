@@ -10,9 +10,13 @@ use Kanboard\Controller\BaseController;
  * @package  Kanboard\Plugin\Kanext\Controller
  * @author   Cristi DRAGHICI
  */
-class KanextController extends BaseController
+class ActivityDashboardController extends BaseController
 {
-    public function dashboardEvents()
+    public function activityEvents()
+    {
+    }
+
+    public function commentEvents()
     {
     }
 }

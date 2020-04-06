@@ -66,7 +66,7 @@ class ConfigHelper extends Base
             ),
             'kanext_feature_fixes_for_theme_plugins' => array(
                 'title'         => t('Fixes for theme plugins', 'kanext'),
-                'description'   => t('Kanext might include some CSS or Javascript fixes for certain themes (e.g. Geenwing or the default template)', 'kanext'),
+                'description'   => '',
                 'default_value' => 1,
                 'value'         => $this->configModel->get('kanext_feature_fixes_for_theme_plugins'),
                 'type'          => 'checkbox',

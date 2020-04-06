@@ -39,7 +39,6 @@ input[type=radio] {
   display: none !important;
 }
 
-
 /* Responsive fixes */
 @media only screen and (max-width: 767px) {
   .board-selector-container {

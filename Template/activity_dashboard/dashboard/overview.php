@@ -105,7 +105,7 @@
                 }
                 $events = $this->helper->projectActivity->getProjectsEvents($projects, $max_activity_items);
 
-                echo $this->render('kanext:ActivityDashboard/event/dashevents', array('events' => $events));
+                echo $this->render('kanext:activity_dashboard/event/dashevents', array('events' => $events));
             ?>
         </div>
     </div>

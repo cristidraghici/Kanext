@@ -10,14 +10,14 @@ class Plugin extends Base
     public function initialize()
     {
         // Hooks
-        $this->template->hook->attach('template:dashboard:sidebar', 'kanext:kanext-hooks/dashboard-sidebar-hook');
-        $this->template->hook->attach('template:layout:head', 'kanext:kanext-hooks/layout-head-hook');
+        $this->template->hook->attach('template:dashboard:sidebar', 'kanext:kanext_hooks/dashboard/sidebar-hook');
+        $this->template->hook->attach('template:layout:head', 'kanext:kanext_hooks/layout/head-hook');
 
         // Override
-        $this->template->setTemplateOverride('dashboard/layout', 'kanext:kanext-overrides/dashboard/layout');
+        $this->template->setTemplateOverride('dashboard/layout', 'kanext:kanext_overrides/dashboard/layout');
 
         // Kanext configuration - attach the link to the settings sidebar
-        $this->template->hook->attach('template:config:sidebar', 'kanext:kanext-configuration/settings-sidebar-item');
+        $this->template->hook->attach('template:config:sidebar', 'kanext:kanext_configuration/settings-sidebar-item');
 
         // The modules
 
@@ -37,7 +37,7 @@ class Plugin extends Base
         if ($this->configModel->get('kanext_feature_dashboard_activity') == 1) {
             $this->hook->on('template:layout:css', array('template' => 'plugins/Kanext/Assets/ActivityDashboard/style.css'));
 
-            $this->template->setTemplateOverride('dashboard/overview', 'kanext:ActivityDashboard/dashboard/overview');
+            $this->template->setTemplateOverride('dashboard/overview', 'kanext:activity_dashboard/dashboard/overview');
         }
     }
 
