@@ -17,7 +17,11 @@
         <?= $this->render('kanext:activity_dashboard/dashboard/overview_paginator', array('overview_paginator' => $overview_paginator)) ?>
     </div>
 
+    <div class="kanext-dashboard-column kanext-dashboard-column--right-padding">
+        <?= $this->render('kanext:activity_dashboard/dashboard/overview_comments') ?>
+    </div>
+
     <div class="kanext-dashboard-column">
-        <?= $this->render('kanext:activity_dashboard/dashboard/overview_activity', array('project_paginator' => $project_paginator)) ?>
+        <?= $this->render('kanext:activity_dashboard/dashboard/overview_activity') ?>
     </div>
 </div>

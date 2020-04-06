@@ -3,11 +3,6 @@ namespace Kanboard\Plugin\Kanext\Controller;
 
 use \Kanboard\Controller\ConfigController;
 
-/**
- * Class KanextConfigController
- *
- * @package Kanboard\Plugin\Kanext\Controller
- */
 class KanextConfigController extends ConfigController
 {
     public function show()
