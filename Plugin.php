@@ -75,11 +75,20 @@ class Plugin extends Base
 
     public function getClasses()
     {
-        return array(
+        $classes = array(
             'Plugin\Kanext\Helper' => array(
               'ConfigHelper'
             )
         );
+
+        // Activity on dashboard
+        if ($this->configModel->get('kanext_feature_dashboard_activity') == 1) {
+            $classes['Plugin\Kanext\model'] = array(
+                'ActivityDashboardModel',
+            );
+        }
+
+        return $classes;
     }
 
     public function getPluginName()

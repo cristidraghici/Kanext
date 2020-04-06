@@ -23,3 +23,29 @@
   padding: 6px;
   height: auto;
 }
+
+/* Responsive fixes */
+@media only screen and (max-width: 767px) {
+
+  /* Hide project selector when resolution is too small */
+  .board-selector-container {
+    display: none !important;
+  }
+
+  /* Selector for project links menu on homepage */
+  .page > #main > .page-header {
+    display: none !important;
+  }
+
+  .sidebar .fa {
+    display: none !important;
+  }
+
+  /* Fix for menu buttons */
+  .project-header .views-switcher-component .views li a {
+    font-size: 0;
+  }
+  .project-header .views-switcher-component .views li a i {
+    font-size: 16px;
+  }
+}
