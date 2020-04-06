@@ -1,0 +1,25 @@
+*,
+*:hover,
+*:active,
+*:focus {
+  outline: 0 !important;
+}
+
+/* Dashboard fixes */
+#dashboard .kanext-task-meta.table-list-details {
+  overflow: hidden;
+}
+#dashboard .kanext-task-meta .task-list-avatars {
+  float: right;
+}
+
+/* Filter box fix */
+#dashboard .filter-box {
+  max-width: none;
+}
+
+#dashboard .filter-box .input-addon-field,
+#dashboard .filter-box .input-addon-item {
+  padding: 6px;
+  height: auto;
+}

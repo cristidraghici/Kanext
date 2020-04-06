@@ -10,48 +10,44 @@ class Plugin extends Base
     public function initialize()
     {
         // Hooks
-        $this->template->hook->attach('template:dashboard:sidebar', 'kanext:_hooks/dashboard/sidebar');
-        $this->template->hook->attach('template:layout:head', 'kanext:_hooks/layout/head');
+        $this->template->hook->attach('template:dashboard:sidebar', 'kanext:kanext-hooks/dashboard-sidebar-hook');
+        $this->template->hook->attach('template:layout:head', 'kanext:kanext-hooks/layout-head-hook');
 
         // Override
-        $this->template->setTemplateOverride('dashboard/layout', 'kanext:_overrides/dashboard/layout');
-        $this->template->setTemplateOverride('dashboard/overview', 'kanext:_overrides/dashboard/overview');
-        $this->template->setTemplateOverride('dashboard/projects', 'kanext:_overrides/dashboard/projects');
-        $this->template->setTemplateOverride('board/table_container', 'kanext:_overrides/board/table_container');
+        $this->template->setTemplateOverride('dashboard/layout', 'kanext:kanext-overrides/dashboard/layout');
 
-        // JS and CSS
-        $this->hook->on('template:layout:js', array('template' => 'plugins/Kanext/Assets/base.js'));
-        $this->hook->on('template:layout:css', array('template' => 'plugins/Kanext/Assets/base.css'));
+        // Kanext configuration - attach the link to the settings sidebar
+        $this->template->hook->attach('template:config:sidebar', 'kanext:kanext-configuration/settings-sidebar-item');
 
-        // Fixes
-        if ($this->configModel->get('kanext_use_js_fixes') == 1) {
-            $this->hook->on('template:layout:js', array('template' => 'plugins/Kanext/Assets/base.js'));
-        }
-        if ($this->configModel->get('kanext_use_css_fixes') == 1) {
-            $this->hook->on('template:layout:css', array('template' => 'plugins/Kanext/Assets/base.css'));
+        // The modules
+
+        // The general fixes
+        if ($this->configModel->get('kanext_use_kanboard_fixes') == 1) {
+            $this->hook->on('template:layout:js', array('template' => 'plugins/Kanext/Assets/KanboardFixes/script.js'));
+            $this->hook->on('template:layout:css', array('template' => 'plugins/Kanext/Assets/KanboardFixes/style.css'));
         }
 
-        // The Kanext theme
-        if ($this->configModel->get('kanext_use_own_theme') == 1) {
-            $this->hook->on('template:layout:css', array('template' => 'plugins/Kanext/Assets/PluginSkins/kanext.css'));
-        }
-
-        // Configuration
-        $this->template->hook->attach('template:config:sidebar', 'kanext:config/sidebar');
-
-        // The features
+        // The sidebar toggle
         if ($this->configModel->get('kanext_feature_toggle_sidebar') == 1) {
             $this->hook->on('template:layout:js', array('template' => 'plugins/Kanext/Assets/ToggleSidebar/script.js'));
             $this->hook->on('template:layout:css', array('template' => 'plugins/Kanext/Assets/ToggleSidebar/style.css'));
         }
+
+        // Activity on dashboard
+        if ($this->configModel->get('kanext_feature_dashboard_activity') == 1) {
+            $this->hook->on('template:layout:css', array('template' => 'plugins/Kanext/Assets/ActivityDashboard/style.css'));
+
+            $this->template->setTemplateOverride('dashboard/overview', 'kanext:ActivityDashboard/dashboard/overview');
+        }
     }
+
     public function onStartup()
     {
         // Load the locales
         Translator::load($this->languageModel->getCurrentLanguage(), __DIR__.'/Locale');
 
         // Load custom CSS for plugins
-        if ($this->configModel->get('kanext_use_plugin_fixes') == 1) {
+        if ($this->configModel->get('kanext_feature_fixes_for_theme_plugins') == 1) {
             $kanext_skins = PLUGINS_DIR . '/Kanext/Assets/PluginSkins/';
             $overwritables_plugins_css = array();
 
@@ -100,7 +96,7 @@ class Plugin extends Base
     }
     public function getPluginVersion()
     {
-        return '2.0.0';
+        return '3.0.0';
     }
     public function getPluginHomepage()
     {

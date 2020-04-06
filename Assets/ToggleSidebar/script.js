@@ -12,7 +12,6 @@
   }
 
   if (sidebarContentElement.length) {
-
     toggleSidebarBtn.click(toggleFn);
     sidebarElement.click(toggleFn);
     backDropElement.click(toggleFn)

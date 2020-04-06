@@ -12,12 +12,12 @@ class KanextConfigController extends ConfigController
 {
     public function show()
     {
-        // Default configuration
-        $values = $this->configHelper->getDefaults();
+        $this->response->html($this->helper->layout->config('Kanext:kanext-configuration/configuration-page', array(
+            'title' => t('Settings') . ' &gt; Kanext',
 
-        $this->response->html($this->helper->layout->config('Kanext:config/config', array(
-            'title' => t('Settings').' &gt; '.t('Kanext settings'),
-            'values' => $values
+            'groups'    => $this->configHelper->getGroups(),
+            'options'   => $this->configHelper->getOptions(),
+            'values'    => $this->configHelper->getValues()
         )));
     }
 
