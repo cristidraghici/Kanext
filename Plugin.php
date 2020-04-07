@@ -83,7 +83,7 @@ class Plugin extends Base
 
         // Activity on dashboard
         if ($this->configModel->get('kanext_feature_dashboard_activity') == 1) {
-            $classes['Plugin\Kanext\model'] = array(
+            $classes['Plugin\Kanext\Model'] = array(
                 'ActivityDashboardModel',
             );
         }
