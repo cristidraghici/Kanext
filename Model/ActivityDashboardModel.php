@@ -32,7 +32,7 @@ class ActivityDashboardModel extends Base
             $user_id = $this->userSession->getId();
         }
         if (!$limit) {
-            $limit = self::DEFAULT_LIMIT;
+            $limit = $this->configHelper->get('kanext_feature_dashboard_activity_activity_limit', self::DEFAULT_LIMIT);
         }
 
         $project_ids = $this->projectPermissionModel->getProjectIds($user_id);
@@ -40,13 +40,18 @@ class ActivityDashboardModel extends Base
         $queryBuilder = $this->projectActivityQuery
             ->withFilter(new ProjectActivityProjectIdsFilter($project_ids));
 
+        if ($this->configHelper->get('kanext_feature_dashboard_activity_show_comments_separately') === "1") {
+            $queryBuilder->getQuery()
+                ->beginAnd()
+                ->neq(ProjectActivityModel::TABLE.'.event_name', self::EVENT_UPDATE)
+                ->neq(ProjectActivityModel::TABLE.'.event_name', self::EVENT_CREATE)
+                ->neq(ProjectActivityModel::TABLE.'.event_name', self::EVENT_DELETE)
+                ->neq(ProjectActivityModel::TABLE.'.event_name', self::EVENT_USER_MENTION)
+                ->closeAnd()
+            ;
+        }
+
         $queryBuilder->getQuery()
-            ->beginAnd()
-            ->neq(ProjectActivityModel::TABLE.'.event_name', self::EVENT_UPDATE)
-            ->neq(ProjectActivityModel::TABLE.'.event_name', self::EVENT_CREATE)
-            ->neq(ProjectActivityModel::TABLE.'.event_name', self::EVENT_DELETE)
-            ->neq(ProjectActivityModel::TABLE.'.event_name', self::EVENT_USER_MENTION)
-            ->closeAnd()
             ->desc(ProjectActivityModel::TABLE.'.id')
             ->limit($limit)
         ;
@@ -60,7 +65,7 @@ class ActivityDashboardModel extends Base
             $user_id = $this->userSession->getId();
         }
         if (!$limit) {
-            $limit = self::DEFAULT_LIMIT;
+            $limit = $this->configHelper->get('kanext_feature_dashboard_activity_activity_limit', self::DEFAULT_LIMIT);
         }
 
         $project_ids = $this->projectPermissionModel->getProjectIds($user_id);

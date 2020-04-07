@@ -23,6 +23,11 @@
                 <?= $this->form->textarea($option_name, $values, $errors); ?>
             <?php endif; ?>
 
+            <?php if ($option['type'] === 'number'): ?>
+                <?= $this->form->label($option['title'], $option_name) ?>
+                <?= $this->form->number($option_name, $values, $errors); ?>
+            <?php endif; ?>
+
             <?php if ($option['description'] && strlen($option['description']) > 0): ?>
                 <p class="form-help"><?= $option['description'] ?></p>
             <?php endif; ?>

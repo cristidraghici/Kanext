@@ -7,7 +7,7 @@ class ConfigHelper extends Base
 {
     // The groups for the configuration options (just organizational)
     public function getGroups () {
-        return array(
+        $all_groups = array(
             array(
                 'title'         => t('Features', 'kanext'),
                 'description'   => '',
@@ -18,13 +18,29 @@ class ConfigHelper extends Base
                 'title'         => t('Customization', 'kanext'),
                 'description'   => '',
                 'slug'          => 'customization'
+            ),
+
+            // Optional settings
+            array(
+                'title'         => t('Activity on dashboard', 'kanext'),
+                'description'   => '',
+                'slug'          => 'dashboard_activity'
             )
         );
+
+        $groups_with_options = array();
+        foreach ($all_groups as $group) {
+            if ($this->hasOptions($group['slug'])) {
+                $groups_with_options[] = $group;
+            }
+        }
+
+        return $groups_with_options;
     }
 
     // The default configuration
     public function getOptions () {
-        return array(
+        $all_options = array(
             // features group
             'kanext_use_kanboard_fixes' => array(
                 'title'         => t('Kanboard general fixes', 'kanext'),
@@ -33,7 +49,8 @@ class ConfigHelper extends Base
                 'value'         => $this->configModel->get('kanext_use_kanboard_fixes'),
                 'type'          => 'checkbox',
                 'group'         => 'features',
-                'options'       => array()
+                'options'       => array(),
+                'enabled'       => true
             ),
             'kanext_feature_toggle_sidebar' => array(
                 'title'         => t('Toggle sidebar', 'kanext'),
@@ -42,7 +59,8 @@ class ConfigHelper extends Base
                 'value'         => $this->configModel->get('kanext_feature_toggle_sidebar'),
                 'type'          => 'checkbox',
                 'group'         => 'features',
-                'options'       => array()
+                'options'       => array(),
+                'enabled'       => true
             ),
             'kanext_feature_dashboard_activity' => array(
                 'title'         => t('Activity on dashboard', 'kanext'),
@@ -51,7 +69,8 @@ class ConfigHelper extends Base
                 'value'         => $this->configModel->get('kanext_feature_dashboard_activity'),
                 'type'          => 'checkbox',
                 'group'         => 'features',
-                'options'       => array()
+                'options'       => array(),
+                'enabled'       => true
             ),
 
             // customization group
@@ -62,7 +81,8 @@ class ConfigHelper extends Base
                 'value'         => $this->configModel->get('kanext_custom_css', ''),
                 'type'          => 'textarea',
                 'group'         => 'customization',
-                'options'       => array()
+                'options'       => array(),
+                'enabled'       => true
             ),
             'kanext_feature_fixes_for_theme_plugins' => array(
                 'title'         => t('Fixes for theme plugins', 'kanext'),
@@ -71,9 +91,54 @@ class ConfigHelper extends Base
                 'value'         => $this->configModel->get('kanext_feature_fixes_for_theme_plugins'),
                 'type'          => 'checkbox',
                 'group'         => 'customization',
-                'options'       => array()
+                'options'       => array(),
+                'enabled'       => true
+            ),
+
+            // Activity on dashboard
+            'kanext_feature_dashboard_activity_activity_limit' => array(
+                'title'         => t('How many items to show in the feeds', 'kanext'),
+                'description'   => t('A very high number will break the interface and also might affect your server\'s resources. Recommended value: 15 items', 'kanext'),
+                'default_value' => 20,
+                'value'         => $this->configModel->get('kanext_feature_dashboard_activity_activity_limit'),
+                'type'          => 'number',
+                'group'         => 'dashboard_activity',
+                'options'       => array(),
+                'enabled'       => $this->configModel->get('kanext_feature_dashboard_activity') === "1"
+            ),
+            'kanext_feature_dashboard_activity_show_comments_separately' => array(
+                'title'         => t('Show comments separately', 'kanext'),
+                'description'   => '',
+                'default_value' => 1,
+                'value'         => $this->configModel->get('kanext_feature_dashboard_activity_show_comments_separately'),
+                'type'          => 'checkbox',
+                'group'         => 'dashboard_activity',
+                'options'       => array(),
+                'enabled'       => $this->configModel->get('kanext_feature_dashboard_activity') === "1"
             ),
         );
+
+        $active_options = array();
+        foreach ($all_options as $name=>$meta) {
+            if ($meta['enabled'] === true) {
+                $active_options[$name] = $meta;
+            }
+        }
+
+        return $active_options;
+
+    }
+
+    private function hasOptions ($group_slug) {
+        $options = $this->getOptions();
+
+        foreach ($options as $option) {
+            if ($option['group'] === $group_slug) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     // Only get the values from the options
