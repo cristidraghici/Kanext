@@ -5,6 +5,7 @@
         <?php if (! $result['paginator']->isEmpty()): ?>
             <div class="page-header">
                 <h2 id="project-tasks-<?= $result['project_id'] ?>"><?= $this->url->link($this->text->e($result['project_name']), 'BoardViewController', 'show', array('project_id' => $result['project_id'])) ?></h2>
+
             </div>
 
             <div class="table-list">
@@ -66,6 +67,25 @@
                         <?= $this->hook->render('template:dashboard:task:footer', array('task' => $task)) ?>
                     </div>
                 <?php endforeach ?>
+            </div>
+
+            <div class="kanext-dashboard-add-new-task">
+                <small>
+                    <?php if ($this->projectRole->canCreateTaskInColumn($result['project_id'], $column['id'])): ?>
+
+                        <?= $this->helper->modal->large(
+                            'plus',
+                            t('Add a new task in ') . $this->text->e($result['project_name']),
+                            'TaskCreationController',
+                            'show', array(
+                                'project_id'  => $result['project_id'],
+                                'column_id'   => null,
+                                'swimlane_id' => null,
+                            )
+                        ); ?>
+
+                    <?php endif ?>
+                </small>
             </div>
 
             <?= $result['paginator'] ?>

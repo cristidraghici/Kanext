@@ -4,7 +4,9 @@
 
 .sidebar-content {
   padding-left: 55px !important;
+  padding-right: 5px !important;
   position: relative;
+  max-width: none;
 }
 
 .button-minimize {
@@ -39,7 +41,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    opacity: .4;
+    opacity: .2;
     z-index: 997;
   }
 }

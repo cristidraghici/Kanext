@@ -17,7 +17,7 @@
                 <div class="table-list">
 
                     <div class="table-list-header">
-                        <a href="?controller=BoardViewController&action=show&project_id=<?= $event['task']['project_id'] ?>"><?= $event['task']['project_name'] ?></a>
+                        <?= $this->url->link($this->text->e($event['task']['project_name']), 'BoardViewController', 'show', array('project_id' => $event['task']['project_id'])) ?>
                     </div>
 
                 <?php $current_project_id = $event['task']['project_id']; ?>

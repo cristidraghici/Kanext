@@ -13,7 +13,7 @@
 </div>
 
 <div class="kanext-dashboard">
-    <div class="kanext-dashboard-column kanext-dashboard-column--right-padding">
+    <div class="kanext-dashboard-column kanext-dashboard-column--right-padding kanext-dashboard-column kanext-dashboard-column--double-size">
         <?= $this->render('kanext:activity_dashboard/dashboard/overview_paginator', array('overview_paginator' => $overview_paginator)) ?>
     </div>
 

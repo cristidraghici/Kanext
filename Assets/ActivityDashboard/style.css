@@ -12,6 +12,14 @@
 .kanext-dashboard-column.kanext-dashboard-column--right-padding {
   padding-right: 10px;
 }
+.kanext-dashboard-column.kanext-dashboard-column--double-size {
+  flex: 2;
+}
+
+.kanext-dashboard-add-new-task {
+  text-align: right;
+  margin-bottom: 20px;
+}
 
 @media only screen and (max-width: 767px) {
   .kanext-dashboard,
