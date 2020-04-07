@@ -7,6 +7,7 @@ use Kanboard\Core\Base;
 use Kanboard\Filter\ProjectActivityProjectIdsFilter;
 use Kanboard\Model\ProjectActivityModel;
 use PicoDb\Table;
+use Kanboard\User\Avatar\LetterAvatarProvider;
 
 /**
  * Kanext Controller
@@ -85,5 +86,12 @@ class ActivityDashboardModel extends Base
         ;
 
         return $queryBuilder->format($this->projectActivityEventFormatter);
+    }
+
+    public function getColorByName($name='') {
+        $avatarProvider = new LetterAvatarProvider( $this->container );
+        $rgb = $avatarProvider->getBackgroundColor( $name );
+
+        return $rgb;
     }
 }

@@ -1,5 +1,5 @@
 <div class="page-header">
-    <h2><?php echo t('Latest comments'); ?></h2>
+    <h2><?php echo t('Comments'); ?></h2>
 </div>
 
 <?php
@@ -23,7 +23,9 @@
                 <?php $current_project_id = $event['task']['project_id']; ?>
             <?php endif; ?>
 
-            <div class="table-list-row color-<?= $event['task']['color_id'] ?> dashboard-activity-content">
+            <?php $rgb = $this->model->activityDashboardModel->getColorByName($event['author_name'] ?: $event['author_username']); ?>
+
+            <div class="table-list-row color-<?= $event['task']['color_id'] ?> dashboard-activity-content" style="border-left-color: <?= sprintf('rgb(%d, %d, %d)', $rgb[0], $rgb[1], $rgb[2]) ?>;">
                 <div>
                     <?= $event['event_content'] ?>
                 </div>
