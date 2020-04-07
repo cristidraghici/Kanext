@@ -1,3 +1,7 @@
+html {
+  position: relative;
+}
+
 .sidebar {
   display: none;
 }
