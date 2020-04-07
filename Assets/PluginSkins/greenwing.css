@@ -2,3 +2,9 @@ input[type=radio] {
   width: auto !important;
   display: inline-block !important;
 }
+
+@media only screen and (max-width: 768px) {
+  header .title-container h1 {
+    margin-top: 2px;
+  }
+}
