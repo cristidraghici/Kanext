@@ -1,5 +1,5 @@
 <div class="page-header">
-    <h2><?php echo t('Activity'); ?></h2>
+    <h2><?php echo t('Recent activity'); ?></h2>
 </div>
 
 <?php

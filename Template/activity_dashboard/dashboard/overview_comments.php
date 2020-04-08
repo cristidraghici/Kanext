@@ -1,5 +1,5 @@
 <div class="page-header">
-    <h2><?php echo t('Comments'); ?></h2>
+    <h2><?php echo t('Latest comments'); ?></h2>
 </div>
 
 <?php

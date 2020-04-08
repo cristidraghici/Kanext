@@ -3,6 +3,14 @@ input[type=radio] {
   display: inline-block !important;
 }
 
+/* Dashboard sidebar size fix, important for flex - extending the fixes in KanboardFixes/style.css */
+#dashboard.sidebar-container .sidebar {
+  top: 0px;
+}
+#dashboard.sidebar-container .sidebar-content {
+  max-width: calc(100% - 230px - 25px) !important;
+}
+
 @media only screen and (max-width: 768px) {
   header .title-container h1 {
     margin-top: 2px;

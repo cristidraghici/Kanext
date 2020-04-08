@@ -2,12 +2,13 @@
   width: 100%;
 
   display: flex;
-  align-items: left;
+  overflow: hidden;
 }
 
 .kanext-dashboard-column {
   box-sizing: border-box;
   flex: 1;
+  overflow: hidden;
 }
 .kanext-dashboard-column.kanext-dashboard-column--right-padding {
   padding-right: 10px;
@@ -21,6 +22,25 @@
   margin-bottom: 20px;
 }
 
+/* Dirty fixes for content chunks being too long */v
+.kanext-dashboard-column .page-header,
+.kanext-dashboard-column .page-header h2,
+
+.kanext-dashboard-column .table-list-header,
+
+.kanext-dashboard-column p,
+.kanext-dashboard-column .kanext-dashboard-add-new-task {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.kanext-dashboard-column pre {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Responsive stuff */
 @media only screen and (max-width: 768px) {
   .kanext-dashboard,
   .kanext-dashboard-column {
