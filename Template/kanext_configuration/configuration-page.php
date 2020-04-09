@@ -15,7 +15,7 @@
 
         <?php foreach ($options as $option_name => $option): if ($option['group'] !== $group['slug']) { continue; } ?>
             <?php if ($option['type'] === 'checkbox'): ?>
-                <?= $this->form->checkbox($option_name, $option['title'], $option['default_value'], $option['value'] == 1); ?>
+                <?= $this->form->checkbox($option_name, $option['title'], 1, $option['value'] == 1); ?>
             <?php endif; ?>
 
             <?php if ($option['type'] === 'textarea'): ?>
