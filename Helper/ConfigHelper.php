@@ -2,6 +2,7 @@
 namespace Kanboard\Plugin\Kanext\Helper;
 
 use Kanboard\Core\Base;
+use Pimple\Container;
 
 class ConfigHelper extends Base
 {
@@ -46,7 +47,6 @@ class ConfigHelper extends Base
                 'title'         => t('Kanboard general fixes', 'kanext'),
                 'description'   => '',
                 'default_value' => '1',
-                'value'         => $this->configModel->get('kanext_use_kanboard_fixes'),
                 'type'          => 'checkbox',
                 'group'         => 'features',
                 'options'       => array(),
@@ -56,7 +56,6 @@ class ConfigHelper extends Base
                 'title'         => t('Toggle sidebar', 'kanext'),
                 'description'   => '',
                 'default_value' => '1',
-                'value'         => $this->configModel->get('kanext_feature_toggle_sidebar'),
                 'type'          => 'checkbox',
                 'group'         => 'features',
                 'options'       => array(),
@@ -66,7 +65,6 @@ class ConfigHelper extends Base
                 'title'         => t('Activity on dashboard', 'kanext'),
                 'description'   => '',
                 'default_value' => '1',
-                'value'         => $this->configModel->get('kanext_feature_dashboard_activity'),
                 'type'          => 'checkbox',
                 'group'         => 'features',
                 'options'       => array(),
@@ -78,7 +76,6 @@ class ConfigHelper extends Base
                 'title'         => t('Custom CSS', 'kanext'),
                 'description'   => '',
                 'default_value' => '',
-                'value'         => $this->configModel->get('kanext_custom_css', ''),
                 'type'          => 'textarea',
                 'group'         => 'customization',
                 'options'       => array(),
@@ -88,7 +85,6 @@ class ConfigHelper extends Base
                 'title'         => t('Fixes for theme plugins', 'kanext'),
                 'description'   => '',
                 'default_value' => '1',
-                'value'         => $this->configModel->get('kanext_feature_fixes_for_theme_plugins'),
                 'type'          => 'checkbox',
                 'group'         => 'customization',
                 'options'       => array(),
@@ -100,38 +96,36 @@ class ConfigHelper extends Base
                 'title'         => t('How many items to show in the feeds', 'kanext'),
                 'description'   => t('A very high number will break the interface and also might affect your server\'s resources. Recommended value: 15 items', 'kanext'),
                 'default_value' => 20,
-                'value'         => $this->configModel->get('kanext_feature_dashboard_activity_activity_limit'),
                 'type'          => 'number',
                 'group'         => 'dashboard_activity',
                 'options'       => array(),
-                'enabled'       => $this->configModel->get('kanext_feature_dashboard_activity') === "1"
+                'enabled'       => $this->configModel->get('kanext_feature_dashboard_activity') === '1'
             ),
             'kanext_feature_dashboard_activity_show_comments_separately' => array(
                 'title'         => t('Show comments separately', 'kanext'),
                 'description'   => '',
                 'default_value' => '1',
-                'value'         => $this->configModel->get('kanext_feature_dashboard_activity_show_comments_separately'),
                 'type'          => 'checkbox',
                 'group'         => 'dashboard_activity',
                 'options'       => array(),
-                'enabled'       => $this->configModel->get('kanext_feature_dashboard_activity') === "1"
+                'enabled'       => $this->configModel->get('kanext_feature_dashboard_activity') === '1'
             ),
             'kanext_feature_dashboard_activity_show_tasks_of_loggedin_user' => array(
                 'title'         => t('Show the tasks of the currently logged in user', 'kanext'),
                 'description'   => '',
                 'default_value' => '1',
-                'value'         => $this->configModel->get('kanext_feature_dashboard_activity_show_tasks_of_loggedin_user'),
                 'type'          => 'checkbox',
                 'group'         => 'dashboard_activity',
                 'options'       => array(),
-                'enabled'       => $this->configModel->get('kanext_feature_dashboard_activity') === "1"
-            ),
+                'enabled'       => $this->configModel->get('kanext_feature_dashboard_activity') === '1'
+            )
         );
 
         $active_options = array();
         foreach ($all_options as $name=>$meta) {
             if ($meta['enabled'] === true) {
                 $active_options[$name] = $meta;
+                $active_options[$name]['value'] = $this->configModel->get($name, $meta['default_value']);
             }
         }
 
@@ -140,7 +134,7 @@ class ConfigHelper extends Base
     }
 
     private function hasOptions ($group_slug) {
-        $options = $this->getOptions();
+        $options = $this->memoryCache->proxy($this, 'getOptions');
 
         foreach ($options as $option) {
             if ($option['group'] === $group_slug) {
@@ -153,11 +147,11 @@ class ConfigHelper extends Base
 
     // Only get the values from the options
     public function getValues () {
-        $options = $this->getOptions();
+        $options = $this->memoryCache->proxy($this, 'getOptions');
         $values = array();
 
         foreach ($options as $option_name => $option) {
-            $values[$option_name] = $option['value'] ?: $option['default_value'];
+            $values[$option_name] = $option['value'];
         }
 
         return $values;
@@ -165,7 +159,7 @@ class ConfigHelper extends Base
 
     // Only get the options of type field
     public function getCheckboxes () {
-        $options = $this->getOptions();
+        $options = $this->memoryCache->proxy($this, 'getOptions');
         $checkboxes = array();
 
         foreach ($options as $option_name => $option) {
@@ -184,6 +178,8 @@ class ConfigHelper extends Base
      */
     public function get ($name=null)
     {
-        return $this->configModel->get($name);
+        $values = $this->memoryCache->proxy($this, 'getValues');
+
+        return $values[$name];
     }
 }
