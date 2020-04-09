@@ -10,7 +10,7 @@ html {
   padding-left: 55px !important;
   padding-right: 5px !important;
   position: relative;
-  max-width: none;
+  max-width: none !important;
 }
 
 .button-minimize {

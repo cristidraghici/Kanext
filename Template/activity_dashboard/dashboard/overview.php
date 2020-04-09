@@ -13,9 +13,11 @@
 </div>
 
 <div class="kanext-dashboard">
+    <?php if ($this->app->configHelper->get('kanext_feature_dashboard_activity_show_tasks_of_loggedin_user') === "1"): ?>
     <div class="kanext-dashboard-column kanext-dashboard-column--right-padding kanext-dashboard-column kanext-dashboard-column--double-size">
         <?= $this->render('kanext:activity_dashboard/dashboard/overview_paginator', array('overview_paginator' => $overview_paginator)) ?>
     </div>
+    <?php endif; ?>
 
     <?php if ($this->app->configHelper->get('kanext_feature_dashboard_activity_show_comments_separately') === "1"): ?>
     <div class="kanext-dashboard-column kanext-dashboard-column--right-padding">

@@ -1,3 +1,28 @@
+/* Dashboard sidebar size fix, important for flex */
+#dashboard.sidebar-container {
+  box-sizing: border-box;
+  display: block;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+#dashboard.sidebar-container .sidebar {
+  box-sizing: border-box;
+  max-width: 25%;
+  min-width: 230px;
+  float: left;
+}
+#dashboard.sidebar-container .sidebar-content {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: calc(100% - 230px - 25px);
+  float: right;
+}
+
+.toggle-sidebar--visible #dashboard.sidebar-container .sidebar-content {
+  max-width: calc(100% - 230px - 25px) !important;
+}
+
+/* New dasbboard */
 .kanext-dashboard {
   width: 100%;
 
@@ -22,7 +47,7 @@
   margin-bottom: 20px;
 }
 
-/* Dirty fixes for content chunks being too long */v
+/* Elipsis fixes for content chunks being too long */v
 .kanext-dashboard-column .page-header,
 .kanext-dashboard-column .page-header h2,
 
@@ -48,5 +73,9 @@
 
   .kanext-dashboard-column.kanext-dashboard-column--right-padding {
     padding-right: 0px;
+  }
+
+  .toggle-sidebar--visible #dashboard.sidebar-container .sidebar-content {
+    max-width: none !important;
   }
 }

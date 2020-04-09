@@ -1,4 +1,5 @@
-input[type=radio] {
+input[type=radio],
+input[type=number] {
   width: auto !important;
   display: inline-block !important;
 }
@@ -8,7 +9,7 @@ input[type=radio] {
   top: 0px;
 }
 #dashboard.sidebar-container .sidebar-content {
-  max-width: calc(100% - 230px - 25px) !important;
+  max-width: calc(100% - 230px - 25px);
 }
 
 @media only screen and (max-width: 768px) {

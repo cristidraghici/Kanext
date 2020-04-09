@@ -28,26 +28,6 @@
   height: auto;
 }
 
-/* Dashboard sidebar size fix, important for flex */
-#dashboard.sidebar-container {
-  box-sizing: border-box;
-  display: block;
-  box-sizing: border-box;
-  overflow: hidden;
-}
-#dashboard.sidebar-container .sidebar {
-  box-sizing: border-box;
-  max-width: 25%;
-  min-width: 230px;
-  float: left;
-}
-.sidebar-content {
-  box-sizing: border-box;
-  width: 100%;
-  max-width: calc(100% - 230px - 25px);
-  float: right;
-}
-
 /* Responsive fixes */
 @media only screen and (max-width: 768px) {
 

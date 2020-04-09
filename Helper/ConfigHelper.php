@@ -45,7 +45,7 @@ class ConfigHelper extends Base
             'kanext_use_kanboard_fixes' => array(
                 'title'         => t('Kanboard general fixes', 'kanext'),
                 'description'   => '',
-                'default_value' => 1,
+                'default_value' => '1',
                 'value'         => $this->configModel->get('kanext_use_kanboard_fixes'),
                 'type'          => 'checkbox',
                 'group'         => 'features',
@@ -55,7 +55,7 @@ class ConfigHelper extends Base
             'kanext_feature_toggle_sidebar' => array(
                 'title'         => t('Toggle sidebar', 'kanext'),
                 'description'   => '',
-                'default_value' => 1,
+                'default_value' => '1',
                 'value'         => $this->configModel->get('kanext_feature_toggle_sidebar'),
                 'type'          => 'checkbox',
                 'group'         => 'features',
@@ -65,7 +65,7 @@ class ConfigHelper extends Base
             'kanext_feature_dashboard_activity' => array(
                 'title'         => t('Activity on dashboard', 'kanext'),
                 'description'   => '',
-                'default_value' => 1,
+                'default_value' => '1',
                 'value'         => $this->configModel->get('kanext_feature_dashboard_activity'),
                 'type'          => 'checkbox',
                 'group'         => 'features',
@@ -87,7 +87,7 @@ class ConfigHelper extends Base
             'kanext_feature_fixes_for_theme_plugins' => array(
                 'title'         => t('Fixes for theme plugins', 'kanext'),
                 'description'   => '',
-                'default_value' => 1,
+                'default_value' => '1',
                 'value'         => $this->configModel->get('kanext_feature_fixes_for_theme_plugins'),
                 'type'          => 'checkbox',
                 'group'         => 'customization',
@@ -109,8 +109,18 @@ class ConfigHelper extends Base
             'kanext_feature_dashboard_activity_show_comments_separately' => array(
                 'title'         => t('Show comments separately', 'kanext'),
                 'description'   => '',
-                'default_value' => 1,
+                'default_value' => '1',
                 'value'         => $this->configModel->get('kanext_feature_dashboard_activity_show_comments_separately'),
+                'type'          => 'checkbox',
+                'group'         => 'dashboard_activity',
+                'options'       => array(),
+                'enabled'       => $this->configModel->get('kanext_feature_dashboard_activity') === "1"
+            ),
+            'kanext_feature_dashboard_activity_show_tasks_of_loggedin_user' => array(
+                'title'         => t('Show the tasks of the currently logged in user', 'kanext'),
+                'description'   => '',
+                'default_value' => '1',
+                'value'         => $this->configModel->get('kanext_feature_dashboard_activity_show_tasks_of_loggedin_user'),
                 'type'          => 'checkbox',
                 'group'         => 'dashboard_activity',
                 'options'       => array(),
@@ -147,7 +157,7 @@ class ConfigHelper extends Base
         $values = array();
 
         foreach ($options as $option_name => $option) {
-            $values[$option_name] = $option['value'];
+            $values[$option_name] = $option['value'] ?: $option['default_value'];
         }
 
         return $values;
