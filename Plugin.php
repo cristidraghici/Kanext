@@ -35,6 +35,7 @@ class Plugin extends Base
 
         // Activity on dashboard
         if ($this->configModel->get('kanext_feature_dashboard_activity') == 1) {
+            $this->hook->on('template:layout:js', array('template' => 'plugins/Kanext/Assets/ActivityDashboard/script.js'));
             $this->hook->on('template:layout:css', array('template' => 'plugins/Kanext/Assets/ActivityDashboard/style.css'));
 
             $this->template->setTemplateOverride('dashboard/overview', 'kanext:activity_dashboard/dashboard/overview');

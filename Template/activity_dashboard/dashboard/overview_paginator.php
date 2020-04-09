@@ -69,6 +69,10 @@
                 <?php endforeach ?>
             </div>
 
+            <?php if ($this->app->configHelper->get('kanext_feature_dashboard_activity_show_bar_chart_for_project') === "1"): ?>
+            <div class="c3_project_stats" id="c3_project_stats_<?= $result['project_id'] ?>" data-stats='<?= $this->model->activityDashboardModel->getBarChartProjectStats($result['project_id']); ?>'></div>
+            <?php endif; ?>
+
             <div class="kanext-dashboard-add-new-task">
                 <small>
                     <?php if ($this->projectRole->canCreateTaskInColumn($result['project_id'], $column['id'])): ?>
