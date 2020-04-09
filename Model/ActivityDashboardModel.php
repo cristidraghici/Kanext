@@ -100,9 +100,9 @@ class ActivityDashboardModel extends Base
         $stats = array();
 
         foreach ($project_stats as $stat) {
-            if ($stat['hide_in_dashboard'] === '1') {
-                continue;
-            }
+            // if ($stat['hide_in_dashboard'] === '1') {
+            //     continue;
+            // }
 
             $nb_open_tasks = (int)$stat['nb_open_tasks'];
 
