@@ -2,7 +2,6 @@
 namespace Kanboard\Plugin\Kanext\Helper;
 
 use Kanboard\Core\Base;
-use Pimple\Container;
 
 class ConfigHelper extends Base
 {
@@ -92,7 +91,7 @@ class ConfigHelper extends Base
             ),
 
             // Custom dashboard options
-            'kanext_feature_kanext_kanext_dashboard_limit' => array(
+            'kanext_feature_kanext_dashboard_activity_limit' => array(
                 'title'         => t('How many items to show in the feeds', 'kanext'),
                 'description'   => t('A very high number will break the interface and also might affect your server\'s resources. Recommended value: 15 items', 'kanext'),
                 'default_value' => 20,
@@ -121,6 +120,15 @@ class ConfigHelper extends Base
             ),
             'kanext_feature_kanext_dashboard_show_bar_chart_for_project' => array(
                 'title'         => t('Show a bar chart with the tasks in each column (under development)', 'kanext'),
+                'description'   => '',
+                'default_value' => '0',
+                'type'          => 'checkbox',
+                'group'         => 'kanext_dashboard',
+                'options'       => array(),
+                'enabled'       => $this->configModel->get('kanext_feature_kanext_dashboard', '1') === '1'
+            ),
+            'kanext_feature_kanext_dashboard_show_projects_where_the_user_has_no_tasks' => array(
+                'title'         => t('Show the projects where the user has not tasks (under development)', 'kanext'),
                 'description'   => '',
                 'default_value' => '0',
                 'type'          => 'checkbox',

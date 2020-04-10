@@ -22,8 +22,12 @@ window.kanextDashboardChartElements =
       },
       y: {
         show: true,
-        inner: true,
-        type: 'linear'
+        inner: false,
+        type: 'linear',
+        tick: {
+          format: d3.format('d'),
+          outer: false
+        }
       }
     },
     grid: {

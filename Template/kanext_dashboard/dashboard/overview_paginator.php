@@ -1,11 +1,13 @@
 <?php if (empty($overview_paginator)): ?>
+    <div class="page-header">
+        <h2><?= t('Tasks') ?></h2>
+    </div>
     <p class="alert"><?= t('There is nothing assigned to you.') ?></p>
 <?php else: ?>
     <?php foreach ($overview_paginator as $result): ?>
         <?php if (! $result['paginator']->isEmpty()): ?>
             <div class="page-header">
                 <h2 id="project-tasks-<?= $result['project_id'] ?>"><?= $this->url->link($this->text->e($result['project_name']), 'BoardViewController', 'show', array('project_id' => $result['project_id'])) ?></h2>
-
             </div>
 
             <div class="table-list">

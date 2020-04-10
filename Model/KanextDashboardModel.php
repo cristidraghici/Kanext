@@ -8,6 +8,7 @@ use Kanboard\Filter\ProjectActivityProjectIdsFilter;
 use Kanboard\Model\ProjectActivityModel;
 use PicoDb\Table;
 use Kanboard\User\Avatar\LetterAvatarProvider;
+use Kanboard\Model\TaskModel;
 
 /**
  * Kanext Controller
@@ -36,7 +37,7 @@ class KanextDashboardModel extends Base
             $limit = $this->configHelper->get('kanext_feature_kanext_dashboard_activity_limit', self::DEFAULT_LIMIT);
         }
 
-        $project_ids = $this->projectPermissionModel->getProjectIds($user_id);
+        $project_ids = $this->memoryCache->proxy($this->projectPermissionModel, 'getActiveProjectIds', $user_id);
 
         $queryBuilder = $this->projectActivityQuery
             ->withFilter(new ProjectActivityProjectIdsFilter($project_ids));
@@ -69,7 +70,7 @@ class KanextDashboardModel extends Base
             $limit = $this->configHelper->get('kanext_feature_kanext_dashboard_activity_limit', self::DEFAULT_LIMIT);
         }
 
-        $project_ids = $this->projectPermissionModel->getProjectIds($user_id);
+        $project_ids = $this->memoryCache->proxy($this->projectPermissionModel, 'getActiveProjectIds', $user_id);
 
         $queryBuilder = $this->projectActivityQuery
             ->withFilter(new ProjectActivityProjectIdsFilter($project_ids));
@@ -88,6 +89,44 @@ class KanextDashboardModel extends Base
         return $queryBuilder->format($this->projectActivityEventFormatter);
     }
 
+    public function getProjectsWhereUserHasNoTasks ($user_id = null) {
+        if (!$user_id) {
+            $user_id = $this->userSession->getId();
+        }
+
+        $project_ids = $this->memoryCache->proxy($this->projectPermissionModel, 'getActiveProjectIds', $user_id);
+        $list = array();
+
+        $projects = $this->projectModel->getAllByIds($project_ids);
+        foreach ($projects as $project) {
+            if (!$this->taskFinderModel->countByProjectId($project['id'], array(TaskModel::STATUS_OPEN))) {
+                continue;
+            }
+            if ($this->countTasksByProjectIdAndUserId($project['id'], $user_id, array(TaskModel::STATUS_OPEN)) > 0) {
+                continue;
+            }
+
+            $list[] = array(
+                'project_id' => $project['id'],
+                'project_name' => $project['name'],
+                'project_stats' => $this->kanextDashboardModel->getBarChartProjectStats($project['id'])
+            );
+        }
+
+        return $list;
+    }
+
+
+    public function countTasksByProjectIdAndUserId($project_id, $user_id, array $status = array(TaskModel::STATUS_OPEN, TaskModel::STATUS_CLOSED))
+    {
+        return $this->db
+                    ->table(TaskModel::TABLE)
+                    ->eq('project_id', $project_id)
+                    ->eq('owner_id', $user_id)
+                    ->in('is_active', $status)
+                    ->count();
+    }
+
     public function getColorByName ($name='') {
         $avatarProvider = new LetterAvatarProvider( $this->container );
         $rgb = $avatarProvider->getBackgroundColor( $name );
@@ -96,7 +135,7 @@ class KanextDashboardModel extends Base
     }
 
     public function getBarChartProjectStats ($project_id) {
-        $project_stats = $this->columnModel->getAllWithTaskCount($project_id);
+        $project_stats = $this->memoryCache->proxy($this->columnModel, 'getAllWithTaskCount', $project_id);
         $stats = array();
 
         foreach ($project_stats as $stat) {
