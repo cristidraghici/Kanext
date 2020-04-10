@@ -25,6 +25,12 @@ class ConfigHelper extends Base
                 'title'         => t('Custom dashboard', 'kanext'),
                 'description'   => '',
                 'slug'          => 'kanext_dashboard'
+            ),
+
+            array(
+                'title'         => t('Team conventions', 'kanext'),
+                'description'   => '',
+                'slug'          => 'team_conventions'
             )
         );
 
@@ -68,6 +74,15 @@ class ConfigHelper extends Base
                 'group'         => 'features',
                 'options'       => array(),
                 'enabled'       => true // Enabled by default, which is hardcoded in the condition check below
+            ),
+            'kanext_feature_team_conventions' => array(
+                'title'         => t('Show team conventions', 'kanext'),
+                'description'   => '',
+                'default_value' => '0',
+                'type'          => 'checkbox',
+                'group'         => 'features',
+                'options'       => array(),
+                'enabled'       => true
             ),
 
             // customization group
@@ -135,6 +150,17 @@ class ConfigHelper extends Base
                 'group'         => 'kanext_dashboard',
                 'options'       => array(),
                 'enabled'       => $this->configModel->get('kanext_feature_kanext_dashboard', '1') === '1'
+            ),
+
+            // Team conventions
+            'kanext_feature_kanext_dashboard_team_conventions' => array(
+                'title'         => '',
+                'description'   => t('Show a list of conventions all the users should be reminded of. Currenly only shown on the custom dashboard.', 'kanext'),
+                'default_value' => '',
+                'type'          => 'textEditor',
+                'group'         => 'team_conventions',
+                'options'       => array(),
+                'enabled'       => $this->configModel->get('kanext_feature_team_conventions', '1') === '1'
             ),
         );
 

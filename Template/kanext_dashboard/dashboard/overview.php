@@ -27,6 +27,15 @@
         <?php if ($this->app->configHelper->get('kanext_feature_kanext_dashboard_show_projects_where_the_user_has_no_tasks') === "1"): ?>
         <?= $this->render('kanext:kanext_dashboard/dashboard/overview_user_has_no_tasks') ?>
         <?php endif; ?>
+
+        <?php if ($this->app->configHelper->get('kanext_feature_team_conventions') === "1"): ?>
+        <div class="page-header">
+            <h2><?= t('Team conventions', 'kanext'); ?></h2>
+        </div>
+        <div class="markdown">
+            <?= $this->text->markdown($this->app->configHelper->get('kanext_feature_kanext_dashboard_team_conventions')); ?>
+        </div>
+        <?php endif; ?>
     </div>
 
     <?php if ($this->app->configHelper->get('kanext_feature_kanext_dashboard_show_comments_separately') === "1"): ?>
