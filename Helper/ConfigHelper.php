@@ -23,9 +23,9 @@ class ConfigHelper extends Base
 
             // Optional settings
             array(
-                'title'         => t('Activity on dashboard', 'kanext'),
+                'title'         => t('Custom dashboard', 'kanext'),
                 'description'   => '',
-                'slug'          => 'dashboard_activity'
+                'slug'          => 'kanext_dashboard'
             )
         );
 
@@ -61,14 +61,14 @@ class ConfigHelper extends Base
                 'options'       => array(),
                 'enabled'       => true
             ),
-            'kanext_feature_dashboard_activity' => array(
-                'title'         => t('Activity on dashboard', 'kanext'),
+            'kanext_feature_kanext_dashboard' => array(
+                'title'         => t('Custom dashboard', 'kanext'),
                 'description'   => '',
                 'default_value' => '1',
                 'type'          => 'checkbox',
                 'group'         => 'features',
                 'options'       => array(),
-                'enabled'       => true
+                'enabled'       => true // Enabled by default, which is hardcoded in the condition check below
             ),
 
             // customization group
@@ -91,42 +91,42 @@ class ConfigHelper extends Base
                 'enabled'       => true
             ),
 
-            // Activity on dashboard
-            'kanext_feature_dashboard_activity_activity_limit' => array(
+            // Custom dashboard options
+            'kanext_feature_kanext_kanext_dashboard_limit' => array(
                 'title'         => t('How many items to show in the feeds', 'kanext'),
                 'description'   => t('A very high number will break the interface and also might affect your server\'s resources. Recommended value: 15 items', 'kanext'),
                 'default_value' => 20,
                 'type'          => 'number',
-                'group'         => 'dashboard_activity',
+                'group'         => 'kanext_dashboard',
                 'options'       => array(),
-                'enabled'       => $this->configModel->get('kanext_feature_dashboard_activity') === '1'
+                'enabled'       => $this->configModel->get('kanext_feature_kanext_dashboard', '1') === '1'
             ),
-            'kanext_feature_dashboard_activity_show_comments_separately' => array(
+            'kanext_feature_kanext_dashboard_show_comments_separately' => array(
                 'title'         => t('Show comments separately', 'kanext'),
                 'description'   => '',
                 'default_value' => '1',
                 'type'          => 'checkbox',
-                'group'         => 'dashboard_activity',
+                'group'         => 'kanext_dashboard',
                 'options'       => array(),
-                'enabled'       => $this->configModel->get('kanext_feature_dashboard_activity') === '1'
+                'enabled'       => $this->configModel->get('kanext_feature_kanext_dashboard', '1') === '1'
             ),
-            'kanext_feature_dashboard_activity_show_tasks_of_loggedin_user' => array(
+            'kanext_feature_kanext_dashboard_show_tasks_of_loggedin_user' => array(
                 'title'         => t('Show the tasks of the currently logged in user', 'kanext'),
                 'description'   => '',
                 'default_value' => '1',
                 'type'          => 'checkbox',
-                'group'         => 'dashboard_activity',
+                'group'         => 'kanext_dashboard',
                 'options'       => array(),
-                'enabled'       => $this->configModel->get('kanext_feature_dashboard_activity') === '1'
+                'enabled'       => $this->configModel->get('kanext_feature_kanext_dashboard', '1') === '1'
             ),
-            'kanext_feature_dashboard_activity_show_bar_chart_for_project' => array(
+            'kanext_feature_kanext_dashboard_show_bar_chart_for_project' => array(
                 'title'         => t('Show a bar chart with the tasks in each column (under development)', 'kanext'),
                 'description'   => '',
                 'default_value' => '0',
                 'type'          => 'checkbox',
-                'group'         => 'dashboard_activity',
+                'group'         => 'kanext_dashboard',
                 'options'       => array(),
-                'enabled'       => $this->configModel->get('kanext_feature_dashboard_activity') === '1'
+                'enabled'       => $this->configModel->get('kanext_feature_kanext_dashboard', '1') === '1'
             ),
         );
 

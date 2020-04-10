@@ -15,7 +15,7 @@ use Kanboard\User\Avatar\LetterAvatarProvider;
  * @package  Kanboard\Plugin\Kanext\Controller
  * @author   Cristi DRAGHICI
  */
-class ActivityDashboardModel extends Base
+class KanextDashboardModel extends Base
 {
     const DEFAULT_LIMIT = 20;
 
@@ -33,7 +33,7 @@ class ActivityDashboardModel extends Base
             $user_id = $this->userSession->getId();
         }
         if (!$limit) {
-            $limit = $this->configHelper->get('kanext_feature_dashboard_activity_activity_limit', self::DEFAULT_LIMIT);
+            $limit = $this->configHelper->get('kanext_feature_kanext_dashboard_activity_limit', self::DEFAULT_LIMIT);
         }
 
         $project_ids = $this->projectPermissionModel->getProjectIds($user_id);
@@ -41,7 +41,7 @@ class ActivityDashboardModel extends Base
         $queryBuilder = $this->projectActivityQuery
             ->withFilter(new ProjectActivityProjectIdsFilter($project_ids));
 
-        if ($this->configHelper->get('kanext_feature_dashboard_activity_show_comments_separately') === "1") {
+        if ($this->configHelper->get('kanext_feature_kanext_dashboard_show_comments_separately') === "1") {
             $queryBuilder->getQuery()
                 ->beginAnd()
                 ->neq(ProjectActivityModel::TABLE.'.event_name', self::EVENT_UPDATE)
@@ -66,7 +66,7 @@ class ActivityDashboardModel extends Base
             $user_id = $this->userSession->getId();
         }
         if (!$limit) {
-            $limit = $this->configHelper->get('kanext_feature_dashboard_activity_activity_limit', self::DEFAULT_LIMIT);
+            $limit = $this->configHelper->get('kanext_feature_kanext_dashboard_activity_limit', self::DEFAULT_LIMIT);
         }
 
         $project_ids = $this->projectPermissionModel->getProjectIds($user_id);

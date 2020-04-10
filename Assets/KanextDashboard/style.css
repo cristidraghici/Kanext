@@ -23,43 +23,43 @@
 }
 
 /* New dasbboard */
-.kanext-dashboard {
+.kanext_dashboard {
   width: 100%;
 
   display: flex;
   overflow: hidden;
 }
 
-.kanext-dashboard-column {
+.kanext_dashboard-column {
   box-sizing: border-box;
   flex: 1;
   overflow: hidden;
 }
-.kanext-dashboard-column.kanext-dashboard-column--right-padding {
+.kanext_dashboard-column.kanext_dashboard-column--right-padding {
   padding-right: 10px;
 }
-.kanext-dashboard-column.kanext-dashboard-column--double-size {
+.kanext_dashboard-column.kanext_dashboard-column--double-size {
   flex: 2;
 }
 
-.kanext-dashboard-add-new-task {
+.kanext_dashboard-add-new-task {
   text-align: right;
   margin-bottom: 20px;
 }
 
 /* Elipsis fixes for content chunks being too long */v
-.kanext-dashboard-column .page-header,
-.kanext-dashboard-column .page-header h2,
+.kanext_dashboard-column .page-header,
+.kanext_dashboard-column .page-header h2,
 
-.kanext-dashboard-column .table-list-header,
+.kanext_dashboard-column .table-list-header,
 
-.kanext-dashboard-column .kanext-dashboard-add-new-task {
+.kanext_dashboard-column .kanext_dashboard-add-new-task {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-.kanext-dashboard-column pre {
+.kanext_dashboard-column pre {
   overflow: hidden;
   text-overflow: ellipsis;
 }
@@ -71,12 +71,12 @@
 
 /* Responsive stuff */
 @media only screen and (max-width: 768px) {
-  .kanext-dashboard,
-  .kanext-dashboard-column {
+  .kanext_dashboard,
+  .kanext_dashboard-column {
     display: block;
   }
 
-  .kanext-dashboard-column.kanext-dashboard-column--right-padding {
+  .kanext_dashboard-column.kanext_dashboard-column--right-padding {
     padding-right: 0px;
   }
 

@@ -1,15 +1,15 @@
 <div class="page-header">
-    <h2><?php echo t('Latest comments'); ?></h2>
+    <h2><?php echo t('Recent activity'); ?></h2>
 </div>
 
 <?php
-    $events = @array_values($this->model->activityDashboardModel->commentEvents());
+    $events = @array_values($this->model->kanextDashboardModel->activityEvents());
     $nr_events = count($events);
 ?>
 
 <div class="dashboard-activity">
     <?php if ($nr_events === 0): ?>
-        <p class="alert"><?= t('There are no comments yet.') ?></p>
+        <p class="alert"><?= t('There is no activity yet.') ?></p>
     <?php else: ?>
         <?php $current_project_id = null; foreach ($events as $key=>$event): ?>
 
@@ -23,9 +23,7 @@
                 <?php $current_project_id = $event['task']['project_id']; ?>
             <?php endif; ?>
 
-            <?php $rgb = $this->model->activityDashboardModel->getColorByName($event['author_name'] ?: $event['author_username']); ?>
-
-            <div class="table-list-row color-<?= $event['task']['color_id'] ?> dashboard-activity-content" style="border-left-color: <?= sprintf('rgb(%d, %d, %d)', $rgb[0], $rgb[1], $rgb[2]) ?>;">
+            <div class="table-list-row color-<?= $event['task']['color_id'] ?> dashboard-activity-content">
                 <div>
                     <?= $event['event_content'] ?>
                 </div>

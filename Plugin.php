@@ -33,12 +33,12 @@ class Plugin extends Base
             $this->hook->on('template:layout:css', array('template' => 'plugins/Kanext/Assets/ToggleSidebar/style.css'));
         }
 
-        // Activity on dashboard
-        if ($this->configModel->get('kanext_feature_dashboard_activity') == 1) {
-            $this->hook->on('template:layout:js', array('template' => 'plugins/Kanext/Assets/ActivityDashboard/script.js'));
-            $this->hook->on('template:layout:css', array('template' => 'plugins/Kanext/Assets/ActivityDashboard/style.css'));
+        // Custom dashboard
+        if ($this->configModel->get('kanext_feature_kanext_dashboard') == 1) {
+            $this->hook->on('template:layout:js', array('template' => 'plugins/Kanext/Assets/KanextDashboard/script.js'));
+            $this->hook->on('template:layout:css', array('template' => 'plugins/Kanext/Assets/KanextDashboard/style.css'));
 
-            $this->template->setTemplateOverride('dashboard/overview', 'kanext:activity_dashboard/dashboard/overview');
+            $this->template->setTemplateOverride('dashboard/overview', 'kanext:kanext_dashboard/dashboard/overview');
         }
     }
 
@@ -82,10 +82,10 @@ class Plugin extends Base
             )
         );
 
-        // Activity on dashboard
-        if ($this->configModel->get('kanext_feature_dashboard_activity') == 1) {
+        // Custom dashboard
+        if ($this->configModel->get('kanext_feature_kanext_dashboard') == 1) {
             $classes['Plugin\Kanext\Model'] = array(
-                'ActivityDashboardModel',
+                'KanextDashboardModel',
             );
         }
 
