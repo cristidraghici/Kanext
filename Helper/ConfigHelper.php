@@ -120,7 +120,7 @@ class ConfigHelper extends Base
                 'enabled'       => $this->configModel->get('kanext_feature_dashboard_activity') === '1'
             ),
             'kanext_feature_dashboard_activity_show_bar_chart_for_project' => array(
-                'title'         => t('Show a bar chart with the tasks in each column', 'kanext'),
+                'title'         => t('Show a bar chart with the tasks in each column (under development)', 'kanext'),
                 'description'   => '',
                 'default_value' => '0',
                 'type'          => 'checkbox',

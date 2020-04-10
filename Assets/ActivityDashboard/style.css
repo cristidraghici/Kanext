@@ -64,6 +64,11 @@
   text-overflow: ellipsis;
 }
 
+/* Stats */
+.c3_project_stats {
+  width: 100% !important;
+}
+
 /* Responsive stuff */
 @media only screen and (max-width: 768px) {
   .kanext-dashboard,
