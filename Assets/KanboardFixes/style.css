@@ -1,0 +1,73 @@
+*,
+*:hover,
+*:active,
+*:focus {
+  outline: 0 !important;
+}
+
+#board-container table .board-task-list {
+  max-height: none !important;
+}
+
+/* Dashboard fixes */
+#dashboard .kanext-task-meta.table-list-details {
+  overflow: hidden;
+}
+#dashboard .kanext-task-meta .task-list-avatars {
+  float: right;
+}
+
+/* Filter box fix */
+#dashboard .filter-box {
+  max-width: none;
+}
+
+#dashboard .filter-box .input-addon-field,
+#dashboard .filter-box .input-addon-item {
+  padding: 6px;
+  height: auto;
+}
+
+/* Responsive fixes */
+@media only screen and (max-width: 768px) {
+
+  /* Hide project selector when resolution is too small */
+  .board-selector-container {
+    display: none !important;
+  }
+
+  /* Fix title and menu in small resolutions */
+  header .title-container h1 {
+    font-size: 24px;
+    line-height: 100%;
+  }
+
+  header .title-container {
+    float: left !important;
+  }
+  header .title-container .tooltip,
+  header .title-container span.title {
+    display: none !important;
+  }
+
+  header .menus-container {
+    width: auto !important;
+  }
+
+  /* Selector for project links menu on homepage */
+  .page > #main > .page-header {
+    display: none !important;
+  }
+
+  .sidebar .fa {
+    display: none !important;
+  }
+
+  /* Fix for menu buttons */
+  .project-header .views-switcher-component .views li a {
+    font-size: 0;
+  }
+  .project-header .views-switcher-component .views li a i {
+    font-size: 16px;
+  }
+}

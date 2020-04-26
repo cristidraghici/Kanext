@@ -1,0 +1,86 @@
+/* Dashboard sidebar size fix, important for flex */
+#dashboard.sidebar-container {
+  box-sizing: border-box;
+  display: block;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+#dashboard.sidebar-container .sidebar {
+  box-sizing: border-box;
+  max-width: 25%;
+  min-width: 230px;
+  float: left;
+}
+#dashboard.sidebar-container .sidebar-content {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: calc(100% - 230px - 25px);
+  float: right;
+}
+
+.toggle-sidebar--visible #dashboard.sidebar-container .sidebar-content {
+  max-width: calc(100% - 230px - 25px) !important;
+}
+
+/* New dasbboard */
+.kanext_dashboard {
+  width: 100%;
+
+  display: flex;
+  overflow: hidden;
+}
+
+.kanext_dashboard-column {
+  box-sizing: border-box;
+  flex: 1;
+  overflow: hidden;
+}
+.kanext_dashboard-column.kanext_dashboard-column--right-padding {
+  padding-right: 10px;
+}
+.kanext_dashboard-column.kanext_dashboard-column--double-size {
+  flex: 2;
+}
+
+.kanext_dashboard-add-new-task {
+  text-align: right;
+  margin-bottom: 20px;
+}
+
+/* Elipsis fixes for content chunks being too long */v
+.kanext_dashboard-column .page-header,
+.kanext_dashboard-column .page-header h2,
+
+.kanext_dashboard-column .table-list-header,
+
+.kanext_dashboard-column .kanext_dashboard-add-new-task {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.kanext_dashboard-column pre {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Stats */
+.c3_project_stats {
+  width: 100% !important;
+}
+
+/* Responsive stuff */
+@media only screen and (max-width: 768px) {
+  .kanext_dashboard,
+  .kanext_dashboard-column {
+    display: block;
+  }
+
+  .kanext_dashboard-column.kanext_dashboard-column--right-padding {
+    padding-right: 0px;
+  }
+
+  .toggle-sidebar--visible #dashboard.sidebar-container .sidebar-content {
+    max-width: none !important;
+  }
+}

@@ -3,33 +3,215 @@ namespace Kanboard\Plugin\Kanext\Helper;
 
 use Kanboard\Core\Base;
 
-// TODO: add default values here
 class ConfigHelper extends Base
 {
-    // The default configuration
-    public function getDefaults() {
-        return array(
-            'kanext_use_own_theme' => $this->configModel->get('kanext_use_own_theme'),
-            'kanext_use_css_fixes' => $this->configModel->get('kanext_use_css_fixes'),
-            'kanext_use_js_fixes' => $this->configModel->get('kanext_use_js_fixes'),
-            'kanext_use_plugin_fixes' => $this->configModel->get('kanext_use_plugin_fixes'),
+    // The groups for the configuration options (just organizational)
+    public function getGroups () {
+        $all_groups = array(
+            array(
+                'title'         => t('Features', 'kanext'),
+                'description'   => '',
+                'slug'          => 'features'
+            ),
 
-            'kanext_feature_toggle_sidebar' => $this->configModel->get('kanext_feature_toggle_sidebar'),
+            array(
+                'title'         => t('Customization', 'kanext'),
+                'description'   => '',
+                'slug'          => 'customization'
+            ),
 
-            'kanext_dashboard_activity_type' => $this->configModel->get('kanext_dashboard_activity_type', 'kanext_dashboard_activity_general'),
-            'kanext_custom_css' => $this->configModel->get('kanext_custom_css', ''),
+            // Optional settings
+            array(
+                'title'         => t('Custom dashboard', 'kanext'),
+                'description'   => '',
+                'slug'          => 'kanext_dashboard'
+            ),
+
+            array(
+                'title'         => t('Team conventions', 'kanext'),
+                'description'   => '',
+                'slug'          => 'team_conventions'
+            )
         );
+
+        $groups_with_options = array();
+        foreach ($all_groups as $group) {
+            if ($this->hasOptions($group['slug'])) {
+                $groups_with_options[] = $group;
+            }
+        }
+
+        return $groups_with_options;
     }
 
-    // List of configuration items which are checkboxes
-    public function getCheckboxes() {
-        return [
-            'kanext_use_own_theme',
-            'kanext_use_css_fixes',
-            'kanext_use_js_fixes',
-            'kanext_use_plugin_fixes',
-            'kanext_feature_toggle_sidebar'
-        ];
+    // The default configuration
+    public function getOptions () {
+        $all_options = array(
+            // features group
+            'kanext_use_kanboard_fixes' => array(
+                'title'         => t('Kanboard general fixes', 'kanext'),
+                'description'   => '',
+                'default_value' => '1',
+                'type'          => 'checkbox',
+                'group'         => 'features',
+                'options'       => array(),
+                'enabled'       => true
+            ),
+            'kanext_feature_toggle_sidebar' => array(
+                'title'         => t('Toggle sidebar', 'kanext'),
+                'description'   => '',
+                'default_value' => '1',
+                'type'          => 'checkbox',
+                'group'         => 'features',
+                'options'       => array(),
+                'enabled'       => true
+            ),
+            'kanext_feature_kanext_dashboard' => array(
+                'title'         => t('Custom dashboard', 'kanext'),
+                'description'   => '',
+                'default_value' => '1',
+                'type'          => 'checkbox',
+                'group'         => 'features',
+                'options'       => array(),
+                'enabled'       => true // Enabled by default, which is hardcoded in the condition check below
+            ),
+            'kanext_feature_team_conventions' => array(
+                'title'         => t('Show team conventions', 'kanext'),
+                'description'   => '',
+                'default_value' => '0',
+                'type'          => 'checkbox',
+                'group'         => 'features',
+                'options'       => array(),
+                'enabled'       => true
+            ),
+
+            // customization group
+            'kanext_custom_css' => array(
+                'title'         => t('Custom CSS', 'kanext'),
+                'description'   => '',
+                'default_value' => '',
+                'type'          => 'textarea',
+                'group'         => 'customization',
+                'options'       => array(),
+                'enabled'       => true
+            ),
+            'kanext_feature_fixes_for_theme_plugins' => array(
+                'title'         => t('Fixes for theme plugins', 'kanext'),
+                'description'   => '',
+                'default_value' => '1',
+                'type'          => 'checkbox',
+                'group'         => 'customization',
+                'options'       => array(),
+                'enabled'       => true
+            ),
+
+            // Custom dashboard options
+            'kanext_feature_kanext_dashboard_activity_limit' => array(
+                'title'         => t('How many items to show in the feeds', 'kanext'),
+                'description'   => t('A very high number will break the interface and also might affect your server\'s resources. Recommended value: 15 items', 'kanext'),
+                'default_value' => 20,
+                'type'          => 'number',
+                'group'         => 'kanext_dashboard',
+                'options'       => array(),
+                'enabled'       => $this->configModel->get('kanext_feature_kanext_dashboard', '1') === '1'
+            ),
+            'kanext_feature_kanext_dashboard_show_comments_separately' => array(
+                'title'         => t('Show comments separately', 'kanext'),
+                'description'   => '',
+                'default_value' => '1',
+                'type'          => 'checkbox',
+                'group'         => 'kanext_dashboard',
+                'options'       => array(),
+                'enabled'       => $this->configModel->get('kanext_feature_kanext_dashboard', '1') === '1'
+            ),
+            'kanext_feature_kanext_dashboard_show_tasks_of_loggedin_user' => array(
+                'title'         => t('Show the tasks of the currently logged in user', 'kanext'),
+                'description'   => '',
+                'default_value' => '1',
+                'type'          => 'checkbox',
+                'group'         => 'kanext_dashboard',
+                'options'       => array(),
+                'enabled'       => $this->configModel->get('kanext_feature_kanext_dashboard', '1') === '1'
+            ),
+            'kanext_feature_kanext_dashboard_show_bar_chart_for_project' => array(
+                'title'         => t('Show a bar chart with the tasks in each column (under development)', 'kanext'),
+                'description'   => '',
+                'default_value' => '0',
+                'type'          => 'checkbox',
+                'group'         => 'kanext_dashboard',
+                'options'       => array(),
+                'enabled'       => $this->configModel->get('kanext_feature_kanext_dashboard', '1') === '1'
+            ),
+            'kanext_feature_kanext_dashboard_show_projects_where_the_user_has_no_tasks' => array(
+                'title'         => t('Show the projects where the user has not tasks (under development)', 'kanext'),
+                'description'   => '',
+                'default_value' => '0',
+                'type'          => 'checkbox',
+                'group'         => 'kanext_dashboard',
+                'options'       => array(),
+                'enabled'       => $this->configModel->get('kanext_feature_kanext_dashboard', '1') === '1'
+            ),
+
+            // Team conventions
+            'kanext_feature_kanext_dashboard_team_conventions' => array(
+                'title'         => '',
+                'description'   => t('Show a list of conventions all the users should be reminded of. Currenly only shown on the custom dashboard.', 'kanext'),
+                'default_value' => '',
+                'type'          => 'textEditor',
+                'group'         => 'team_conventions',
+                'options'       => array(),
+                'enabled'       => $this->configModel->get('kanext_feature_team_conventions', '1') === '1'
+            ),
+        );
+
+        $active_options = array();
+        foreach ($all_options as $name=>$meta) {
+            if ($meta['enabled'] === true) {
+                $active_options[$name] = $meta;
+                $active_options[$name]['value'] = $this->configModel->get($name, $meta['default_value']);
+            }
+        }
+
+        return $active_options;
+
+    }
+
+    private function hasOptions ($group_slug) {
+        $options = $this->memoryCache->proxy($this, 'getOptions');
+
+        foreach ($options as $option) {
+            if ($option['group'] === $group_slug) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    // Only get the values from the options
+    public function getValues () {
+        $options = $this->memoryCache->proxy($this, 'getOptions');
+        $values = array();
+
+        foreach ($options as $option_name => $option) {
+            $values[$option_name] = $option['value'];
+        }
+
+        return $values;
+    }
+
+    // Only get the options of type field
+    public function getCheckboxes () {
+        $options = $this->memoryCache->proxy($this, 'getOptions');
+        $checkboxes = array();
+
+        foreach ($options as $option_name => $option) {
+            if ($option['type'] === 'checkbox') {
+                $checkboxes[] = $option_name;
+            }
+        }
+
+        return $checkboxes;
     }
 
     /**
@@ -37,8 +219,10 @@ class ConfigHelper extends Base
      * @param  string $name Name of the variables
      * @return mixed        Content of the variable
      */
-    public function get($name=null)
+    public function get ($name=null)
     {
-        return $this->configModel->get($name);
+        $values = $this->memoryCache->proxy($this, 'getValues');
+
+        return $values[$name];
     }
 }

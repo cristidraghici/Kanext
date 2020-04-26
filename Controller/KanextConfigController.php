@@ -3,21 +3,16 @@ namespace Kanboard\Plugin\Kanext\Controller;
 
 use \Kanboard\Controller\ConfigController;
 
-/**
- * Class KanextConfigController
- *
- * @package Kanboard\Plugin\Kanext\Controller
- */
 class KanextConfigController extends ConfigController
 {
     public function show()
     {
-        // Default configuration
-        $values = $this->configHelper->getDefaults();
+        $this->response->html($this->helper->layout->config('Kanext:kanext_configuration/configuration-page', array(
+            'title' => t('Settings') . ' &gt; Kanext',
 
-        $this->response->html($this->helper->layout->config('Kanext:config/config', array(
-            'title' => t('Settings').' &gt; '.t('Kanext settings'),
-            'values' => $values
+            'groups'    => $this->configHelper->getGroups(),
+            'options'   => $this->configHelper->getOptions(),
+            'values'    => $this->configHelper->getValues()
         )));
     }
 
