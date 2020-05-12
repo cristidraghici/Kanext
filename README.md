@@ -28,3 +28,7 @@ This screenshot is made together with the **GreenWing** plugin/template, which w
 
 Kanboard provides the basic necessary functionality for handling kanban projects. Moreover, it is a popular piece of software with a lot of community support.
 Kanboard is currently at **1.2.13**.
+
+## Closing notes
+
+The issues are being taken into consideration. Due to this being a spare-spare time project, it might take a while until they are adressed. Sorry for that! :)
