@@ -9,15 +9,15 @@ class ConfigHelper extends Base
     public function getGroups () {
         $all_groups = array(
             array(
-                'title'         => t('Features', 'kanext'),
-                'description'   => '',
-                'slug'          => 'features'
-            ),
-
-            array(
                 'title'         => t('Customization', 'kanext'),
                 'description'   => '',
                 'slug'          => 'customization'
+            ),
+
+            array(
+                'title'         => t('Features', 'kanext'),
+                'description'   => '',
+                'slug'          => 'features'
             ),
 
             // Optional settings
@@ -47,9 +47,47 @@ class ConfigHelper extends Base
     // The default configuration
     public function getOptions () {
         $all_options = array(
+            // customization group
+            'kanext_custom_css' => array(
+                'title'         => t('Custom CSS', 'kanext'),
+                'description'   => '',
+                'default_value' => '',
+                'type'          => 'textarea',
+                'group'         => 'customization',
+                'options'       => array(),
+                'enabled'       => true
+            ),
+            'kanext_general_style_fixes' => array(
+                'title'         => t('General style fixes', 'kanext'),
+                'description'   => t('Examples: improved resposivness, full width search, all CSS changes', 'kanext'),
+                'default_value' => '1',
+                'type'          => 'checkbox',
+                'group'         => 'customization',
+                'options'       => array(),
+                'enabled'       => true
+            ),
+            'kanext_feature_fixes_for_theme_plugins' => array(
+                'title'         => t('Fixes for theme plugins', 'kanext'),
+                'description'   => t('Kanext can provide small fixes for theme plugins you might use. For now, it only offers this feature for GreenWing', 'kanext'),
+                'default_value' => '1',
+                'type'          => 'checkbox',
+                'group'         => 'customization',
+                'options'       => array(),
+                'enabled'       => true
+            ),
+
             // features group
-            'kanext_use_kanboard_fixes' => array(
-                'title'         => t('Kanboard general fixes', 'kanext'),
+            'kanext_close_dropdown_on_second_click' => array(
+                'title'         => t('Close dropdown on second click', 'kanext'),
+                'description'   => '',
+                'default_value' => '1',
+                'type'          => 'checkbox',
+                'group'         => 'features',
+                'options'       => array(),
+                'enabled'       => true
+            ),
+            'kanext_close_modal_on_overlay_click' => array(
+                'title'         => t('Close modal on overlay click', 'kanext'),
                 'description'   => '',
                 'default_value' => '1',
                 'type'          => 'checkbox',
@@ -74,35 +112,6 @@ class ConfigHelper extends Base
                 'group'         => 'features',
                 'options'       => array(),
                 'enabled'       => true // Enabled by default, which is hardcoded in the condition check below
-            ),
-            'kanext_feature_team_conventions' => array(
-                'title'         => t('Show team conventions', 'kanext'),
-                'description'   => '',
-                'default_value' => '0',
-                'type'          => 'checkbox',
-                'group'         => 'features',
-                'options'       => array(),
-                'enabled'       => true
-            ),
-
-            // customization group
-            'kanext_custom_css' => array(
-                'title'         => t('Custom CSS', 'kanext'),
-                'description'   => '',
-                'default_value' => '',
-                'type'          => 'textarea',
-                'group'         => 'customization',
-                'options'       => array(),
-                'enabled'       => true
-            ),
-            'kanext_feature_fixes_for_theme_plugins' => array(
-                'title'         => t('Fixes for theme plugins', 'kanext'),
-                'description'   => '',
-                'default_value' => '1',
-                'type'          => 'checkbox',
-                'group'         => 'customization',
-                'options'       => array(),
-                'enabled'       => true
             ),
 
             // Custom dashboard options
@@ -134,8 +143,8 @@ class ConfigHelper extends Base
                 'enabled'       => $this->configModel->get('kanext_feature_kanext_dashboard', '1') === '1'
             ),
             'kanext_feature_kanext_dashboard_show_bar_chart_for_project' => array(
-                'title'         => t('Show a bar chart with the tasks in each column (under development)', 'kanext'),
-                'description'   => '',
+                'title'         => t('Show a bar chart with the tasks in each column', 'kanext'),
+                'description'   => t('Under testing and development', 'kanext'),
                 'default_value' => '0',
                 'type'          => 'checkbox',
                 'group'         => 'kanext_dashboard',
@@ -143,19 +152,28 @@ class ConfigHelper extends Base
                 'enabled'       => $this->configModel->get('kanext_feature_kanext_dashboard', '1') === '1'
             ),
             'kanext_feature_kanext_dashboard_show_projects_where_the_user_has_no_tasks' => array(
-                'title'         => t('Show the projects where the user has not tasks (under development)', 'kanext'),
-                'description'   => '',
+                'title'         => t('Show the projects where the user has not tasks', 'kanext'),
+                'description'   => t('Under testing and development', 'kanext'),
                 'default_value' => '0',
                 'type'          => 'checkbox',
                 'group'         => 'kanext_dashboard',
                 'options'       => array(),
                 'enabled'       => $this->configModel->get('kanext_feature_kanext_dashboard', '1') === '1'
             ),
+            'kanext_feature_team_conventions' => array(
+                'title'         => t('Show team conventions', 'kanext'),
+                'description'   => t('Show a list of conventions all the users should be reminded of.', 'kanext'),
+                'default_value' => '0',
+                'type'          => 'checkbox',
+                'group'         => 'kanext_dashboard',
+                'options'       => array(),
+                'enabled'       => true
+            ),
 
             // Team conventions
             'kanext_feature_kanext_dashboard_team_conventions' => array(
                 'title'         => '',
-                'description'   => t('Show a list of conventions all the users should be reminded of. Currenly only shown on the custom dashboard.', 'kanext'),
+                'description'   => '',
                 'default_value' => '',
                 'type'          => 'textEditor',
                 'group'         => 'team_conventions',

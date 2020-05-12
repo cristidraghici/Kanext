@@ -19,12 +19,19 @@ class Plugin extends Base
         // Kanext configuration - attach the link to the settings sidebar
         $this->template->hook->attach('template:config:sidebar', 'kanext:kanext_configuration/settings-sidebar-item');
 
-        // The modules
+        // Close dropdown on second click
+        if ($this->configModel->get('kanext_close_dropdown_on_second_click') == 1) {
+            $this->hook->on('template:layout:js', array('template' => 'plugins/Kanext/Assets/SecondClickClose/script.js'));
+        }
 
-        // The general fixes
-        if ($this->configModel->get('kanext_use_kanboard_fixes') == 1) {
-            $this->hook->on('template:layout:js', array('template' => 'plugins/Kanext/Assets/KanboardFixes/script.js'));
-            $this->hook->on('template:layout:css', array('template' => 'plugins/Kanext/Assets/KanboardFixes/style.css'));
+        // Close modal on overlay click
+        if ($this->configModel->get('kanext_close_modal_on_overlay_click') == 1) {
+            $this->hook->on('template:layout:js', array('template' => 'plugins/Kanext/Assets/OverlayClickClose/script.js'));
+        }
+
+        // General style fixes
+        if ($this->configModel->get('kanext_general_style_fixes') == 1) {
+            $this->hook->on('template:layout:css', array('template' => 'plugins/Kanext/Assets/StyleFixes/style.css'));
         }
 
         // The sidebar toggle
@@ -106,7 +113,7 @@ class Plugin extends Base
     }
     public function getPluginVersion()
     {
-        return '3.0.0';
+        return '3.0.1';
     }
     public function getPluginHomepage()
     {
