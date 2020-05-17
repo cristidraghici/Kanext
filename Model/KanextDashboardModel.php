@@ -10,12 +10,6 @@ use PicoDb\Table;
 use Kanboard\User\Avatar\LetterAvatarProvider;
 use Kanboard\Model\TaskModel;
 
-/**
- * Kanext Controller
- *
- * @package  Kanboard\Plugin\Kanext\Controller
- * @author   Cristi DRAGHICI
- */
 class KanextDashboardModel extends Base
 {
     const DEFAULT_LIMIT = 20;

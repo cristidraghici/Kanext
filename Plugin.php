@@ -1,9 +1,9 @@
 <?php
 namespace Kanboard\Plugin\Kanext;
 
-use DirectoryIterator;
 use Kanboard\Core\Plugin\Base;
 use Kanboard\Core\Translator;
+use DirectoryIterator;
 
 class Plugin extends Base
 {
@@ -53,6 +53,16 @@ class Plugin extends Base
     {
         // Load the locales
         Translator::load($this->languageModel->getCurrentLanguage(), __DIR__.'/Locale');
+
+        // Limit the number of tasks in a column (in `onStartup` for later loading them)
+        if ($this->configModel->get('kanext_feature_limit_tasks') == 1) {
+            $this->route->addRoute('kanext/tasks/:column/:swimlane', 'KanextTasksController', 'allTasksInColumn');
+
+            $this->hook->on('template:layout:js', array('template' => 'plugins/Kanext/Assets/KanextLimitTasks/script.js'));
+            $this->hook->on('template:layout:css', array('template' => 'plugins/Kanext/Assets/KanextLimitTasks/style.css'));
+
+            $this->template->setTemplateOverride('board/table_tasks', 'kanext:kanext_limit_tasks/board/table_tasks');
+        }
 
         // Load custom CSS for plugins
         if ($this->configModel->get('kanext_feature_fixes_for_theme_plugins') == 1) {
