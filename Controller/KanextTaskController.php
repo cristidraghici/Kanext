@@ -18,7 +18,7 @@ class KanextTaskController extends BaseController
         }
 
         $project = $this->getProject($project_id);
-        $not_editable = !!$project['is_public'] || !$project['is_private'];
+        $not_editable = !!$project['is_public'];
 
         $swimlanes = $this->taskLexer
             ->build($this->userSession->getFilters($project_id))
@@ -35,7 +35,7 @@ class KanextTaskController extends BaseController
             'column' => $column,
 
             'board_highlight_period' => $board_highlight_period,
-            'not_editable' => isset($not_editable),
+            'not_editable' => $not_editable,
         )));
     }
 }
