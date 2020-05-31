@@ -31,6 +31,12 @@ class ConfigHelper extends Base
                 'title'         => t('Team conventions', 'kanext'),
                 'description'   => '',
                 'slug'          => 'team_conventions'
+            ),
+
+            array(
+                'title'         => t('Limit number of tasks in a swimlane', 'kanext'),
+                'description'   => '',
+                'slug'          => 'kanext_limit_tasks'
             )
         );
 
@@ -114,6 +120,20 @@ class ConfigHelper extends Base
                 'enabled'       => true // Enabled by default, which is hardcoded in the condition check below
             ),
 
+            /**
+             * Currently, the task limitation is done only by limiting the number of displayed tasks in the tamplate file,
+             * which was the easiest to override. The proper way is to change the controller/model.
+             */
+            'kanext_feature_limit_tasks' => array(
+                'title'         => t('Limit number of tasks in a board', 'kanext'),
+                'description'   => '',
+                'default_value' => '1',
+                'type'          => 'checkbox',
+                'group'         => 'features',
+                'options'       => array(),
+                'enabled'       => true
+            ),
+
             // Custom dashboard options
             'kanext_feature_kanext_dashboard_activity_limit' => array(
                 'title'         => t('How many items to show in the feeds', 'kanext'),
@@ -179,6 +199,17 @@ class ConfigHelper extends Base
                 'group'         => 'team_conventions',
                 'options'       => array(),
                 'enabled'       => $this->configModel->get('kanext_feature_team_conventions', '1') === '1'
+            ),
+
+            // Limited tasks
+            'kanext_feature_limit_tasks_limit' => array(
+                'title'         => t('How many items to show in the column of a swimlane', 'kanext'),
+                'description'   => t('A very high number leads to slow interface and big response files for the requests. Recommended value: 100 items', 'kanext'),
+                'default_value' => 100,
+                'type'          => 'number',
+                'group'         => 'kanext_limit_tasks',
+                'options'       => array(),
+                'enabled'       => $this->configModel->get('kanext_feature_limit_tasks', '1') === '1'
             ),
         );
 

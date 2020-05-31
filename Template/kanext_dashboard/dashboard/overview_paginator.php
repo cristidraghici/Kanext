@@ -2,7 +2,7 @@
     <div class="page-header">
         <h2><?= t('Tasks') ?></h2>
     </div>
-    <p class="alert"><?= t('There is nothing assigned to you.') ?></p>
+    <p class="alert"><?= t('Chill out, you\'ve done everything! ;)', 'kanext') ?></p>
 <?php else: ?>
     <?php foreach ($overview_paginator as $result): ?>
         <?php if (! $result['paginator']->isEmpty()): ?>

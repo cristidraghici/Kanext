@@ -1,0 +1,10 @@
+.kanext_limit_show_more_button {
+  margin: 10px;
+  display: block;
+  text-align: center;
+  outline: 0;
+}
+
+.kanext_limit_show_more_button_loader {
+  display: none;
+}
