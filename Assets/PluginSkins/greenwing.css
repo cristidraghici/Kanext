@@ -17,3 +17,17 @@ input[type=number] {
     margin-top: 2px;
   }
 }
+
+/** Show the logo of KB instead of Greenwing's, which is currently broken */
+header .logo {
+  margin-top: 2px !important;
+  margin-right: 8px !important;
+  background-image: none !important;
+}
+header .logo a {
+  opacity: 1 !important;
+  color: #ff0000 !important;
+}
+  header .logo a span {
+  display: inline-block !important;
+}
