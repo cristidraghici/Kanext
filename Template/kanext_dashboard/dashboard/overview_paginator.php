@@ -73,7 +73,7 @@
 
             <div class="kanext_dashboard-add-new-task">
                 <small>
-                    <?php if ($this->projectRole->canCreateTaskInColumn($result['project_id'], $column['id'])): ?>
+                    <?php if ($this->projectRole->canCreateTaskInColumn($result['project_id'], isset($column) ? $column['id'] : null)): ?>
 
                         <?= $this->helper->modal->large(
                             'plus',
@@ -100,4 +100,4 @@
     <?php endforeach ?>
 <?php endif ?>
 
-<?= $this->hook->render('template:dashboard:show', array('user' => $user)) ?>
+<?= $this->hook->render('template:dashboard:show', array('user' => isset($user) ? $user : null)) ?>

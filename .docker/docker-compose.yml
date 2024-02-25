@@ -1,7 +1,7 @@
-version: '2'
+version: "2"
 services:
   kanboard:
-    container_name: 'kanext-kanboard'
+    container_name: "kanext-kanboard"
     build: ./
     ports:
       - "88:80"

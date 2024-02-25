@@ -1,4 +1,4 @@
-FROM kanboard/kanboard:latest
+FROM kanboard/kanboard:v1.2.13
 
 RUN mkdir -p /var/www/app/plugins/Kanext
 
