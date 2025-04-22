@@ -39,10 +39,10 @@
                 <div class="kanext_limit_show_more_button">
                     <a
                         href="<?= $this->helper->url->href('KanextTaskController', 'allTasksInColumn', array(
-                            project => $project['id'],
-                            column => $column['id'],
-                            swimlane => $swimlane['id'],
-                            plugin => 'kanext'
+                            'project' => $project['id'],
+                            'column' => $column['id'],
+                            'swimlane' => $swimlane['id'],
+                            'plugin' => 'kanext'
                         ), '', 'kanext'); ?>"
                         data-project-id="<?= $project['id'] ?>"
                         data-column-id="<?= $column['id'] ?>"

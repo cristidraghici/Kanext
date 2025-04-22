@@ -18,13 +18,15 @@ class KanextConfigController extends ConfigController
 
     public function save()
     {
-        // Get the values from the from
-        $values =  $this->request->getValues();
+        // Get the values from the form
+        $values = $this->request->getValues();
 
         // Set the disabled checkboxes values
-        foreach ($this->configHelper->getCheckboxes() as $checkbox) {
-            if (!$values[$checkbox]) {
-                $values[$checkbox] = 0;
+        if (method_exists($this->request, 'getCheckboxes')) {
+            foreach ($this->configHelper->getCheckboxes() as $checkbox) {
+                if (!isset($values[$checkbox])) {
+                    $values[$checkbox] = 0;
+                }
             }
         }
 

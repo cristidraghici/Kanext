@@ -38,13 +38,12 @@ class KanextDashboardModel extends Base
 
         if ($this->configHelper->get('kanext_feature_kanext_dashboard_show_comments_separately') === "1") {
             $queryBuilder->getQuery()
-                ->beginAnd()
-                ->neq(ProjectActivityModel::TABLE.'.event_name', self::EVENT_UPDATE)
-                ->neq(ProjectActivityModel::TABLE.'.event_name', self::EVENT_CREATE)
-                ->neq(ProjectActivityModel::TABLE.'.event_name', self::EVENT_DELETE)
-                ->neq(ProjectActivityModel::TABLE.'.event_name', self::EVENT_USER_MENTION)
-                ->closeAnd()
-            ;
+                ->notIn(ProjectActivityModel::TABLE.'.event_name', array(
+                    self::EVENT_UPDATE,
+                    self::EVENT_CREATE,
+                    self::EVENT_DELETE,
+                    self::EVENT_USER_MENTION
+                ));
         }
 
         $queryBuilder->getQuery()
@@ -142,6 +141,6 @@ class KanextDashboardModel extends Base
             $stats[] = [$stat['title'], $nb_open_tasks];
         }
 
-        return @json_encode($stats, JSON_HEX_APOS);
+        return @json_encode($stats, JSON_HEX_APOS | JSON_THROW_ON_ERROR);
     }
 }

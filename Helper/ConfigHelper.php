@@ -229,7 +229,7 @@ class ConfigHelper extends Base
         $options = $this->memoryCache->proxy($this, 'getOptions');
 
         foreach ($options as $option) {
-            if ($option['group'] === $group_slug) {
+            if (isset($option['group']) && $option['group'] === $group_slug) {
                 return true;
             }
         }
@@ -243,7 +243,7 @@ class ConfigHelper extends Base
         $values = array();
 
         foreach ($options as $option_name => $option) {
-            $values[$option_name] = $option['value'];
+            $values[$option_name] = $option['value'] ?? null;
         }
 
         return $values;
@@ -255,7 +255,7 @@ class ConfigHelper extends Base
         $checkboxes = array();
 
         foreach ($options as $option_name => $option) {
-            if ($option['type'] === 'checkbox') {
+            if (isset($option['type']) && $option['type'] === 'checkbox') {
                 $checkboxes[] = $option_name;
             }
         }
@@ -272,6 +272,26 @@ class ConfigHelper extends Base
     {
         $values = $this->memoryCache->proxy($this, 'getValues');
 
-        return $values[$name];
+        return $values[$name] ?? null;
+    }
+
+    public function save() {
+        // Get the values from the from
+        $values = $this->request->getValues();
+
+        // Set the disabled checkboxes values
+        foreach ($this->configHelper->getCheckboxes() as $checkbox) {
+            if (!isset($values[$checkbox])) {
+                $values[$checkbox] = 0;
+            }
+        }
+
+        if ($this->configModel->save($values)) {
+            $this->flash->success(t('Settings saved successfully.'));
+        } else {
+            $this->flash->failure(t('Unable to save your settings.'));
+        }
+
+        $this->response->redirect($this->helper->url->to('KanextConfigController', 'show', array('plugin' => 'Kanext')));
     }
 }
