@@ -1,8 +1,9 @@
 plugin=Kanext
+version?=latest
 
 all:
 	@ echo "Build archive for plugin ${plugin} version=${version}"
-	@ git archive HEAD --prefix=${plugin}/ --format=zip -o ${plugin}-${version}.zip
+	@ git archive --worktree-attributes HEAD --prefix=${plugin}/ --format=zip -o ${plugin}-${version}.zip
 
 lint: lint-php lint-frontend
 
