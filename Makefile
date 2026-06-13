@@ -27,3 +27,7 @@ init:
 
 check-translations:
 	php .tools/check-translations.php
+
+update-translations:
+	php .tools/update-translations.php
+	$(MAKE) format-php
