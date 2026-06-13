@@ -96,8 +96,27 @@ class Plugin extends Base
         }
     }
 
+    private function setupDefaults()
+    {
+        $configHelper = new Helper\ConfigHelper($this->container);
+        $options = $configHelper->getOptions();
+
+        $missing = [];
+        foreach ($options as $name => $meta) {
+            if ('' === $this->configModel->get($name)) {
+                $missing[$name] = $meta['default_value'];
+            }
+        }
+
+        if (!empty($missing)) {
+            $this->configModel->save($missing);
+        }
+    }
+
     public function getClasses()
     {
+        $this->setupDefaults();
+
         $classes = [
             'Plugin\Kanext\Helper' => [
                 'ConfigHelper',
