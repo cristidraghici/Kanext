@@ -18,3 +18,4 @@ docker-compose.yml export-ignore
 docker-config.php export-ignore
 package-lock.json export-ignore
 package.json export-ignore
+.nojekyll export-ignore

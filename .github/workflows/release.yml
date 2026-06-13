@@ -1,0 +1,29 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+      - '[0-9]+.[0-9]+.[0-9]+*'
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Build archive
+        run: |
+          # Strip the 'v' prefix if it exists to keep the zip name clean
+          VERSION="${GITHUB_REF_NAME#v}"
+          make all version=$VERSION
+          echo "ZIP_FILE=Kanext-$VERSION.zip" >> $GITHUB_ENV
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: ${{ env.ZIP_FILE }}
+          generate_release_notes: true
