@@ -22,7 +22,7 @@ class KanextDashboardModel extends Base
     const EVENT_DELETE       = 'comment.delete';
     const EVENT_USER_MENTION = 'comment.user.mention';
 
-    public function activityEvents ($user_id = null, $limit = null)
+    public function activityEvents($user_id = null, $limit = null)
     {
         if (!$user_id) {
             $user_id = $this->userSession->getId();
@@ -54,7 +54,7 @@ class KanextDashboardModel extends Base
         return $queryBuilder->format($this->projectActivityEventFormatter);
     }
 
-    public function commentEvents ($user_id = null, $limit = null)
+    public function commentEvents($user_id = null, $limit = null)
     {
         if (!$user_id) {
             $user_id = $this->userSession->getId();
@@ -82,7 +82,8 @@ class KanextDashboardModel extends Base
         return $queryBuilder->format($this->projectActivityEventFormatter);
     }
 
-    public function getProjectsWhereUserHasNoTasks ($user_id = null) {
+    public function getProjectsWhereUserHasNoTasks($user_id = null)
+    {
         if (!$user_id) {
             $user_id = $this->userSession->getId();
         }
@@ -120,14 +121,16 @@ class KanextDashboardModel extends Base
                     ->count();
     }
 
-    public function getColorByName ($name='') {
+    public function getColorByName($name='')
+    {
         $avatarProvider = new LetterAvatarProvider( $this->container );
         $rgb = $avatarProvider->getBackgroundColor( $name );
 
         return $rgb;
     }
 
-    public function getBarChartProjectStats ($project_id) {
+    public function getBarChartProjectStats($project_id)
+    {
         $project_stats = $this->memoryCache->proxy($this->columnModel, 'getAllWithTaskCount', $project_id);
         $stats = array();
 

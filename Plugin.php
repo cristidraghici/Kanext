@@ -10,14 +10,14 @@ class Plugin extends Base
     public function initialize()
     {
         // Hooks
-        $this->template->hook->attach('template:dashboard:sidebar', 'kanext:kanext_hooks/dashboard/sidebar-hook');
-        $this->template->hook->attach('template:layout:head', 'kanext:kanext_hooks/layout/head-hook');
+        $this->template->hook->attach('template:dashboard:sidebar', 'kanext:dashboard/sidebar_hook');
+        $this->template->hook->attach('template:layout:head', 'kanext:layout/head_hook');
 
         // Override
-        $this->template->setTemplateOverride('dashboard/layout', 'kanext:kanext_overrides/dashboard/layout');
+        $this->template->setTemplateOverride('dashboard/layout', 'kanext:dashboard/layout');
 
         // Kanext configuration - attach the link to the settings sidebar
-        $this->template->hook->attach('template:config:sidebar', 'kanext:kanext_configuration/settings-sidebar-item');
+        $this->template->hook->attach('template:config:sidebar', 'kanext:config/settings_sidebar_item');
 
         // Close dropdown on second click
         if ($this->configModel->get('kanext_close_dropdown_on_second_click') === '1') {
@@ -45,7 +45,7 @@ class Plugin extends Base
             $this->hook->on('template:layout:js', array('template' => 'plugins/Kanext/Asset/KanextDashboard/script.js'));
             $this->hook->on('template:layout:css', array('template' => 'plugins/Kanext/Asset/KanextDashboard/style.css'));
 
-            $this->template->setTemplateOverride('dashboard/overview', 'kanext:kanext_dashboard/dashboard/overview');
+            $this->template->setTemplateOverride('dashboard/overview', 'kanext:dashboard/overview');
         }
     }
 
@@ -61,7 +61,7 @@ class Plugin extends Base
             $this->hook->on('template:layout:js', array('template' => 'plugins/Kanext/Asset/KanextLimitTasks/script.js'));
             $this->hook->on('template:layout:css', array('template' => 'plugins/Kanext/Asset/KanextLimitTasks/style.css'));
 
-            $this->template->setTemplateOverride('board/table_tasks', 'kanext:kanext_limit_tasks/board/table_tasks');
+            $this->template->setTemplateOverride('board/table_tasks', 'kanext:board/table_tasks');
         }
 
         // Load custom CSS for plugins

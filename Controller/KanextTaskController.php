@@ -49,7 +49,7 @@ class KanextTaskController extends BaseController
 
         $board_highlight_period = null; // TODO: improve on this
 
-        $this->response->html($this->template->render('Kanext:kanext_limit_tasks/kanext_tasks', array(
+        $this->response->html($this->template->render('Kanext:board/kanext_tasks', array(
             'project' => $project,
             'swimlane' => $swimlane,
             'column' => $column,

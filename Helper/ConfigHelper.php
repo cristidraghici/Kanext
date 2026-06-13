@@ -6,7 +6,8 @@ use Kanboard\Core\Base;
 class ConfigHelper extends Base
 {
     // The groups for the configuration options (just organizational)
-    public function getGroups () {
+    public function getGroups()
+    {
         $all_groups = array(
             array(
                 'title'         => t('Customization', 'kanext'),
@@ -51,7 +52,8 @@ class ConfigHelper extends Base
     }
 
     // The default configuration
-    public function getOptions () {
+    public function getOptions()
+    {
         $all_options = array(
             // customization group
             'kanext_custom_css' => array(
@@ -225,7 +227,8 @@ class ConfigHelper extends Base
 
     }
 
-    private function hasOptions ($group_slug) {
+    private function hasOptions($group_slug)
+    {
         $options = $this->memoryCache->proxy($this, 'getOptions');
 
         foreach ($options as $option) {
@@ -238,7 +241,8 @@ class ConfigHelper extends Base
     }
 
     // Only get the values from the options
-    public function getValues () {
+    public function getValues()
+    {
         $options = $this->memoryCache->proxy($this, 'getOptions');
         $values = array();
 
@@ -250,7 +254,8 @@ class ConfigHelper extends Base
     }
 
     // Only get the options of type field
-    public function getCheckboxes () {
+    public function getCheckboxes()
+    {
         $options = $this->memoryCache->proxy($this, 'getOptions');
         $checkboxes = array();
 
@@ -268,30 +273,11 @@ class ConfigHelper extends Base
      * @param  string $name Name of the variables
      * @return mixed        Content of the variable
      */
-    public function get ($name=null)
+    public function get($name=null)
     {
         $values = $this->memoryCache->proxy($this, 'getValues');
 
         return $values[$name] ?? null;
     }
 
-    public function save() {
-        // Get the values from the from
-        $values = $this->request->getValues();
-
-        // Set the disabled checkboxes values
-        foreach ($this->configHelper->getCheckboxes() as $checkbox) {
-            if (!isset($values[$checkbox])) {
-                $values[$checkbox] = 0;
-            }
-        }
-
-        if ($this->configModel->save($values)) {
-            $this->flash->success(t('Settings saved successfully.'));
-        } else {
-            $this->flash->failure(t('Unable to save your settings.'));
-        }
-
-        $this->response->redirect($this->helper->url->to('KanextConfigController', 'show', array('plugin' => 'Kanext')));
-    }
 }
