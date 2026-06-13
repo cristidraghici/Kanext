@@ -30,4 +30,13 @@ return [
     'Kanext theme' => 'Thème Kanext',
     'Show more' => 'Afficher plus',
     'Kanext settings' => 'Paramètres Kanext',
+    'Amount of projects to show on the dashboard' => 'Nombre de projets à afficher sur le tableau de bord',
+    'Set to 0 to show all active projects.' => 'Réglez sur 0 pour afficher tous les projets actifs.',
+    'Sorting order for projects on the dashboard' => 'Ordre de tri des projets sur le tableau de bord',
+    'Project Name' => 'Nom du projet',
+    'Date created (ID)' => 'Date de création (ID)',
+    'Amount of assigned tasks' => 'Nombre de tâches assignées',
+    'Sorting direction for projects on the dashboard' => 'Sens de tri des projets sur le tableau de bord',
+    'Ascending' => 'Ascendant',
+    'Descending' => 'Décroissant',
 ];

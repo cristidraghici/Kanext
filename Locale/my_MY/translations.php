@@ -30,4 +30,13 @@ return [
     'Kanext theme' => 'Tema Kanext',
     'Show more' => 'Tunjukkan lagi',
     'Kanext settings' => 'Tetapan Kanext',
+    'Amount of projects to show on the dashboard' => 'Jumlah projek untuk ditunjukkan pada papan pemuka',
+    'Set to 0 to show all active projects.' => 'Tetapkan kepada 0 untuk menunjukkan semua projek aktif.',
+    'Sorting order for projects on the dashboard' => 'Menyusun susunan untuk projek pada papan pemuka',
+    'Project Name' => 'Nama Projek',
+    'Date created (ID)' => 'Tarikh dibuat (ID)',
+    'Amount of assigned tasks' => 'Jumlah tugasan yang diberikan',
+    'Sorting direction for projects on the dashboard' => 'Mengisih arah untuk projek pada papan pemuka',
+    'Ascending' => 'Menaik',
+    'Descending' => 'Menurun',
 ];

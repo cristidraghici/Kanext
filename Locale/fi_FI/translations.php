@@ -30,4 +30,13 @@ return [
     'Kanext theme' => 'Kanext teema',
     'Show more' => 'Näytä lisää',
     'Kanext settings' => 'Kanext asetukset',
+    'Amount of projects to show on the dashboard' => 'Kojelaudassa näytettävien projektien määrä',
+    'Set to 0 to show all active projects.' => 'Aseta arvoksi 0 näyttääksesi kaikki aktiiviset projektit.',
+    'Sorting order for projects on the dashboard' => 'Projektien lajittelujärjestys kojelaudassa',
+    'Project Name' => 'Projektin nimi',
+    'Date created (ID)' => 'Luontipäivämäärä (ID)',
+    'Amount of assigned tasks' => 'Annettujen tehtävien määrä',
+    'Sorting direction for projects on the dashboard' => 'Projektien lajittelusuunta kojelaudassa',
+    'Ascending' => 'Nouseva',
+    'Descending' => 'Laskeva',
 ];

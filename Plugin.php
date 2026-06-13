@@ -46,6 +46,10 @@ class Plugin extends Base
             $this->hook->on('template:layout:css', ['template' => 'plugins/Kanext/Asset/KanextDashboard/style.css']);
 
             $this->template->setTemplateOverride('dashboard/overview', 'kanext:dashboard/overview');
+
+            $this->container['dashboardPagination'] = function ($c) {
+                return new Pagination\KanextDashboardPagination($c);
+            };
         }
     }
 

@@ -30,4 +30,13 @@ return [
     'Kanext theme' => 'Kanext-thema',
     'Show more' => 'Laat meer zien',
     'Kanext settings' => 'Kanext-instellingen',
+    'Amount of projects to show on the dashboard' => 'Aantal projecten dat op het dashboard moet worden weergegeven',
+    'Set to 0 to show all active projects.' => 'Stel in op 0 om alle actieve projecten weer te geven.',
+    'Sorting order for projects on the dashboard' => 'Sorteervolgorde voor projecten op het dashboard',
+    'Project Name' => 'Projectnaam',
+    'Date created (ID)' => 'Aanmaakdatum (ID)',
+    'Amount of assigned tasks' => 'Aantal toegewezen taken',
+    'Sorting direction for projects on the dashboard' => 'Sorteerrichting voor projecten op het dashboard',
+    'Ascending' => 'Oplopend',
+    'Descending' => 'Aflopend',
 ];

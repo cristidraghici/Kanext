@@ -30,4 +30,13 @@ return [
     'Kanext theme' => 'ธีม Kanext',
     'Show more' => 'แสดงเพิ่มเติม',
     'Kanext settings' => 'การตั้งค่า Kanext',
+    'Amount of projects to show on the dashboard' => 'จำนวนโปรเจ็กต์ที่จะแสดงบนแดชบอร์ด',
+    'Set to 0 to show all active projects.' => 'ตั้งค่าเป็น 0 เพื่อแสดงโปรเจ็กต์ที่ใช้งานอยู่ทั้งหมด',
+    'Sorting order for projects on the dashboard' => 'การเรียงลำดับโครงการบนแดชบอร์ด',
+    'Project Name' => 'ชื่อโครงการ',
+    'Date created (ID)' => 'วันที่สร้าง (ID)',
+    'Amount of assigned tasks' => 'จำนวนงานที่ได้รับมอบหมาย',
+    'Sorting direction for projects on the dashboard' => 'ทิศทางการเรียงลำดับสำหรับโครงการบนแดชบอร์ด',
+    'Ascending' => 'จากน้อยไปมาก',
+    'Descending' => 'จากมากไปน้อย',
 ];

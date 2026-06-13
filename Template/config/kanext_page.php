@@ -36,6 +36,11 @@
                 <?php echo $this->form->number($option_name, $values, $errors); ?>
             <?php } ?>
 
+            <?php if ('select' === $option['type']) { ?>
+                <?php echo $this->form->label($option['title'], $option_name); ?>
+                <?php echo $this->form->select($option_name, $option['options'], $values, $errors); ?>
+            <?php } ?>
+
             <?php if ($option['description'] && strlen($option['description']) > 0) { ?>
                 <p class="form-help"><?php echo $option['description']; ?></p>
             <?php } ?>

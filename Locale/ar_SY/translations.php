@@ -30,4 +30,13 @@ return [
     'Kanext theme' => 'موضوع كانيكست',
     'Show more' => 'عرض المزيد',
     'Kanext settings' => 'إعدادات كانيكست',
+    'Amount of projects to show on the dashboard' => 'عدد المشاريع التي سيتم عرضها على لوحة القيادة',
+    'Set to 0 to show all active projects.' => 'اضبط على 0 لإظهار كافة المشاريع النشطة.',
+    'Sorting order for projects on the dashboard' => 'ترتيب الفرز للمشاريع على لوحة القيادة',
+    'Project Name' => 'اسم المشروع',
+    'Date created (ID)' => 'تاريخ الإنشاء (المعرف)',
+    'Amount of assigned tasks' => 'حجم المهام الموكلة',
+    'Sorting direction for projects on the dashboard' => 'فرز الاتجاه للمشاريع على لوحة القيادة',
+    'Ascending' => 'تصاعدي',
+    'Descending' => 'تنازلي',
 ];

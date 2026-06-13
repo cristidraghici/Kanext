@@ -30,4 +30,13 @@ return [
     'Kanext theme' => 'Kanext tema',
     'Show more' => 'Visa mer',
     'Kanext settings' => 'Kanext-inställningar',
+    'Amount of projects to show on the dashboard' => 'Antal projekt som ska visas på instrumentpanelen',
+    'Set to 0 to show all active projects.' => 'Sätt till 0 för att visa alla aktiva projekt.',
+    'Sorting order for projects on the dashboard' => 'Sorteringsordning för projekt på instrumentpanelen',
+    'Project Name' => 'Projektnamn',
+    'Date created (ID)' => 'Skapat datum (ID)',
+    'Amount of assigned tasks' => 'Antal tilldelade uppgifter',
+    'Sorting direction for projects on the dashboard' => 'Sorteringsriktning för projekt på instrumentpanelen',
+    'Ascending' => 'Stigande',
+    'Descending' => 'Fallande',
 ];

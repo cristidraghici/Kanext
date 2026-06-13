@@ -30,4 +30,13 @@ return [
     'Kanext theme' => 'カナネクストのテーマ',
     'Show more' => 'もっと見る',
     'Kanext settings' => 'カナネクストの設定',
+    'Amount of projects to show on the dashboard' => 'ダッシュボードに表示するプロジェクトの数',
+    'Set to 0 to show all active projects.' => 'アクティブなプロジェクトをすべて表示するには、0 に設定します。',
+    'Sorting order for projects on the dashboard' => 'ダッシュボード上のプロジェクトの並べ替え順序',
+    'Project Name' => 'プロジェクト名',
+    'Date created (ID)' => '作成日(ID)',
+    'Amount of assigned tasks' => '割り当てられたタスクの量',
+    'Sorting direction for projects on the dashboard' => 'ダッシュボード上のプロジェクトの並べ替え方向',
+    'Ascending' => '昇順',
+    'Descending' => '降順',
 ];

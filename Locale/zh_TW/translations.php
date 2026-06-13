@@ -30,4 +30,13 @@ return [
     'Kanext theme' => '下一個主題',
     'Show more' => '顯示更多',
     'Kanext settings' => '下一個設定',
+    'Amount of projects to show on the dashboard' => '要在儀表板上顯示的項目數量',
+    'Set to 0 to show all active projects.' => '設定為 0 以顯示所有活動項目。',
+    'Sorting order for projects on the dashboard' => '儀表板上項目的排序順序',
+    'Project Name' => '項目名稱',
+    'Date created (ID)' => '建立日期（ID）',
+    'Amount of assigned tasks' => '分配的任務數量',
+    'Sorting direction for projects on the dashboard' => '儀表板上項目的排序方向',
+    'Ascending' => '升序',
+    'Descending' => '降序',
 ];

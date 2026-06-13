@@ -30,4 +30,13 @@ return [
     'Kanext theme' => 'Kanext téma',
     'Show more' => 'Mutasson többet',
     'Kanext settings' => 'Kanext beállítások',
+    'Amount of projects to show on the dashboard' => 'Az irányítópulton megjelenítendő projektek száma',
+    'Set to 0 to show all active projects.' => 'Állítsa 0-ra az összes aktív projekt megjelenítéséhez.',
+    'Sorting order for projects on the dashboard' => 'A projektek rendezési sorrendje az irányítópulton',
+    'Project Name' => 'Projekt neve',
+    'Date created (ID)' => 'Létrehozás dátuma (azonosító)',
+    'Amount of assigned tasks' => 'A kiosztott feladatok mennyisége',
+    'Sorting direction for projects on the dashboard' => 'A projektek rendezési iránya az irányítópulton',
+    'Ascending' => 'Emelkedő',
+    'Descending' => 'Csökkenő',
 ];

@@ -30,4 +30,13 @@ return [
     'Kanext theme' => 'Тема Kanext',
     'Show more' => 'Прикажи повеќе',
     'Kanext settings' => 'Поставки на Kanext',
+    'Amount of projects to show on the dashboard' => 'Количина на проекти што треба да се прикажат на контролната табла',
+    'Set to 0 to show all active projects.' => 'Поставете на 0 за да се прикажат сите активни проекти.',
+    'Sorting order for projects on the dashboard' => 'Редоследот на сортирање за проекти на контролната табла',
+    'Project Name' => 'Име на проектот',
+    'Date created (ID)' => 'Датум на креирање (ID)',
+    'Amount of assigned tasks' => 'Количина на доделени задачи',
+    'Sorting direction for projects on the dashboard' => 'Насока за сортирање за проекти на контролната табла',
+    'Ascending' => 'Растечки',
+    'Descending' => 'Опаѓачки',
 ];

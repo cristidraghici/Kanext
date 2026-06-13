@@ -30,4 +30,13 @@ return [
     'Kanext theme' => 'Chủ đề Kanext',
     'Show more' => 'Hiển thị thêm',
     'Kanext settings' => 'Cài đặt Kanext',
+    'Amount of projects to show on the dashboard' => 'Số lượng dự án hiển thị trên bảng điều khiển',
+    'Set to 0 to show all active projects.' => 'Đặt thành 0 để hiển thị tất cả các dự án đang hoạt động.',
+    'Sorting order for projects on the dashboard' => 'Sắp xếp thứ tự dự án trên bảng điều khiển',
+    'Project Name' => 'Tên dự án',
+    'Date created (ID)' => 'Ngày tạo (ID)',
+    'Amount of assigned tasks' => 'Số lượng nhiệm vụ được giao',
+    'Sorting direction for projects on the dashboard' => 'Hướng sắp xếp dự án trên bảng điều khiển',
+    'Ascending' => 'Tăng dần',
+    'Descending' => 'Giảm dần',
 ];

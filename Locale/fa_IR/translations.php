@@ -30,4 +30,13 @@ return [
     'Kanext theme' => 'موضوع Kanext',
     'Show more' => 'نمایش بیشتر',
     'Kanext settings' => 'تنظیمات Kanext',
+    'Amount of projects to show on the dashboard' => 'تعداد پروژه ها برای نمایش در داشبورد',
+    'Set to 0 to show all active projects.' => 'برای نمایش تمام پروژه های فعال، روی 0 تنظیم کنید.',
+    'Sorting order for projects on the dashboard' => 'ترتیب مرتب سازی پروژه ها در داشبورد',
+    'Project Name' => 'نام پروژه',
+    'Date created (ID)' => 'تاریخ ایجاد (ID)',
+    'Amount of assigned tasks' => 'تعداد وظایف محول شده',
+    'Sorting direction for projects on the dashboard' => 'جهت مرتب سازی پروژه ها در داشبورد',
+    'Ascending' => 'صعودی',
+    'Descending' => 'نزولی',
 ];

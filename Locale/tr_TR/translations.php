@@ -30,4 +30,13 @@ return [
     'Kanext theme' => 'Kanext teması',
     'Show more' => 'Daha fazlasını göster',
     'Kanext settings' => 'Kanext ayarları',
+    'Amount of projects to show on the dashboard' => 'Kontrol panelinde gösterilecek proje miktarı',
+    'Set to 0 to show all active projects.' => 'Tüm aktif projeleri göstermek için 0\'a ayarlayın.',
+    'Sorting order for projects on the dashboard' => 'Kontrol panelindeki projeler için sıralama düzeni',
+    'Project Name' => 'Proje Adı',
+    'Date created (ID)' => 'Oluşturulma tarihi (ID)',
+    'Amount of assigned tasks' => 'Atanan görev miktarı',
+    'Sorting direction for projects on the dashboard' => 'Kontrol panelindeki projeler için sıralama yönü',
+    'Ascending' => 'Artan',
+    'Descending' => 'Azalan',
 ];

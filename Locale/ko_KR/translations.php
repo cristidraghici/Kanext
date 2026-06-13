@@ -30,4 +30,13 @@ return [
     'Kanext theme' => 'Kanext 테마',
     'Show more' => '더 보기',
     'Kanext settings' => '카넥스트 설정',
+    'Amount of projects to show on the dashboard' => '대시보드에 표시할 프로젝트 수',
+    'Set to 0 to show all active projects.' => '모든 활성 프로젝트를 표시하려면 0으로 설정합니다.',
+    'Sorting order for projects on the dashboard' => '대시보드의 프로젝트 정렬 순서',
+    'Project Name' => '프로젝트 이름',
+    'Date created (ID)' => '생성 날짜(ID)',
+    'Amount of assigned tasks' => '할당된 작업의 양',
+    'Sorting direction for projects on the dashboard' => '대시보드의 프로젝트 정렬 방향',
+    'Ascending' => '오름차순',
+    'Descending' => '내림차순',
 ];

@@ -138,6 +138,40 @@ class ConfigHelper extends Base
             ],
 
             // Custom dashboard options
+            'kanext_feature_kanext_dashboard_project_limit' => [
+                'title' => t('Amount of projects to show on the dashboard', 'kanext'),
+                'description' => t('Set to 0 to show all active projects.', 'kanext'),
+                'default_value' => 0,
+                'type' => 'number',
+                'group' => 'kanext_dashboard',
+                'options' => [],
+                'enabled' => '1' === $this->configModel->get('kanext_feature_kanext_dashboard', '1'),
+            ],
+            'kanext_feature_kanext_dashboard_project_order' => [
+                'title' => t('Sorting order for projects on the dashboard', 'kanext'),
+                'description' => '',
+                'default_value' => 'name',
+                'type' => 'select',
+                'group' => 'kanext_dashboard',
+                'options' => [
+                    'name' => t('Project Name', 'kanext'),
+                    'id' => t('Date created (ID)', 'kanext'),
+                    'assigned_tasks' => t('Amount of assigned tasks', 'kanext'),
+                ],
+                'enabled' => '1' === $this->configModel->get('kanext_feature_kanext_dashboard', '1'),
+            ],
+            'kanext_feature_kanext_dashboard_project_order_direction' => [
+                'title' => t('Sorting direction for projects on the dashboard', 'kanext'),
+                'description' => '',
+                'default_value' => 'ASC',
+                'type' => 'select',
+                'group' => 'kanext_dashboard',
+                'options' => [
+                    'ASC' => t('Ascending', 'kanext'),
+                    'DESC' => t('Descending', 'kanext'),
+                ],
+                'enabled' => '1' === $this->configModel->get('kanext_feature_kanext_dashboard', '1'),
+            ],
             'kanext_feature_kanext_dashboard_activity_limit' => [
                 'title' => t('How many items to show in the feeds', 'kanext'),
                 'description' => t('A very high number will break the interface and also might affect your server\'s resources. Recommended value: 15 items', 'kanext'),

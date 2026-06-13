@@ -30,4 +30,13 @@ return [
     'Kanext theme' => 'Tema Kanext',
     'Show more' => 'Arată mai multe',
     'Kanext settings' => 'Setări Kanext',
+    'Amount of projects to show on the dashboard' => 'Cantitatea de proiecte de afișat pe tabloul de bord',
+    'Set to 0 to show all active projects.' => 'Setați la 0 pentru a afișa toate proiectele active.',
+    'Sorting order for projects on the dashboard' => 'Ordinea de sortare a proiectelor pe tabloul de bord',
+    'Project Name' => 'Numele proiectului',
+    'Date created (ID)' => 'Data creării (ID)',
+    'Amount of assigned tasks' => 'Cantitatea sarcinilor atribuite',
+    'Sorting direction for projects on the dashboard' => 'Direcția de sortare a proiectelor pe tabloul de bord',
+    'Ascending' => 'Crescatoare',
+    'Descending' => 'Descrescătoare',
 ];

@@ -30,4 +30,13 @@ return [
     'Kanext theme' => 'Tema de Kanext',
     'Show more' => 'Mostra\'n més',
     'Kanext settings' => 'Configuració de Kanext',
+    'Amount of projects to show on the dashboard' => 'Quantitat de projectes per mostrar al tauler',
+    'Set to 0 to show all active projects.' => 'Establiu a 0 per mostrar tots els projectes actius.',
+    'Sorting order for projects on the dashboard' => 'Ordre de classificació dels projectes al tauler',
+    'Project Name' => 'Nom del projecte',
+    'Date created (ID)' => 'Data de creació (ID)',
+    'Amount of assigned tasks' => 'Quantitat de tasques assignades',
+    'Sorting direction for projects on the dashboard' => 'Direcció d\'ordenació dels projectes al tauler',
+    'Ascending' => 'Ascendent',
+    'Descending' => 'Descens',
 ];

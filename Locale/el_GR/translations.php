@@ -30,4 +30,13 @@ return [
     'Kanext theme' => 'Θέμα Kanext',
     'Show more' => 'Εμφάνιση περισσότερων',
     'Kanext settings' => 'Ρυθμίσεις Kanext',
+    'Amount of projects to show on the dashboard' => 'Ποσότητα έργων προς εμφάνιση στον πίνακα εργαλείων',
+    'Set to 0 to show all active projects.' => 'Ορίστε στο 0 για να εμφανιστούν όλα τα ενεργά έργα.',
+    'Sorting order for projects on the dashboard' => 'Σειρά ταξινόμησης για έργα στον πίνακα εργαλείων',
+    'Project Name' => 'Όνομα έργου',
+    'Date created (ID)' => 'Ημερομηνία δημιουργίας (ID)',
+    'Amount of assigned tasks' => 'Ποσότητα εργασιών που έχουν ανατεθεί',
+    'Sorting direction for projects on the dashboard' => 'Κατεύθυνση ταξινόμησης για έργα στον πίνακα εργαλείων',
+    'Ascending' => 'Αύξουσα',
+    'Descending' => 'Φθίνουσα',
 ];

@@ -14,6 +14,7 @@ services:
       - ./Helper:/var/www/app/plugins/Kanext/Helper
       - ./Locale:/var/www/app/plugins/Kanext/Locale
       - ./Model:/var/www/app/plugins/Kanext/Model
+      - ./Pagination:/var/www/app/plugins/Kanext/Pagination
       - ./Template:/var/www/app/plugins/Kanext/Template
       - ./Plugin.php:/var/www/app/plugins/Kanext/Plugin.php
       # Mount minimal dev config overrides
