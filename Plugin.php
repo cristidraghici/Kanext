@@ -21,29 +21,29 @@ class Plugin extends Base
 
         // Close dropdown on second click
         if ($this->configModel->get('kanext_close_dropdown_on_second_click') === '1') {
-            $this->hook->on('template:layout:js', array('template' => 'plugins/Kanext/Assets/SecondClickClose/script.js'));
+            $this->hook->on('template:layout:js', array('template' => 'plugins/Kanext/Asset/SecondClickClose/script.js'));
         }
 
         // Close modal on overlay click
         if ($this->configModel->get('kanext_close_modal_on_overlay_click') === '1') {
-            $this->hook->on('template:layout:js', array('template' => 'plugins/Kanext/Assets/OverlayClickClose/script.js'));
+            $this->hook->on('template:layout:js', array('template' => 'plugins/Kanext/Asset/OverlayClickClose/script.js'));
         }
 
         // General style fixes
         if ($this->configModel->get('kanext_general_style_fixes') === '1') {
-            $this->hook->on('template:layout:css', array('template' => 'plugins/Kanext/Assets/StyleFixes/style.css'));
+            $this->hook->on('template:layout:css', array('template' => 'plugins/Kanext/Asset/StyleFixes/style.css'));
         }
 
         // The sidebar toggle
         if ($this->configModel->get('kanext_feature_toggle_sidebar') === '1') {
-            $this->hook->on('template:layout:js', array('template' => 'plugins/Kanext/Assets/ToggleSidebar/script.js'));
-            $this->hook->on('template:layout:css', array('template' => 'plugins/Kanext/Assets/ToggleSidebar/style.css'));
+            $this->hook->on('template:layout:js', array('template' => 'plugins/Kanext/Asset/ToggleSidebar/script.js'));
+            $this->hook->on('template:layout:css', array('template' => 'plugins/Kanext/Asset/ToggleSidebar/style.css'));
         }
 
         // Custom dashboard
         if ($this->configModel->get('kanext_feature_kanext_dashboard') === '1') {
-            $this->hook->on('template:layout:js', array('template' => 'plugins/Kanext/Assets/KanextDashboard/script.js'));
-            $this->hook->on('template:layout:css', array('template' => 'plugins/Kanext/Assets/KanextDashboard/style.css'));
+            $this->hook->on('template:layout:js', array('template' => 'plugins/Kanext/Asset/KanextDashboard/script.js'));
+            $this->hook->on('template:layout:css', array('template' => 'plugins/Kanext/Asset/KanextDashboard/style.css'));
 
             $this->template->setTemplateOverride('dashboard/overview', 'kanext:kanext_dashboard/dashboard/overview');
         }
@@ -58,15 +58,15 @@ class Plugin extends Base
         if ($this->configModel->get('kanext_feature_limit_tasks') === '1') {
             $this->route->addRoute('kanext/tasks/:column/:swimlane', 'KanextTasksController', 'allTasksInColumn');
 
-            $this->hook->on('template:layout:js', array('template' => 'plugins/Kanext/Assets/KanextLimitTasks/script.js'));
-            $this->hook->on('template:layout:css', array('template' => 'plugins/Kanext/Assets/KanextLimitTasks/style.css'));
+            $this->hook->on('template:layout:js', array('template' => 'plugins/Kanext/Asset/KanextLimitTasks/script.js'));
+            $this->hook->on('template:layout:css', array('template' => 'plugins/Kanext/Asset/KanextLimitTasks/style.css'));
 
             $this->template->setTemplateOverride('board/table_tasks', 'kanext:kanext_limit_tasks/board/table_tasks');
         }
 
         // Load custom CSS for plugins
         if ($this->configModel->get('kanext_feature_fixes_for_theme_plugins') === '1') {
-            $kanext_skins = PLUGINS_DIR . '/Kanext/Assets/PluginSkins/';
+            $kanext_skins = PLUGINS_DIR . '/Kanext/Asset/PluginSkins/';
 
             if (!is_dir($kanext_skins)) {
                 return;
@@ -90,7 +90,7 @@ class Plugin extends Base
 
             foreach ($overwritables_plugins_css as $theme) {
                 if (isset($installed_plugins[$theme])) {
-                    $this->hook->on('template:layout:css', array('template' => 'plugins/Kanext/Assets/PluginSkins/'.$theme.'.css'));
+                    $this->hook->on('template:layout:css', array('template' => 'plugins/Kanext/Asset/PluginSkins/'.$theme.'.css'));
                 }
             }
         }
