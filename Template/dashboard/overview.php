@@ -21,11 +21,11 @@
 
     <div class="kanext_dashboard-column kanext_dashboard-column--right-padding kanext_dashboard-column kanext_dashboard-column--double-size">
         <?php if ('1' === $this->app->configHelper->get('kanext_feature_kanext_dashboard_show_tasks_of_loggedin_user')) { ?>
-        <?php echo $this->render('kanext:kanext_dashboard/dashboard/overview_paginator', ['overview_paginator' => $overview_paginator]); ?>
+        <?php echo $this->render('kanext:dashboard/overview_paginator', ['overview_paginator' => $overview_paginator]); ?>
         <?php } ?>
 
         <?php if ('1' === $this->app->configHelper->get('kanext_feature_kanext_dashboard_show_projects_where_the_user_has_no_tasks')) { ?>
-        <?php echo $this->render('kanext:kanext_dashboard/dashboard/overview_user_has_no_tasks'); ?>
+        <?php echo $this->render('kanext:dashboard/overview_user_has_no_tasks'); ?>
         <?php } ?>
 
         <?php if ('1' === $this->app->configHelper->get('kanext_feature_team_conventions')) { ?>
@@ -40,11 +40,11 @@
 
     <?php if ('1' === $this->app->configHelper->get('kanext_feature_kanext_dashboard_show_comments_separately')) { ?>
     <div class="kanext_dashboard-column kanext_dashboard-column--right-padding">
-        <?php echo $this->render('kanext:kanext_dashboard/dashboard/overview_comments'); ?>
+        <?php echo $this->render('kanext:dashboard/overview_comments'); ?>
     </div>
     <?php } ?>
 
     <div class="kanext_dashboard-column">
-        <?php echo $this->render('kanext:kanext_dashboard/dashboard/overview_activity'); ?>
+        <?php echo $this->render('kanext:dashboard/overview_activity'); ?>
     </div>
 </div>
