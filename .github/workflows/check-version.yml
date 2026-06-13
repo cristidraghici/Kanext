@@ -1,0 +1,56 @@
+name: Check Version
+
+on:
+  push:
+    branches:
+      - main
+      - master
+  pull_request:
+    branches:
+      - main
+      - master
+
+jobs:
+  check-version:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Needed to fetch all tags
+
+      - name: Get latest release tag
+        id: get_tag
+        run: |
+          # Fetch the latest tag, or use 0.0.0 if no tags exist
+          LATEST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "0.0.0")
+          # Strip the 'v' prefix if it exists
+          LATEST_TAG=${LATEST_TAG#v}
+          echo "tag=$LATEST_TAG" >> $GITHUB_OUTPUT
+          echo "Latest tag is $LATEST_TAG"
+
+      - name: Get version from Plugin.php
+        id: get_version
+        run: |
+          # Extract version from getPluginVersion()
+          VERSION=$(grep -A 2 'public function getPluginVersion()' Plugin.php | grep -Eo "return '[^']+'" | cut -d "'" -f 2 || echo "")
+          if [ -z "$VERSION" ]; then
+            echo "Error: Could not extract version from Plugin.php"
+            exit 1
+          fi
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "Code version is $VERSION"
+
+      - name: Compare versions
+        run: |
+          TAG="${{ steps.get_tag.outputs.tag }}"
+          VERSION="${{ steps.get_version.outputs.version }}"
+
+          # sort -V sorts by version (semantic versions)
+          HIGHEST=$(printf "%s\n%s" "$TAG" "$VERSION" | sort -V | tail -n 1)
+
+          if [ "$HIGHEST" != "$VERSION" ] && [ "$TAG" != "$VERSION" ]; then
+            echo "Error: Version in Plugin.php ($VERSION) is lower than the latest release tag ($TAG)."
+            exit 1
+          fi
+          echo "Version check passed. Code version $VERSION is >= latest tag $TAG."
