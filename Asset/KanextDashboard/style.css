@@ -47,12 +47,10 @@
   margin-bottom: 20px;
 }
 
-/* Elipsis fixes for content chunks being too long */v
-.kanext_dashboard-column .page-header,
+/* Elipsis fixes for content chunks being too long */
+v .kanext_dashboard-column .page-header,
 .kanext_dashboard-column .page-header h2,
-
 .kanext_dashboard-column .table-list-header,
-
 .kanext_dashboard-column .kanext_dashboard-add-new-task {
   white-space: nowrap;
   overflow: hidden;

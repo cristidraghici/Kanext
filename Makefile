@@ -4,8 +4,18 @@ all:
 	@ echo "Build archive for plugin ${plugin} version=${version}"
 	@ git archive HEAD --prefix=${plugin}/ --format=zip -o ${plugin}-${version}.zip
 
-lint:
+lint: lint-php lint-frontend
+
+lint-php:
 	./vendor/bin/php-cs-fixer fix --dry-run --diff
 
-format:
+lint-frontend:
+	npx prettier --check .
+
+format: format-php format-frontend
+
+format-php:
 	./vendor/bin/php-cs-fixer fix
+
+format-frontend:
+	npx prettier --write .

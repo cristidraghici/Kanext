@@ -1,24 +1,22 @@
-window.kanextDashboardChartElements =
-
-(function() {
+window.kanextDashboardChartElements = (function () {
   var chartConfiguration = {
     padding: {
       left: 10,
-      right: 10
+      right: 10,
     },
     size: {
-      height: 200
+      height: 200,
     },
     bar: {
       width: {
-        ratio: 1
+        ratio: 1,
       },
-      zerobased: true
+      zerobased: true,
     },
     axis: {
       rotated: true,
       x: {
-        show: false
+        show: false,
       },
       y: {
         show: true,
@@ -26,30 +24,32 @@ window.kanextDashboardChartElements =
         type: 'linear',
         tick: {
           format: d3.format('d'),
-          outer: false
-        }
-      }
+          outer: false,
+        },
+      },
     },
     grid: {
       x: {
-        show: true
+        show: true,
       },
       y: {
-        show: true
-      }
+        show: true,
+      },
     },
     legend: {
-      position: 'bottom'
+      position: 'bottom',
     },
     tooltip: {
       format: {
-        title: function () { return ''; }
-      }
-    }
-  }
+        title: function () {
+          return '';
+        },
+      },
+    },
+  };
 
   setTimeout(function () {
-    $('.c3_project_stats').each(function() {
+    $('.c3_project_stats').each(function () {
       var element = $(this);
       var id = element.attr('id');
       var stats = element.data('stats');
@@ -58,20 +58,24 @@ window.kanextDashboardChartElements =
         return;
       }
 
-     var chart = c3.generate(Object.assign({
-        bindto: '#' + id,
-        data: {
-          columns: stats,
-          type: 'bar'
-        },
-        onmouseover: function () {
-          chart.flush();
-        },
-        onmouseout: function () {
-          chart.flush();
-        }
-      }, chartConfiguration));
+      var chart = c3.generate(
+        Object.assign(
+          {
+            bindto: '#' + id,
+            data: {
+              columns: stats,
+              type: 'bar',
+            },
+            onmouseover: function () {
+              chart.flush();
+            },
+            onmouseout: function () {
+              chart.flush();
+            },
+          },
+          chartConfiguration
+        )
+      );
     });
   }, 100);
-
-}());
+})();

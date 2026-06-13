@@ -1,5 +1,5 @@
-input[type=radio],
-input[type=number] {
+input[type='radio'],
+input[type='number'] {
   width: auto !important;
   display: inline-block !important;
 }
@@ -28,6 +28,6 @@ header .logo a {
   opacity: 1 !important;
   color: #ff0000 !important;
 }
-  header .logo a span {
+header .logo a span {
   display: inline-block !important;
 }

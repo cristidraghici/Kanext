@@ -30,7 +30,6 @@
 
 /* Responsive fixes */
 @media only screen and (max-width: 768px) {
-
   /* Hide project selector when resolution is too small */
   .board-selector-container {
     display: none !important;

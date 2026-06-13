@@ -1,5 +1,5 @@
-(function() {
-  KB.onClick('#modal-overlay', function() {
+(function () {
+  KB.onClick('#modal-overlay', function () {
     KB.modal.close();
   });
-}());
+})();

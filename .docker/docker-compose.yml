@@ -1,11 +1,11 @@
-version: "2"
+version: '2'
 services:
   kanboard:
-    container_name: "kanext-kanboard"
+    container_name: 'kanext-kanboard'
     build: ./
     ports:
-      - "88:80"
-      - "4433:443"
+      - '88:80'
+      - '4433:443'
     volumes:
       - ./.data:/var/www/app/data
       - ./.plugins:/var/www/app/plugins

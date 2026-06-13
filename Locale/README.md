@@ -4,9 +4,11 @@
 
 ## A word
 
-I have removed the Rommanian translation, as it has been rendered as inefficient effort.
+I have removed the Rommanian translation, as it has been rendered as inefficient
+effort.
 
-The plugin will continue to be compatible with translations, but I will not mentain this, at least for a while.
+The plugin will continue to be compatible with translations, but I will not
+mentain this, at least for a while.
 
 ## An example
 

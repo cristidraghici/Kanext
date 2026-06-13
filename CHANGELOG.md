@@ -18,8 +18,10 @@
 
 ## v2.0.0
 
-- This new version adds some structure to the files and gets kanext closer to the kanboard guidelines and best practices;
-- It also introduces some look and feel improvements and it is now designed to work with other themes.
+- This new version adds some structure to the files and gets kanext closer to
+  the kanboard guidelines and best practices;
+- It also introduces some look and feel improvements and it is now designed to
+  work with other themes.
 
 ## v0.0.1
 
