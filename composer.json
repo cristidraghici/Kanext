@@ -8,6 +8,9 @@
   "config": {
     "allow-plugins": {
       "php-cs-fixer/shim": true
+    },
+    "platform": {
+      "php": "8.2.0"
     }
   }
 }
