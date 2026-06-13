@@ -3,24 +3,22 @@
 namespace Kanboard\Plugin\Kanext\Model;
 
 use Kanboard\Core\Base;
-
 use Kanboard\Filter\ProjectActivityProjectIdsFilter;
 use Kanboard\Model\ProjectActivityModel;
-use PicoDb\Table;
-use Kanboard\User\Avatar\LetterAvatarProvider;
 use Kanboard\Model\TaskModel;
+use Kanboard\User\Avatar\LetterAvatarProvider;
 
 class KanextDashboardModel extends Base
 {
-    const DEFAULT_LIMIT = 20;
+    public const DEFAULT_LIMIT = 20;
 
     /**
-     * These are the events from the comment model
+     * These are the events from the comment model.
      */
-    const EVENT_UPDATE       = 'comment.update';
-    const EVENT_CREATE       = 'comment.create';
-    const EVENT_DELETE       = 'comment.delete';
-    const EVENT_USER_MENTION = 'comment.user.mention';
+    public const EVENT_UPDATE = 'comment.update';
+    public const EVENT_CREATE = 'comment.create';
+    public const EVENT_DELETE = 'comment.delete';
+    public const EVENT_USER_MENTION = 'comment.user.mention';
 
     public function activityEvents($user_id = null, $limit = null)
     {
@@ -36,18 +34,18 @@ class KanextDashboardModel extends Base
         $queryBuilder = $this->projectActivityQuery
             ->withFilter(new ProjectActivityProjectIdsFilter($project_ids));
 
-        if ($this->configHelper->get('kanext_feature_kanext_dashboard_show_comments_separately') === "1") {
+        if ('1' === $this->configHelper->get('kanext_feature_kanext_dashboard_show_comments_separately')) {
             $queryBuilder->getQuery()
-                ->notIn(ProjectActivityModel::TABLE.'.event_name', array(
+                ->notIn(ProjectActivityModel::TABLE . '.event_name', [
                     self::EVENT_UPDATE,
                     self::EVENT_CREATE,
                     self::EVENT_DELETE,
-                    self::EVENT_USER_MENTION
-                ));
+                    self::EVENT_USER_MENTION,
+                ]);
         }
 
         $queryBuilder->getQuery()
-            ->desc(ProjectActivityModel::TABLE.'.id')
+            ->desc(ProjectActivityModel::TABLE . '.id')
             ->limit($limit)
         ;
 
@@ -70,12 +68,12 @@ class KanextDashboardModel extends Base
 
         $queryBuilder->getQuery()
             ->beginOr()
-            ->eq(ProjectActivityModel::TABLE.'.event_name', self::EVENT_UPDATE)
-            ->eq(ProjectActivityModel::TABLE.'.event_name', self::EVENT_CREATE)
-            ->eq(ProjectActivityModel::TABLE.'.event_name', self::EVENT_DELETE)
-            ->eq(ProjectActivityModel::TABLE.'.event_name', self::EVENT_USER_MENTION)
+            ->eq(ProjectActivityModel::TABLE . '.event_name', self::EVENT_UPDATE)
+            ->eq(ProjectActivityModel::TABLE . '.event_name', self::EVENT_CREATE)
+            ->eq(ProjectActivityModel::TABLE . '.event_name', self::EVENT_DELETE)
+            ->eq(ProjectActivityModel::TABLE . '.event_name', self::EVENT_USER_MENTION)
             ->closeOr()
-            ->desc(ProjectActivityModel::TABLE.'.id')
+            ->desc(ProjectActivityModel::TABLE . '.id')
             ->limit($limit)
         ;
 
@@ -89,29 +87,28 @@ class KanextDashboardModel extends Base
         }
 
         $project_ids = $this->memoryCache->proxy($this->projectPermissionModel, 'getActiveProjectIds', $user_id);
-        $list = array();
+        $list = [];
 
         $projects = $this->projectModel->getAllByIds($project_ids);
         foreach ($projects as $project) {
-            if (!$this->taskFinderModel->countByProjectId($project['id'], array(TaskModel::STATUS_OPEN))) {
+            if (!$this->taskFinderModel->countByProjectId($project['id'], [TaskModel::STATUS_OPEN])) {
                 continue;
             }
-            if ($this->countTasksByProjectIdAndUserId($project['id'], $user_id, array(TaskModel::STATUS_OPEN)) > 0) {
+            if ($this->countTasksByProjectIdAndUserId($project['id'], $user_id, [TaskModel::STATUS_OPEN]) > 0) {
                 continue;
             }
 
-            $list[] = array(
+            $list[] = [
                 'project_id' => $project['id'],
                 'project_name' => $project['name'],
-                'project_stats' => $this->kanextDashboardModel->getBarChartProjectStats($project['id'])
-            );
+                'project_stats' => $this->kanextDashboardModel->getBarChartProjectStats($project['id']),
+            ];
         }
 
         return $list;
     }
 
-
-    public function countTasksByProjectIdAndUserId($project_id, $user_id, array $status = array(TaskModel::STATUS_OPEN, TaskModel::STATUS_CLOSED))
+    public function countTasksByProjectIdAndUserId($project_id, $user_id, array $status = [TaskModel::STATUS_OPEN, TaskModel::STATUS_CLOSED])
     {
         return $this->db
                     ->table(TaskModel::TABLE)
@@ -121,10 +118,10 @@ class KanextDashboardModel extends Base
                     ->count();
     }
 
-    public function getColorByName($name='')
+    public function getColorByName($name = '')
     {
-        $avatarProvider = new LetterAvatarProvider( $this->container );
-        $rgb = $avatarProvider->getBackgroundColor( $name );
+        $avatarProvider = new LetterAvatarProvider($this->container);
+        $rgb = $avatarProvider->getBackgroundColor($name);
 
         return $rgb;
     }
@@ -132,14 +129,14 @@ class KanextDashboardModel extends Base
     public function getBarChartProjectStats($project_id)
     {
         $project_stats = $this->memoryCache->proxy($this->columnModel, 'getAllWithTaskCount', $project_id);
-        $stats = array();
+        $stats = [];
 
         foreach ($project_stats as $stat) {
             // if ($stat['hide_in_dashboard'] === '1') {
             //     continue;
             // }
 
-            $nb_open_tasks = (int)$stat['nb_open_tasks'];
+            $nb_open_tasks = (int) $stat['nb_open_tasks'];
 
             $stats[] = [$stat['title'], $nb_open_tasks];
         }

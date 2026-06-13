@@ -2,12 +2,12 @@
 
 <ul class="dashboard-sidebar-extras">
     <li>
-        <?= $this->url->link(t('My activity stream'), 'ActivityController', 'user', array(), false, 'js-modal-medium', t('My activity stream')); ?>
+        <?php echo $this->url->link(t('My activity stream'), 'ActivityController', 'user', [], false, 'js-modal-medium', t('My activity stream')); ?>
     </li>
 
-    <?php if ($this->user->hasAccess('UserListController', 'show')): ?>
+    <?php if ($this->user->hasAccess('UserListController', 'show')) { ?>
         <li>
-            <?= $this->url->link(t('Kanext settings'), 'KanextConfigController', 'show', array('plugin' => 'Kanext')) ?>
+            <?php echo $this->url->link(t('Kanext settings'), 'KanextConfigController', 'show', ['plugin' => 'Kanext']); ?>
         </li>
-    <?php endif ?>
+    <?php } ?>
 </ul>

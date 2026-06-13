@@ -1,0 +1,13 @@
+{
+    "name": "kanboard/kanext",
+    "description": "Kanext Plugin for Kanboard",
+    "type": "kanboard-plugin",
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^3.0"
+    },
+    "config": {
+        "allow-plugins": {
+            "php-cs-fixer/shim": true
+        }
+    }
+}

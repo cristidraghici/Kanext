@@ -1,27 +1,27 @@
 <section id="main">
     <div class="page-header">
         <ul>
-            <?php if ($this->user->hasAccess('ProjectCreationController', 'create')): ?>
+            <?php if ($this->user->hasAccess('ProjectCreationController', 'create')) { ?>
                 <li>
-                    <?= $this->modal->medium('plus', t('New project'), 'ProjectCreationController', 'create') ?>
+                    <?php echo $this->modal->medium('plus', t('New project'), 'ProjectCreationController', 'create'); ?>
                 </li>
-            <?php endif ?>
-            <?php if ($this->app->config('disable_private_project', 0) == 0): ?>
+            <?php } ?>
+            <?php if (0 == $this->app->config('disable_private_project', 0)) { ?>
                 <li>
-                    <?= $this->modal->medium('lock', t('New personal project'), 'ProjectCreationController', 'createPrivate') ?>
+                    <?php echo $this->modal->medium('lock', t('New personal project'), 'ProjectCreationController', 'createPrivate'); ?>
                 </li>
-            <?php endif ?>
+            <?php } ?>
             <li>
-                <?= $this->url->icon('folder', t('Project management'), 'ProjectListController', 'show') ?>
+                <?php echo $this->url->icon('folder', t('Project management'), 'ProjectListController', 'show'); ?>
             </li>
 
-            <?= $this->hook->render('template:dashboard:page-header:menu', array('user' => $user)) ?>
+            <?php echo $this->hook->render('template:dashboard:page-header:menu', ['user' => $user]); ?>
         </ul>
     </div>
     <section class="sidebar-container" id="dashboard">
-        <?= $this->render($sidebar_template, array('user' => $user)) ?>
+        <?php echo $this->render($sidebar_template, ['user' => $user]); ?>
         <div class="sidebar-content">
-            <?= $content_for_sublayout ?>
+            <?php echo $content_for_sublayout; ?>
         </div>
     </section>
 </section>
