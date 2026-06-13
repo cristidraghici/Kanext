@@ -1,4 +1,5 @@
 .data export-ignore
+.githooks export-ignore
 .github export-ignore
 docker-compose.yml export-ignore
 docker-config.php export-ignore

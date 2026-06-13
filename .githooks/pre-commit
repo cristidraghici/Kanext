@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+echo "Running Kanext Formatter (pre-commit hook)..."
+make format
+
+# Re-stage files that were modified by the formatter and were already staged
+# This ensures we don't accidentally commit unformatted code, but also
+# doesn't forcefully stage entirely unstaged files.
+STAGED_FILES=$(git diff --cached --name-only --diff-filter=ACM)
+if [ -n "$STAGED_FILES" ]; then
+    echo "$STAGED_FILES" | xargs git add
+fi

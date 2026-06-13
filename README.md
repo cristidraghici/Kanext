@@ -36,3 +36,15 @@ to make contributing incredibly easy.
 
 PHP caching is automatically disabled in this environment, so your code changes
 will immediately reflect upon refreshing the browser.
+
+### Git Hooks
+
+Before committing code, initialize the local repository hooks:
+
+```bash
+make init
+```
+
+This ensures Kanext's custom `.githooks` are active, which will automatically
+run the code formatter before every commit and the syntax linter before every
+push.

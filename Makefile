@@ -20,3 +20,7 @@ format-php:
 
 format-frontend:
 	npx prettier --write .
+
+init:
+	@ echo "Configure Git hooks"
+	@ git config core.hooksPath .githooks

@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+echo "Running Kanext Linter (pre-push hook)..."
+make lint
