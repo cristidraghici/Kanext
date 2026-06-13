@@ -1,59 +1,38 @@
 # Kanext
 
-> Improved and expanded theme for
-> [kanboard](https://github.com/kanboard/kanboard), that alters both look and
-> functionality.
+An extended theme and feature plugin for
+[Kanboard](https://github.com/kanboard/kanboard) designed to boost productivity
+for small teams.
 
-## Important notice
+## Features
 
-- Version 3.x.x brings more fundamental changes to the project, thus please do
-  not update if you are happy previous versions.
-- The docker configuration is for development purposes only. Only use the theme
-  in production!
-- The issues are being taken into consideration. Due to this being a spare-spare
-  time project and time limitations, PRs are welcome! 😺
+Kanext alters both the look and core functionality of Kanboard, providing:
 
-## Kanext theme
+- **Custom Dashboards**: Redesigned overviews to quickly see tasks, activities,
+  and comments.
+- **UI Enhancements**: Restructured menus, refined CSS styling, and
+  quality-of-life UX improvements (e.g., closing modals by clicking outside
+  them).
+- **Task Management**: Advanced capabilities to limit tasks within swimlanes and
+  enforce global team conventions.
 
-`Kanext` is short for `Kanboard-Extended`. This plugin is supposed to change
-some parts of the templates kanboard uses (e.g. the dashboard) to increase
-productivity for small teams.
+## Screenshot
 
-Other UI improvements are available as well:
+_Shown running alongside the recommended **GreenWing** theme plugin:_
 
-- different menu structure;
-- just another CSS theme;
-- small changes in the overall functionality (e.g. close modal on outside click,
-  close dropdown on second click in the anchor)
+![Dashboard with GreenWing and Kanext](.screenshots/dashboard.png?raw=true 'Dashboard with GreenWing and Kanext')
 
-For now, `Kanext` contains a lot of functionality in one place. This is
-convenient, as it is rather easy to maintain. In the future, it might be broken
-into smaller plugins.
+## Development Environment
 
-### Screenshot
+We provide a zero-configuration Docker setup using the official Kanboard image
+to make contributing incredibly easy.
 
-This screenshot is made together with the **GreenWing** plugin/template, which
-we strongly recommend.
+1. Start the container from the project root:
+   ```bash
+   docker compose up -d
+   ```
+2. Open your browser to [http://localhost:88](http://localhost:88).
+3. Log in using the default credentials (`admin` / `admin`).
 
-![Dashboard with GreenWing and Kanext](/.screenshots/dashboard.png?raw=true 'Dashboard with GreenWing and Kanext')
-
-### Development
-
-An easy way to start a development environment is to use the docker
-configuration:
-
-- `cd .docker`
-- `docker compose up`
-
-The app will be available at: [http://localhost:88](http://localhost:88/) with
-the `admin`/`admin` combination for username and password.
-
-We use as base a
-[kanboard image from the docker hub](https://hub.docker.com/r/kanboard/kanboard/tags).
-
-## Kanboard
-
-- Kanboard provides the basic necessary functionality for handling kanban
-  projects. Moreover, it is a popular piece of software with a lot of community
-  support.
-- Kanboard is currently at **1.2.13**.
+PHP caching is automatically disabled in this environment, so your code changes
+will immediately reflect upon refreshing the browser.

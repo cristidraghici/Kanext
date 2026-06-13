@@ -3,8 +3,8 @@ services:
     image: kanboard/kanboard:v1.2.35
     container_name: kanext-kanboard
     ports:
-      - "88:80"
-      - "4433:443"
+      - '88:80'
+      - '4433:443'
     volumes:
       - ./.data/data:/var/www/app/data
       - ./.data/plugins:/var/www/app/plugins
