@@ -31,7 +31,7 @@ jobs:
           CLEAN_TAG="${INPUT_TAG#v}"
 
           # Extract version from Plugin.php
-          PLUGIN_VERSION=$(awk '/getPluginVersion/{getline; getline; print}' Plugin.php | cut -d"'" -f2)
+          PLUGIN_VERSION=$(grep -A 2 'public function getPluginVersion()' Plugin.php | grep -Eo "return '[^']+'" | cut -d "'" -f 2 || echo "")
 
           if [ "$CLEAN_TAG" != "$PLUGIN_VERSION" ]; then
             echo "::error::Provided tag ($CLEAN_TAG) does not match version in Plugin.php ($PLUGIN_VERSION)."
@@ -48,7 +48,7 @@ jobs:
           VERSION: ${{ env.CLEAN_TAG }}
         run: |
           # Extract compatible version from Plugin.php
-          COMPAT_VER=$(awk '/getCompatibleVersion/{getline; getline; print}' Plugin.php | cut -d"'" -f2)
+          COMPAT_VER=$(grep -A 2 'public function getCompatibleVersion()' Plugin.php | grep -Eo "return '[^']+'" | cut -d "'" -f 2 || echo "")
 
           # Clone the kanboard website repository fork
           gh repo fork kanboard/website --clone --remote=true
