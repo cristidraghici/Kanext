@@ -23,7 +23,7 @@ jobs:
           echo "ZIP_FILE=Kanext-$VERSION.zip" >> $GITHUB_ENV
 
       - name: Create Release
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@v3
         with:
           files: ${{ env.ZIP_FILE }}
           generate_release_notes: true
