@@ -50,18 +50,45 @@ jobs:
           # Extract compatible version from Plugin.php
           COMPAT_VER=$(grep -A 2 'public function getCompatibleVersion()' Plugin.php | grep -Eo "return '[^']+'" | cut -d "'" -f 2 || echo "")
 
+          # Setup git credentials to use the GH_TOKEN provided
+          gh auth setup-git
+
           # Clone the kanboard website repository fork
-          gh repo fork kanboard/website --clone --remote=true
-          cd website
+          gh repo fork kanboard/website --fork-name kanboard-website --clone
+          cd kanboard-website
 
           # Use the exact tag provided by the user in the download URL
           DOWNLOAD_URL="https://github.com/${{ github.repository }}/releases/download/${TAG_NAME}/Kanext-${VERSION}.zip"
 
-          jq --arg ver "$VERSION" \
+          jq --indent 4 \
+             --arg author "Cristi Draghici" \
+             --arg desc "This theme modifies the default functionality of kanboard and enhances the user experience." \
+             --arg homepage "https://github.com/${{ github.repository }}" \
+             --arg is_type "plugin" \
+             --arg license "MIT" \
+             --arg readme "https://github.com/${{ github.repository }}/blob/master/README.md" \
+             --arg title "Kanext" \
+             --arg ver "$VERSION" \
              --arg dl "$DOWNLOAD_URL" \
              --arg compat "$COMPAT_VER" \
-             '.Kanext.version = $ver | .Kanext.download = $dl | .Kanext.compatible_version = $compat' \
-             plugins.json > tmp.json && mv tmp.json plugins.json
+             --arg updated "$(date +%Y-%m-%d)" \
+             '.Kanext = (.Kanext // {}) + {
+               author: $author,
+               compatible_version: $compat,
+               description: $desc,
+               download: $dl,
+               has_hooks: true,
+               has_overrides: true,
+               has_schema: false,
+               homepage: $homepage,
+               is_type: $is_type,
+               last_updated: $updated,
+               license: $license,
+               readme: $readme,
+               remote_install: true,
+               title: $title,
+               version: $ver
+             } | to_entries | sort_by(.key | ascii_downcase) | from_entries' plugins.json > tmp.json && mv tmp.json plugins.json
 
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
