@@ -1,0 +1,23 @@
+services:
+  kanboard:
+    image: kanboard/kanboard:v1.2.35
+    container_name: kanext-kanboard
+    ports:
+      - '88:80'
+      - '4433:443'
+    volumes:
+      - ./.data/data:/var/www/app/data
+      - ./.data/plugins:/var/www/app/plugins
+      # Mount the plugin components directly to avoid .git/ permission issues during chown
+      - ./Asset:/var/www/app/plugins/Kanext/Asset
+      - ./Controller:/var/www/app/plugins/Kanext/Controller
+      - ./Helper:/var/www/app/plugins/Kanext/Helper
+      - ./Locale:/var/www/app/plugins/Kanext/Locale
+      - ./Model:/var/www/app/plugins/Kanext/Model
+      - ./Pagination:/var/www/app/plugins/Kanext/Pagination
+      - ./Template:/var/www/app/plugins/Kanext/Template
+      - ./Plugin.php:/var/www/app/plugins/Kanext/Plugin.php
+      # Mount minimal dev config overrides
+      - ./docker-config.php:/var/www/app/config.php
+    environment:
+      - KANBOARD_PLUGIN_INSTALLER=true

@@ -1,0 +1,86 @@
+name: publish-marketplace
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'The release tag to publish (e.g., v4.2.0 or 4.2.0)'
+        required: true
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Verify Secret Configuration
+        env:
+          GH_TOKEN: ${{ secrets.MARKETPLACE_SYNC_PAT }}
+        run: |
+          if [ -z "$GH_TOKEN" ]; then
+            echo "::error::MARKETPLACE_SYNC_PAT is not set. Please add it to repository secrets with 'public_repo' permission."
+            exit 1
+          fi
+
+      - name: Verify Tag against Plugin.php
+        env:
+          INPUT_TAG: ${{ github.event.inputs.tag }}
+        run: |
+          # Strip the 'v' prefix for comparison
+          CLEAN_TAG="${INPUT_TAG#v}"
+
+          # Extract version from Plugin.php
+          PLUGIN_VERSION=$(awk '/getPluginVersion/{getline; getline; print}' Plugin.php | cut -d"'" -f2)
+
+          if [ "$CLEAN_TAG" != "$PLUGIN_VERSION" ]; then
+            echo "::error::Provided tag ($CLEAN_TAG) does not match version in Plugin.php ($PLUGIN_VERSION)."
+            exit 1
+          fi
+
+          # Make CLEAN_TAG available to subsequent steps
+          echo "CLEAN_TAG=$CLEAN_TAG" >> $GITHUB_ENV
+
+      - name: Submit Pull Request to Plugin Directory
+        env:
+          GH_TOKEN: ${{ secrets.MARKETPLACE_SYNC_PAT }}
+          TAG_NAME: ${{ github.event.inputs.tag }}
+          VERSION: ${{ env.CLEAN_TAG }}
+        run: |
+          # Extract compatible version from Plugin.php
+          COMPAT_VER=$(awk '/getCompatibleVersion/{getline; getline; print}' Plugin.php | cut -d"'" -f2)
+
+          # Clone the kanboard website repository fork
+          gh repo fork kanboard/website --clone --remote=true
+          cd website
+
+          # Use the exact tag provided by the user in the download URL
+          DOWNLOAD_URL="https://github.com/${{ github.repository }}/releases/download/${TAG_NAME}/Kanext-${VERSION}.zip"
+
+          jq --arg ver "$VERSION" \
+             --arg dl "$DOWNLOAD_URL" \
+             --arg compat "$COMPAT_VER" \
+             '.Kanext.version = $ver | .Kanext.download = $dl | .Kanext.compatible_version = $compat' \
+             plugins.json > tmp.json && mv tmp.json plugins.json
+
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          BRANCH_NAME="update-kanext-v$VERSION"
+          git checkout -b "$BRANCH_NAME"
+          git add plugins.json
+
+          # If no changes were made, exit gracefully
+          if git diff --staged --quiet; then
+            echo "::warning::No changes to plugins.json. The version might already be updated."
+            exit 0
+          fi
+
+          git commit -m "Update Kanext to v$VERSION"
+          git push -u origin "$BRANCH_NAME" --force
+
+          # Create Pull Request
+          gh pr create \
+            --repo kanboard/website \
+            --title "Update Kanext plugin to v$VERSION" \
+            --body "Automated release PR for Kanext plugin version $VERSION."

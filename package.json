@@ -1,0 +1,9 @@
+{
+  "name": "kanext",
+  "version": "4.0.1",
+  "description": "Kanext Plugin for Kanboard",
+  "private": true,
+  "devDependencies": {
+    "prettier": "^3.0.0"
+  }
+}

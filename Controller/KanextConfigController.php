@@ -1,19 +1,20 @@
 <?php
+
 namespace Kanboard\Plugin\Kanext\Controller;
 
-use \Kanboard\Controller\ConfigController;
+use Kanboard\Controller\ConfigController;
 
 class KanextConfigController extends ConfigController
 {
     public function show()
     {
-        $this->response->html($this->helper->layout->config('Kanext:kanext_configuration/configuration-page', array(
+        $this->response->html($this->helper->layout->config('Kanext:config/kanext_page', [
             'title' => t('Settings') . ' &gt; Kanext',
 
-            'groups'    => $this->configHelper->getGroups(),
-            'options'   => $this->configHelper->getOptions(),
-            'values'    => $this->configHelper->getValues()
-        )));
+            'groups' => $this->configHelper->getGroups(),
+            'options' => $this->configHelper->getOptions(),
+            'values' => $this->configHelper->getValues(),
+        ]));
     }
 
     public function save()
@@ -22,11 +23,9 @@ class KanextConfigController extends ConfigController
         $values = $this->request->getValues();
 
         // Set the disabled checkboxes values
-        if (method_exists($this->request, 'getCheckboxes')) {
-            foreach ($this->configHelper->getCheckboxes() as $checkbox) {
-                if (!isset($values[$checkbox])) {
-                    $values[$checkbox] = 0;
-                }
+        foreach ($this->configHelper->getCheckboxes() as $checkbox) {
+            if (!isset($values[$checkbox])) {
+                $values[$checkbox] = 0;
             }
         }
 
@@ -36,6 +35,6 @@ class KanextConfigController extends ConfigController
             $this->flash->failure(t('Unable to save your settings.'));
         }
 
-        $this->response->redirect($this->helper->url->to('KanextConfigController', 'show', array('plugin' => 'Kanext')));
+        $this->response->redirect($this->helper->url->to('KanextConfigController', 'show', ['plugin' => 'Kanext']));
     }
 }

@@ -1,5 +1,12 @@
 .DS_Store
 .project
 
-vendor
-node_modules
+# Dependencies
+vendor/
+node_modules/
+
+# PHP-CS-Fixer cache
+.php-cs-fixer.cache
+
+# Build artifacts
+*.zip

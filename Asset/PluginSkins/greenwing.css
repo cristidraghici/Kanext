@@ -1,0 +1,33 @@
+input[type='radio'],
+input[type='number'] {
+  width: auto !important;
+  display: inline-block !important;
+}
+
+/* Dashboard sidebar size fix, important for flex - extending the fixes in KanboardFixes/style.css */
+#dashboard.sidebar-container .sidebar {
+  top: 0px;
+}
+#dashboard.sidebar-container .sidebar-content {
+  max-width: calc(100% - 230px - 25px);
+}
+
+@media only screen and (max-width: 768px) {
+  header .title-container h1 {
+    margin-top: 2px;
+  }
+}
+
+/** Show the logo of KB instead of Greenwing's, which is currently broken */
+header .logo {
+  margin-top: 2px !important;
+  margin-right: 8px !important;
+  background-image: none !important;
+}
+header .logo a {
+  opacity: 1 !important;
+  color: #ff0000 !important;
+}
+header .logo a span {
+  display: inline-block !important;
+}
